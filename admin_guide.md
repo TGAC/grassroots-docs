@@ -32,5 +32,5 @@ The services with extra configuration options are listed [below](#specific_servi
 
 Links for the configuration for the following services are listed below:
 
- * [BLAST services](blast_service.md)
- * [SamTools service](samtools_service.md)
+ * [BLAST services](../services/blast-service/readme.md)
+ * [SamTools service](../services/samtools-service/readme.md)

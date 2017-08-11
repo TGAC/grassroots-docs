@@ -26,7 +26,7 @@ It can be used with both [LSF](http://www-03.ibm.com/systems/spectrum-computing/
 
 ### iRODS
 
-[iRODS](http://irods.org/) is a data storage layer that abstracts out where the data is stored as well as having the ability to add metadata to files and directories to allow for searching. The [Grassroots iRODS](irods.md) library adds an API to simplify searching on various criteria.
+[iRODS](http://irods.org/) is a data storage layer that abstracts out where the data is stored as well as having the ability to add metadata to files and directories to allow for searching. The [Grassroots iRODS](../core/shared/irods/readme.md "iRODS tools guide") library adds an API to simplify searching on various criteria.
 
 
 ### Server library
@@ -59,7 +59,7 @@ Since the scientific functionality is delivered by each of the Services, most de
 
 Handlers are the family of components that allow data to be read or written to different storage systems such as local filesystems, iRods, http(s), Dropbox, *etc*.
 By abstracting these different systems out, other parts of the Grassroots architecture can read and write data transparently without having to be concerned about the underlying storage mechanism.
-Handlers are explained in detail in the [Handlers guide] (handlers.md "Handlers guide").
+Handlers are explained in detail in the [Handlers guide](../core/shared/handler/readme.md "Handlers guide").
 
 
 ### Utility
