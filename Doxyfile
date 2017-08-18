@@ -781,7 +781,7 @@ WARN_LOGFILE           = log
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../core/shared/parameters/readme.md \
+INPUT                  = \
                          ../core/shared \
                          ../core/server \
                          ../core/client \
@@ -800,7 +800,9 @@ INPUT                  = ../core/shared/parameters/readme.md \
                          server.md \
                          service_configuration.md \
                          service_response.md \
-                         services.md
+                         services.md \
+												 ../core/shared/parameters/readme.md \
+                         readme.md
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
