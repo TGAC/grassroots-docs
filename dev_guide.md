@@ -26,7 +26,7 @@ It can be used with both [LSF](http://www-03.ibm.com/systems/spectrum-computing/
 
 ### iRODS
 
-[iRODS](http://irods.org/) is a data storage layer that abstracts out where the data is stored as well as having the ability to add metadata to files and directories to allow for searching. The [Grassroots iRODS](../core/shared/irods/readme.md "iRODS tools guide") library adds an API to simplify searching on various criteria.
+[iRODS](http://irods.org/) is a data storage layer that abstracts out where the data is stored as well as having the ability to add metadata to files and directories to allow for searching. The [Grassroots iRODS](irods.md) library adds an API to simplify searching on various criteria.
 
 
 ### Server library
