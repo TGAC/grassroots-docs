@@ -1,4 +1,4 @@
-# Doxyfile 1.8.13
+# Doxyfile 1.8.11
 
 # This file describes the settings to be used by the documentation system
 # doxygen (www.doxygen.org) for a project.
@@ -694,7 +694,7 @@ FILE_VERSION_FILTER    =
 # DoxygenLayout.xml, doxygen will parse it automatically even if the LAYOUT_FILE
 # tag is left empty.
 
-#LAYOUT_FILE            = grassroots_doxygen_layout.xml
+LAYOUT_FILE            = 
 
 # The CITE_BIB_FILES tag can be used to specify one or more bib files containing
 # the reference definitions. This must be a list of .bib files. The .bib
@@ -781,8 +781,7 @@ WARN_LOGFILE           = log
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  =  \
-                         ../core/shared \
+INPUT                  = ../core/shared \
                          ../core/server \
                          ../core/client \
                          admin_guide.md \
@@ -826,8 +825,7 @@ INPUT_ENCODING         = UTF-8
 # *.vhd, *.vhdl, *.ucf, *.qsf, *.as and *.js.
 
 FILE_PATTERNS          = *.h \
-                         *.hpp 
-                         
+                         *.hpp
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
@@ -1127,7 +1125,7 @@ HTML_FILE_EXTENSION    = .html
 # of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_HEADER            = 
+HTML_HEADER            = doxygen_header.html
 
 # The HTML_FOOTER tag can be used to specify a user-defined HTML footer for each
 # generated HTML page. If the tag is left blank doxygen will generate a standard
@@ -1137,7 +1135,7 @@ HTML_HEADER            =
 # that doxygen normally uses.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_FOOTER            = 
+HTML_FOOTER            = doxygen_footer.html
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading style
 # sheet that is used by each HTML page. It can be used to fine-tune the look of
@@ -1162,7 +1160,11 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = grassroots.css
+HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
+                         bootstrap.min.css \
+                         font-awesome.min.css \
+												 grassroots.css \
+                         site.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -2095,7 +2097,7 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          COMPRESS_SERVICE_API \
                          COMPRESS_SERVICE_LOCAL=/**@private*/ \
                          ENSEMBL_REST_SERVICE_API= \
-                         "ENSEMBL_REST_SERVICE_LOCAL= /** @private */" \     
+                         "ENSEMBL_REST_SERVICE_LOCAL= /** @private */" \
                          IRODS_SEARCH_SERVICE_API= \
                          IRODS_SEARCH_SERVICE_LOCAL= \
                          LONG_RUNNING_SERVICE_API \
@@ -2107,7 +2109,7 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          WEB_SEARCH_SERVICE_API= \
                          WEB_SEARCH_SERVICE_LOCAL= \
                          DROPBOX_HANDLER_API= \
-                         DROPBOX_HANDLER_LOCAL= \                         
+                         DROPBOX_HANDLER_LOCAL= \
                          FILE_HANDLER_API= \
                          FILE_HANDLER_LOCAL= \
                          HTTP_HANDLER_API= \
@@ -2529,4 +2531,3 @@ GENERATE_LEGEND        = YES
 # This tag requires that the tag HAVE_DOT is set to YES.
 
 DOT_CLEANUP            = YES
-
