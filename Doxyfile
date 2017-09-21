@@ -1163,7 +1163,7 @@ HTML_STYLESHEET        =
 HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
                          bootstrap.min.css \
                          font-awesome.min.css \
-												 grassroots.css \
+                         grassroots.css \
                          site.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
