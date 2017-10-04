@@ -781,7 +781,9 @@ WARN_LOGFILE           = log
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../core/shared \
+INPUT                  = readme.md \
+													../core/shared/irods/readme.md \
+												 ../core/shared \
                          ../core/server \
                          ../core/client \
                          admin_guide.md \
@@ -790,8 +792,10 @@ INPUT                  = ../core/shared \
                          installation.md \
                          server_configuration.md \
                          service_configuration.md \
+                         service_response.md \
+                         services.md \
+                         ../core/shared/parameters/readme.md \
                          linked_services.md \
-                         readme.md \
                          server.md \
                          services.md \
                          examples.md \
@@ -800,6 +804,8 @@ INPUT                  = ../core/shared \
                          ../services/blast-service/blast-service.md \
                          irods.md \
                          ../services/samtools-service/samtools-service.md
+
+
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -950,7 +956,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = readme.md
+USE_MDFILE_AS_MAINPAGE = ./readme.md
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
