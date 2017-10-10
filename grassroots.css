@@ -3,6 +3,32 @@ div.groupHeader {
 	margin: 0;
 	padding: 3.0em 0em 0.3em 0.4em;
 	color: grey;
-	
 }
 
+h1, h2 , h3, h4, h5, h6, h7 {
+	text-transform: none;
+}
+
+h2 {
+	margin-top: 1.0em;
+	font-size: 1.6em;
+}
+
+h3 {
+	margin-top: 1.0em;
+	font-size: 1.4em;
+}
+
+h4 {
+	margin-top: 1.0em;
+	font-size: 1.2em;
+}
+
+h5, h6, h7 {
+	margin-top: 1.0em;
+	font-size: 1.1em;
+}
+
+p { 
+	font-size: 1.0em;
+}

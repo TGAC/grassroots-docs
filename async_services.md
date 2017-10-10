@@ -13,11 +13,11 @@ Below is a snippet of the definition for a Service that runs asynchronously.
 
 ~~~{.json}
 {
-	"description": "A service to run the Blast program",
+	"description": "A service to run the BLAST program",
 	"services": "Blast service",
 	"operations": {
 		"synchronous": false,
-		"summary": "A service to run the Blast program",
+		"summary": "A service to run the BLAST program",
   		"nickname": "Blast service",
   		"parameter_set": {
   		}

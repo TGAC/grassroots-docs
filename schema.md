@@ -1,14 +1,71 @@
-﻿The Grassroots Schema
-=====================
+﻿# The Grassroots Schema {#grassroots-schema}
 
-# [Schema Introduction](#schema-introduction)
+## Schema Introduction 
 
 All of the messages between Servers and Clients use a JSON-based schema. A full example of this is shown below and then each part will get described in turn. There are [Examples](examples.md)
 
 Any message can have a header, much like the \<head\> tag in a web page and although this is optional it is recommended that all messages have one of these. The information contained in it are items such as the version of the Grassroots schema and the incoming request.
 
+## Header
 
-## [Example](#Example)
+Each message can contain a **header** section that stores the details about various features that are not 
+neccessarily related to running services such as the version of the schema that is being used, datestamps, *etc.* It can currently contain the following elements 
+
+ * **schema**: This specifies the details about the Grassroots schema being used and currently contains
+the following keys:
+    * **major**: The major revision of the Grassroots schema being used.
+    * **minor**: The major revision of the Grassroots schema being used.
+
+So an example specifying that version 0.10 of the Grassroots schema is being used would be:
+
+~~~.json
+{
+  "header": {
+    "schema": {
+      "major": 0,
+      "minor": 10
+    }
+	}
+}
+~~~
+
+
+##Operations 
+
+The Operations tag is used to make an API call to a Grassroots Server. It conatins a single key-value pair.
+
+* **operation_id** (required): A string which equates to a particular API call for the Operation.
+
+ Value | C variable | Description  
+--- | --- | ---
+<em>get_all_services</em> | OP_LIST_ALL_SERVICES | Get a list of all of the Services that the Server can offer. 
+<em>get_schema_version</em> | OP_GET_SCHEMA_VERSION | Get the SchemaVersion that the Server is using. 
+<em>get_interested_services</em> | OP_LIST_INTERESTED_SERVICES | Get a list of the Services that are able to run on a given Resource. 
+<em>run_keyword_services</em> | OP_RUN_KEYWORD_SERVICES | Run all of the Services that have Keyword Parameters. 
+<em>get_named_service</em> | OP_GET_NAMED_SERVICES | Get list of services matching the given names.
+<em>get_service_results</em> | OP_GET_SERVICE_RESULTS | Get results or the status of jobs.
+<em>get_resource</em> | OP_GET_RESOURCE | Get a requested Resource from the Server. 
+<em>get_server_status</em> | OP_SERVER_STATUS | Get the status of the Grassroots server.
+ 
+ So, for example, the JSON-based request to get a list of all available Services would be:
+
+ ~~~.json
+{
+  "header": {
+    "schema": {
+      "major": 0,
+      "minor": 10
+    }
+	}
+	"operations": {
+		"operation_id": "get_all_services"
+	}
+}
+ ~~~
+ 
+
+
+## Example {#schema_example}
 
 ~~~.json
 {
@@ -71,25 +128,25 @@ Any message can have a header, much like the \<head\> tag in a web page and alth
 
 The Operations tag is used to call an API on the Server.
 
-* **operation_id** (required): A number which equates to a particular API call for the Operation.
+* **operation_id** (required): A string which equates to a particular API call for the Operation.
 
  Value | C variable | Description  
 --- | --- | ---
-0 | OP_LIST_ALL_SERVICES | Get a list of all of the Services that the Server can offer. 
-1 | OP_IRODS_MODIFIED_DATA | Get a list of all of a user's iRODS data objects and collections that have been modified within a given period. 
-2 | OP_LIST_INTERESTED_SERVICES | Get a list of the Services that are able to run on a given Resource. 
-3 | OP_RUN_KEYWORD_SERVICES | Run all of the Services that have Keyword Parameters. 
-4 | OP_GET_NAMED_SERVICES | Get the full description of a named Service. 
-5 | OP_CHECK_SERVICE_STATUS | For asynchronously-running jobs, check the status of these jobs.
-6 | OP_GET_SERVICE_RESULTS | For asynchronously-running jobs, get their results. 
-7 | OP_CLEAN_UP_JOBS | For asynchronously-running jobs, clean up any temporary resources that they used.
+<em>get_all_services</em> | OP_LIST_ALL_SERVICES | Get a list of all of the Services that the Server can offer. 
+<em>get_schema_version</em> | OP_GET_SCHEMA_VERSION | Get the SchemaVersion that the Server is using. 
+<em>get_interested_services</em> | OP_LIST_INTERESTED_SERVICES | Get a list of the Services that are able to run on a given Resource. 
+<em>run_keyword_services</em> | OP_RUN_KEYWORD_SERVICES | Run all of the Services that have Keyword Parameters. 
+<em>get_named_service</em> | OP_GET_NAMED_SERVICES | Get list of services matching the given names.
+<em>get_service_results</em> | OP_GET_SERVICE_RESULTS | Get results or the status of jobs.
+<em>get_resource</em> | OP_GET_RESOURCE | Get a requested Resource from the Server. 
+<em>get_server_status</em> | OP_SERVER_STATUS | Get the status of the Grassroots server.
  
  So, for example, the JSON-based request to get a list of all available Services is:
 
  ~~~.json
 {
 		"operations": {
-			"operation_id": 0
+			"operation_id": "get_all_services"
 		}
 }
  ~~~

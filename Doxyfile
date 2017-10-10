@@ -782,10 +782,6 @@ WARN_LOGFILE           = log
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = readme.md \
-													../core/shared/irods/readme.md \
-												 ../core/shared \
-                         ../core/server \
-                         ../core/client \
                          admin_guide.md \
                          user_guide.md \
                          dev_guide.md \
@@ -793,17 +789,30 @@ INPUT                  = readme.md \
                          server_configuration.md \
                          service_configuration.md \
                          service_response.md \
-                         services.md \
                          ../core/shared/parameters/readme.md \
-                         linked_services.md \
+													../core/shared/irods/readme.md \
                          server.md \
                          services.md \
+                         async_services.md \
+                         linked_services.md \
+                         ../services/blast-service/blast_service.md \
+                         ../services/ensembl-service/ensembl_service.md \
+                         ../services/samtools-service/samtools_service.md \
+                         ../services/polymarker-service/polymarker_service.md \
+                         ../services/pathogenomics-service/pathogenomics_service.md \
+                         ../services/irods-service/irods_service.md \
+                         ../services/example-service/example_service.md \
                          examples.md \
                          schema.md \
-                         async_services.md \
-                         ../services/blast-service/blast-service.md \
-                         irods.md \
-                         ../services/samtools-service/samtools-service.md
+                         ../core/shared/handler/readme.md \
+                         ../handlers/file-handler/file_handler.md \
+                         ../handlers/http-handler/http_handler.md \
+                         ../handlers/irods-handler/irods_handler.md \
+                         ../servers/apache-server/apache_server.md \
+                         ../servers/mongodb-jobs-manager/mongodb_jobs_manager.md \
+												 ../core/shared \
+                         ../core/server \
+                         ../core/client 
 
 
 
@@ -1169,8 +1178,8 @@ HTML_STYLESHEET        =
 HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
                          bootstrap.min.css \
                          font-awesome.min.css \
-                         grassroots.css \
-                         site.css
+                         site.css \
+                         grassroots.css 
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note

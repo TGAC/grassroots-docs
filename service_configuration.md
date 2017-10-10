@@ -7,9 +7,9 @@ Any changes made within these files are set immediately and reflected by any sub
 Each Service will have specific values that can be put in this configuration file. Alongside all of these, any Parameters and ParameterGroups can be adjusted too. 
 The properties in these sections are described in the [schema guide](schema.md).
 
-## ParameterGroups
+## Parameter Groups
 
-ParameterGroups are used to make logical groupings of Parameters to make more sense for users. 
+The ParameterGroup structure is used to make logical groupings of Parameters to make more sense for users. 
 Any Service can configure these by using the **groups** key.
 
 ### Visibility
