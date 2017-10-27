@@ -1,7 +1,7 @@
-﻿# Asynchronous Services
+﻿# Asynchronous Services {#async_services_guide}
 
 Services can run in two different ways: 
- * **Synchronous** where the Service does not return until it has completed.  
+ * **Synchronous** where the Service does not return until it has completed.
  * **Asynchronous** where the Service starts its work and returns immediately. The job then continues and the Client can send a message to the Service to see if it has completed successfully or not.
 
 By default, Services run in synchronous mode. 
@@ -50,7 +50,7 @@ json_t *(*se_serialise_job_json_fn) (struct Service *service_p, const struct Ser
 These two functions are used to convert between a ServiceJob and its JSON serialisation. To illustrate how this works, let's go through an example Service that uses this functionality. Included within the Grassroots distribution is an example Service called *Long Running service* and its source at server/src/services/test_long_runner/src/long_running_service.c. This Service mimics the running of asynchronous jobs and how to store and retrieve them from the JobsManager.
 
 Since we are going to store the data representing the asynchronous tasks in the JobsManager, we need to specify the callback functions that we will use to convert our ServiceJobs to and from their JSON
-representations. In the ```GetServices ``` function there is the following piece of code that specifies these functions for the Service.
+representations. In the ```GetServices()``` function there is the following piece of code that specifies these functions for the Service.
 
 ~~~{.c}
 service_p -> se_deserialise_job_json_fn = BuildTimedServiceJob;

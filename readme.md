@@ -27,5 +27,5 @@ The architecture comprises:
 * [clients](https://github.com/TGAC/?q=%22grassroots-client%22)
   * Client implementations that can interact with the worker service and core server modules to provide interfaces for end users, including typical web-based libraries to build dynamic websites and Qt libraries to build desktop applications
 
-All JSON-based Server-Server and Server-Client communication specficiations are described in the [Schema guide](@ref schema.md). Additional documentation can be found [here](https://github.com/TGAC/grassroots-docs).
+All JSON-based Server-Server and Server-Client communication specficiations are described in the [Schema guide](@ref schema_guide). Additional documentation can be found [here](https://github.com/TGAC/grassroots-docs).
 

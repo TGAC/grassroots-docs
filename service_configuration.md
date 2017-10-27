@@ -5,7 +5,7 @@ These configuration files are in the *config* directory within the Grassroots ro
 For instance, for an example Service called *Foobar Search Service* the configuration file would be *config/Foobar Search service*. 
 Any changes made within these files are set immediately and reflected by any subsequent requests to the Grassroots Server without any need to restart the application.
 Each Service will have specific values that can be put in this configuration file. Alongside all of these, any Parameters and ParameterGroups can be adjusted too. 
-The properties in these sections are described in the [schema guide](schema.md).
+The properties in these sections are described in the [schema guide](@ref schema_guide).
 
 ## Parameter Groups
 

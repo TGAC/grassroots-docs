@@ -15,7 +15,7 @@ Each of the existing libraries falls into either being server-specific, client-s
 
 ## Server-specific libraries
 
-For more information, see the [Server](server.md) documentation.
+For more information, see the [Server](@ref server_guide) documentation.
 
 ### DRMAA
 

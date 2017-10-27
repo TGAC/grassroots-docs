@@ -1,4 +1,4 @@
-﻿# The Grassroots Schema {#grassroots-schema}
+﻿# The Grassroots Schema {#schema_guide}
 
 ## Schema Introduction 
 

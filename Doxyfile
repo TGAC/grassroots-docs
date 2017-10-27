@@ -787,12 +787,8 @@ INPUT                  = readme.md \
                          dev_guide.md \
                          installation.md \
                          server_configuration.md \
-                         service_configuration.md \
-                         service_response.md \
-                         ../core/shared/parameters/readme.md \
-													../core/shared/irods/readme.md \
-                         server.md \
                          services.md \
+                         service_configuration.md \
                          async_services.md \
                          linked_services.md \
                          ../services/blast-service/blast_service.md \
@@ -802,6 +798,11 @@ INPUT                  = readme.md \
                          ../services/pathogenomics-service/pathogenomics_service.md \
                          ../services/irods-service/irods_service.md \
                          ../services/example-service/example_service.md \
+                         service_response.md \
+                         ../core/shared/parameters/readme.md \
+													../core/shared/irods/readme.md \
+													../core/server/mongodb/mongodb_library.md \
+                         server.md \
                          examples.md \
                          schema.md \
                          ../core/shared/handler/readme.md \
@@ -810,9 +811,14 @@ INPUT                  = readme.md \
                          ../handlers/irods-handler/irods_handler.md \
                          ../servers/apache-server/apache_server.md \
                          ../servers/mongodb-jobs-manager/mongodb_jobs_manager.md \
+                         ../core/server/task/task_library.md \
 												 ../core/shared \
+                         ../clients/qt-client/readme.md \
                          ../core/server \
-                         ../core/client 
+                         ../core/client \
+	                       ../services \
+                         ../handlers \
+                         ../servers \
 
 
 
@@ -1191,7 +1197,9 @@ HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
 
 HTML_EXTRA_FILES       = architecture.svg \
                          irods_service.png \
-                         qt_client.png
+                         ../clients/qt-client/grassroots_qt_client.png \
+                         ../clients/qt-client/run.png \
+
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
@@ -2121,6 +2129,8 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          PATHOGENOMICS_SERVICE_API \
                          SAMTOOLS_SERVICE_API \
                          SAMTOOLS_SERVICE_LOCAL=/**@private*/ \
+                         WEB_SERVICE_API= \
+                         WEB_SERVICE_LOCAL= \
                          WEB_SEARCH_SERVICE_API= \
                          WEB_SEARCH_SERVICE_LOCAL= \
                          DROPBOX_HANDLER_API= \
@@ -2134,7 +2144,7 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          RESOURCE_VAL(x)= \
                          RESOURCE_PREFIX \
                          ATTR_UNUSED \
-                         "UNUSED_PARAM(name)=unused_ ## name" \
+                         "UNUSED_PARAM(name)=name" \
                          ALLOCATE_PATH_TAGS \
                          PATH_PREFIX=GRASSROOTS_SERVICE_API \
                          "PATH_VAL(x)= =x" \
@@ -2152,13 +2162,18 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "JOBS_MANAGER_VAL(x)= =x" \
                          PATHOGENOMICS_PREFIX= \
                          "PATHOGENOMICS_VAL(x)= =x" \
+                         POLYMARKER_PREFIX= \
+                         "POLYMARKER_VAL(x)= =x" \
+                         SAMTOOLS_PREFIX= \
+                         "SAMTOOLS_VAL(x)= =x" \
                          SV_PREFIX= \
                          "SV_VAL(x)= =x" \
                          SEARCH_PREFIX= \
                          "SEARCH_VAL(x)= =x" \
                          GRASSROOTS_TASK_API \
                          "GRASSROOTS_TASK_LOCAL=/** @private */" \
-                         "SET_NAMED_PARAMETER_TYPE_TAGS(x,y)= { .npt_name_s = x, .npt_type = y }"
+                         "SET_NAMED_PARAMETER_TYPE_TAGS(x,y)= { .npt_name_s = x, .npt_type = y }" \
+												 "BLAST_SERVICE_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }"
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

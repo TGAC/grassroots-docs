@@ -77,7 +77,7 @@ This details how to call Agris' search engine by specifying the URI to call (htt
 
 ## Developing C/C++-based services within httpd
 
-Services built in C/C++-based are shared libraries that only require 2 exported functions; one to get the available Services and one to release them.  
+Services built in C/C++-based are shared libraries that only require 2 exported functions; one to get the available Services and one to release them. 
 
 ~~~{.c}
 /* For standalone services ... */
@@ -352,7 +352,7 @@ The Grassroots Web Search Service would convert these into results as shown belo
 
 ## JSON
 
-The way that a Server is queried about its Services is via JSON-based messages. Dependent upon the Way that the Server is built these may be GET, POST or body-based requests and you will need to refer to the specific Grassroots Server implementation for more information on this. For example, the httpd-based Grassroots Server defaults to receiving the JSON-based messages within the bodies of http(s) requests. The list of available operations are available in the [schema](schema.md#ops).
+The way that a Server is queried about its Services is via JSON-based messages. Dependent upon the Way that the Server is built these may be GET, POST or body-based requests and you will need to refer to the specific Grassroots Server implementation for more information on this. For example, the httpd-based Grassroots Server defaults to receiving the JSON-based messages within the bodies of http(s) requests. The list of available operations are available in the [schema](@ref schema_guide).
 
 
 ### List all Services
@@ -395,7 +395,7 @@ The Server will send a message detailing which, if any, operations for the Servi
 
 ### Get Service Results
 
-As described [elsewhere](@ref async_services.md), Services can perform operations either synchronously or asynchronously. 
+As described [elsewhere](@ref async_services_guide), Services can perform operations either synchronously or asynchronously. 
 When an operation is ran synchronously the Service waits for the operation to finish before returning the results, whereas, when ran asynchronously ,the Service will return straight away and the Server will need to send a message to the Service to check whether the operation has completed. 
 
 Once the operation has completed, the Service will send the results in a format similar to the example below.
