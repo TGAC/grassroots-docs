@@ -802,6 +802,11 @@ INPUT                  = readme.md \
                          ../services/pathogenomics-service/pathogenomics_service.md \
                          ../services/irods-service/irods_service.md \
                          ../services/example-service/example_service.md \
+                         service_response.md \
+                         ../core/shared/parameters/readme.md \
+													../core/shared/irods/readme.md \
+													../core/server/mongodb/mongodb_library.md \
+                         server.md \
                          examples.md \
                          ../clients/desktop-client/desktop-client.md \
                          schema.md \
@@ -818,6 +823,7 @@ INPUT                  = readme.md \
                          ../core/client \
                          ../services \
 								         ../servers 
+
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -2127,6 +2133,8 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          POLYMARKER_SERVICE_LOCAL= \
                          SAMTOOLS_SERVICE_API \
                          SAMTOOLS_SERVICE_LOCAL=/**@private*/ \
+                         WEB_SERVICE_API= \
+                         WEB_SERVICE_LOCAL= \
                          WEB_SEARCH_SERVICE_API= \
                          WEB_SEARCH_SERVICE_LOCAL= \
                          DROPBOX_HANDLER_API= \
@@ -2158,6 +2166,10 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "JOBS_MANAGER_VAL(x)= =x" \
                          PATHOGENOMICS_PREFIX= \
                          "PATHOGENOMICS_VAL(x)= =x" \
+                         POLYMARKER_PREFIX= \
+                         "POLYMARKER_VAL(x)= =x" \
+                         SAMTOOLS_PREFIX= \
+                         "SAMTOOLS_VAL(x)= =x" \
                          SV_PREFIX= \
                          "SV_VAL(x)= =x" \
                          SEARCH_PREFIX= \

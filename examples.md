@@ -22,7 +22,7 @@ An *operation_id* with the value *get_all_services* is the one for asking for al
 }
  ~~~
 
-2. The Server sends its response. In this example, it has 2 Operations: "*Foobar Contig Search service*" and  
+2. The Server sends its response. In this example, it has 2 Operations: "*Foobar Contig Search service*" and 
 "*Foobar Keyword Search service*"
  ~~~.json
 {

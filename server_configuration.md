@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿# Server Configuration {#server_configuration_guide}
+=======
+﻿#Server Configuration {#server_configuration_guide}
+
+>>>>>>> 40cd663e6b871af7ad7d29db6877cbd956a43b20
 
 The global Server configuration is specified by a JSON file called *grassroots.config* at the top level of the Grassroots directory.
 Unlike the individual [Service configuration](@ref service_configuration_guide) files, any changes in this file require a restart of the Grassroots Server to take effect.
