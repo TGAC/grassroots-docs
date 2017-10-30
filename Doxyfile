@@ -787,14 +787,14 @@ INPUT                  = readme.md \
                          dev_guide.md \
                          installation.md \
                          server_configuration.md \
-                         service_configuration.md \
-                         service_response.md \
-                         ../core/shared/parameters/readme.md \
-													../core/shared/irods/readme.md \
-                         server.md \
                          services.md \
                          async_services.md \
                          linked_services.md \
+                         service_configuration.md \
+                         service_response.md \
+                         ../core/shared/parameters/readme.md \
+                         ../core/shared/irods/readme.md \
+                         server.md \
                          ../services/blast-service/blast_service.md \
                          ../services/ensembl-service/ensembl_service.md \
                          ../services/samtools-service/samtools_service.md \
@@ -803,18 +803,21 @@ INPUT                  = readme.md \
                          ../services/irods-service/irods_service.md \
                          ../services/example-service/example_service.md \
                          examples.md \
+                         ../clients/desktop-client/desktop-client.md \
                          schema.md \
                          ../core/shared/handler/readme.md \
                          ../handlers/file-handler/file_handler.md \
                          ../handlers/http-handler/http_handler.md \
                          ../handlers/irods-handler/irods_handler.md \
                          ../servers/apache-server/apache_server.md \
+                         ../core/server/mongodb/mongodb_library.md \
                          ../servers/mongodb-jobs-manager/mongodb_jobs_manager.md \
-												 ../core/shared \
+                         ../core/server/task/task_library.md \
+                         ../core/shared \
                          ../core/server \
-                         ../core/client 
-
-
+                         ../core/client \
+                         ../services \
+								         ../servers 
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1179,7 +1182,7 @@ HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
                          bootstrap.min.css \
                          font-awesome.min.css \
                          site.css \
-                         grassroots.css 
+                         grassroots.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1191,7 +1194,8 @@ HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
 
 HTML_EXTRA_FILES       = architecture.svg \
                          irods_service.png \
-                         qt_client.png
+                         ../clients/desktop-client/grassroots_qt_client.png \
+                         ../clients/desktop-client/run.png \
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
@@ -2119,6 +2123,8 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "LONG_RUNNING_SERVICE_LOCAL=/** @private */" \
                          PATHOGENOMICS_SERVICE_LOCAL=/**@private*/ \
                          PATHOGENOMICS_SERVICE_API \
+                         POLYMARKER_SERVICE_API= \
+                         POLYMARKER_SERVICE_LOCAL= \
                          SAMTOOLS_SERVICE_API \
                          SAMTOOLS_SERVICE_LOCAL=/**@private*/ \
                          WEB_SEARCH_SERVICE_API= \
@@ -2134,7 +2140,7 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          RESOURCE_VAL(x)= \
                          RESOURCE_PREFIX \
                          ATTR_UNUSED \
-                         "UNUSED_PARAM(name)=unused_ ## name" \
+                         "UNUSED_PARAM(name)=name" \
                          ALLOCATE_PATH_TAGS \
                          PATH_PREFIX=GRASSROOTS_SERVICE_API \
                          "PATH_VAL(x)= =x" \
@@ -2158,7 +2164,13 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "SEARCH_VAL(x)= =x" \
                          GRASSROOTS_TASK_API \
                          "GRASSROOTS_TASK_LOCAL=/** @private */" \
-                         "SET_NAMED_PARAMETER_TYPE_TAGS(x,y)= { .npt_name_s = x, .npt_type = y }"
+                         "SET_NAMED_PARAMETER_TYPE_TAGS(x,y)= { .npt_name_s = x, .npt_type = y }" \
+                         SAMTOOLS_PREFIX= \
+                         "SAMTOOLS_VAL(x)= =x" \
+                         POLYMARKER_PREFIX= \
+                         "POLYMARKER_VAL(x)= =x" \
+                         "POLYMARKER_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }" \
+                         "BLAST_SERVICE_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }"
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

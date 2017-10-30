@@ -1,7 +1,7 @@
-﻿# Asynchronous Services
+﻿# Asynchronous Services {#async_services_guide}
 
 Services can run in two different ways: 
- * **Synchronous** where the Service does not return until it has completed.  
+ * **Synchronous** where the Service does not return until it has completed.
  * **Asynchronous** where the Service starts its work and returns immediately. The job then continues and the Client can send a message to the Service to see if it has completed successfully or not.
 
 By default, Services run in synchronous mode. 
@@ -35,7 +35,7 @@ The **synchronous** key determines how the Service runs. If it is ```false``` th
 
 When a Service runs a job synchronously, all of the resources that it requires can be released as it sends the response back. With asynchronous services, this becomes more difficult as any required resources need to be accessible between different requests. Given that Httpd can be run as a multi-threaded and/or multi-process system, any data that needs to be persistent, *i.e.* stored between requests, has to be adaptable to any Httpd runtime configuration.
 
-So the Grassroots system has an interface for interacting with asynchronous jobs this is an  called *JobsManager* which deals with sharing persistent data between requests. For Httpd, this interface is implemented in the *APRJobsManager*. The JobsManager is essentially a Hash Table where persistent data can be stored where the keys are UUIDs for the data that you wish to store and the values are JSON representations of the data. All of the needed data to recreate the ServiceJob must be stored in this JSON value.
+So the Grassroots system has an interface for interacting with asynchronous jobs this is an  called *JobsManager* which deals with sharing persistent data between requests. The JobsManager is essentially a Hash Table where persistent data can be stored where the keys are UUIDs for the data that you wish to store and the values are JSON representations of the data. All of the needed data to recreate the ServiceJob must be stored in this JSON value. For Httpd, this interface is implemented in the *APRJobsManager*. There is also a MongoDB Jobs Manager (@ref mongo_jobs_manager_guide) that use MongoDB as its storage system.
 
 When writing a Service that you want to be able to run jobs asynchronously, you need to specify two callback functions within the Service:
 
@@ -236,4 +236,4 @@ static TimedServiceJob *GetTimedServiceJobFromJSON (const json_t *json_p)
 
 The code starts by allocating the required memory for the *TimedServiceJob* and its associated *TimeInterval* structure. 
 If this succeeds, then the information for the *ServiceJob* parent object is filled in. Finally if this is successful, the start and end values required for our *TimeInterval* structure are extracted from the JSON fragment as well.
-If this all works, then the reconstructed *TimedServiceJob* is returned and is ready to be used.  
+If this all works, then the reconstructed *TimedServiceJob* is returned and is ready to be used. 

@@ -15,7 +15,7 @@ Each of the existing libraries falls into either being server-specific, client-s
 
 ## Server-specific libraries
 
-For more information, see the [Server](server.md) documentation.
+For more information, see the [Server](@ref server_guide) documentation.
 
 ### DRMAA
 
@@ -45,7 +45,7 @@ The [Server library](@ref server_library) takes care of consuming and JSON messa
 
 ## Services
 
-[Grassroots Services](services.md "Services guide") are the components that are accessed by the user to perform various tasks. 
+[Grassroots Services](@ref services_guide) are the components that are accessed by the user to perform various tasks. 
 Since the scientific functionality is delivered by each of the Services, most development will revolve around writing new Services. 
 
 
@@ -63,7 +63,7 @@ Since the scientific functionality is delivered by each of the Services, most de
 
 ### %Handler
 
-Handlers are the family of components that allow data to be read or written to different storage systems such as [local filesystems](@ref file_handler), [iRODS](@ref irods_handler), [http(s)](@ref irods_handler), *etc*.
+Handlers are the family of components that allow data to be read or written to different storage systems such as [local filesystems](@ref file_handler), [iRODS](@ref irods_handler), [http(s)](@ref http_handler), *etc*.
 By abstracting these different systems out, other parts of the Grassroots architecture can read and write data transparently without having to be concerned about the underlying storage mechanism.
 Handlers are explained in detail in the [Handlers guide](@ref handler_library).
 

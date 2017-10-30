@@ -1,4 +1,4 @@
-﻿# Services
+﻿# Services {#services_guide}
 
 A Service is the component that is used to add some scientific functionality, *i.e.* text mining, scientific analysis, *etc.* to a Grassroots Server. Each Service consists of a number of API entry points that the Grassroots Server hooks into. These are the ability to respond to particular JSON-based queries and entry points for a given programming language. The Services are completely self-describing, the Server has no prior knowledge or need any configuration changes when installing a Service. Simply copy the service module into the services directory and it will be available for use straight away. There are two ways to add a Service to a Grassroots Server; as [standalone services](#standalone-services) or as [referred services](#referred-services). 
 
@@ -90,7 +90,7 @@ ServicesArray *GetServices (UserDetails *user_p, const json_t *referred_service_
 void ReleaseServices (ServicesArray *services_p);
 ~~~
 
-```GetServices```, gets an array detailing all of the operations that this Service can perform. Most commonly the ServicesArray will contain a single Service, though it can have more if appropriate. The second function, ```ReleaseServices``` is used when these operations go out of scope. 
+```GetServices()```, gets an array detailing all of the operations that this Service can perform. Most commonly the ServicesArray will contain a single Service, though it can have more if appropriate. The second function, ```ReleaseServices()``` is used when these operations go out of scope. 
 Effectively these 2 functions  a constructor/destructor pair for a given ServicesArray. 
 
 So depending upon whether you are developing a specific Service or a reusable one for use by Referred Services you would choose the appropriate pair of functions.
@@ -367,7 +367,7 @@ The JSON to ask a Service for a list of all of its available operations is:
 }
 ~~~
 
-If your Service is built in C/C++ then it can use the ```GetServiceAsJSON``` function to build the appropriate response. The response is described in more detail in the [schema](schema.md) and there are [examples](examples.md) too.
+If your Service is built in C/C++ then it can use the ```GetServiceAsJSON()``` function to build the appropriate response. The response is described in more detail in the [schema](@ref schema_guide) and there are [examples](examples.md) too.
 
 
 ### Run Services
@@ -395,7 +395,7 @@ The Server will send a message detailing which, if any, operations for the Servi
 
 ### Get Service Results
 
-As described [elsewhere](@ref async_services.md), Services can perform operations either synchronously or asynchronously. 
+As described [elsewhere](@ref async_services_guide), Services can perform operations either synchronously or asynchronously. 
 When an operation is ran synchronously the Service waits for the operation to finish before returning the results, whereas, when ran asynchronously ,the Service will return straight away and the Server will need to send a message to the Service to check whether the operation has completed. 
 
 Once the operation has completed, the Service will send the results in a format similar to the example below.

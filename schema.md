@@ -1,4 +1,4 @@
-﻿# The Grassroots Schema {#grassroots-schema}
+﻿# The Grassroots Schema {#schema_guide}
 
 ## Schema Introduction 
 
@@ -25,7 +25,7 @@ So an example specifying that version 0.10 of the Grassroots schema is being use
       "major": 0,
       "minor": 10
     }
-	}
+  }
 }
 ~~~
 
@@ -51,15 +51,15 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 
  ~~~.json
 {
-  "header": {
-    "schema": {
-      "major": 0,
-      "minor": 10
-    }
-	}
-	"operations": {
-		"operation_id": "get_all_services"
-	}
+	  "header": {
+		"schema": {
+	      "major": 0,
+	      "minor": 10
+	    }
+	  },
+	  "operations": {
+	    "operation_id": "get_all_services"
+	  }
 }
  ~~~
  
@@ -67,7 +67,7 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 
 ## Example {#schema_example}
 
-~~~.json
+~~~{.json}
 {
   "service_name": "TGAC Elastic Search service",
   "description": "A service to access the TGAC Elastic Search data",
@@ -145,9 +145,9 @@ The Operations tag is used to call an API on the Server.
 
  ~~~.json
 {
-		"operations": {
-			"operation_id": "get_all_services"
-		}
+	  "operations": {
+	    "operation_id": "get_all_services"
+	  }
 }
  ~~~
  
@@ -235,6 +235,7 @@ A number to describe the type of the Parameter. The values, along with their C d
 | *PT_LARGE_STRING* | params:large_string |The parameter is a string that can potentially get large in size. This is a hint to the Client to use a multi-line text box as opposed to a single one. |
 | *PT_JSON* | params:json |The parameter is a JSON fragment. |
 | *PT_TABLE* | params:tabular |The parameter holds tabular data with configurable row and column delimiters. These default to a newline and a comma respectively. |
+| *PT_FASTA* | params:fasta |The parameter holds a string of FASTA sequence data. |
 
 
 * **enum**: 
@@ -245,8 +246,7 @@ The elements in this array have two fields:
 
  An example of this is: 
  ~~~.json
- "enum": 
- [
+ "enum": [
       { "description": "Use Raw", "value": "z" },
       { "description": "Use Zip", "value": "zip" },
       { "description": "Use GZip", "value": "gz" }
