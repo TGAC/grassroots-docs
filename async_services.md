@@ -12,17 +12,17 @@ By default, Services run in synchronous mode.
 Below is a snippet of the definition for a Service that runs asynchronously.
 
 ~~~{.json}
-{
-	"description": "A service to run the BLAST program",
-	"services": "Blast service",
-	"operations": {
-		"synchronous": false,
-		"summary": "A service to run the BLAST program",
-  		"nickname": "Blast service",
-  		"parameter_set": {
-  		}
-  		...
-  	}
+{ 
+  "description": "A service to run the BLAST program",
+  "services": "Blast service",
+  "operations": {
+    "synchronous": false,
+    "summary": "A service to run the BLAST program",
+      "nickname": "Blast service",
+      "parameter_set": {
+      }
+      ...
+    }
 }
 ~~~
 
@@ -72,16 +72,16 @@ For the Long Running service, the required information for a task is stored in a
  */
 typedef struct TimeInterval
 {
-	/** The start time of the job. */
-	time_t ti_start;
+  /** The start time of the job. */
+  time_t ti_start;
 
-	/** The finish time of the job. */
-	time_t ti_end;
+  /** The finish time of the job. */
+  time_t ti_end;
 
-	/**
-	 * The duration of the job, simply ti_end - ti_start.
-	 */
-	time_t ti_duration;
+  /**
+   * The duration of the job, simply ti_end - ti_start.
+   */
+  time_t ti_duration;
 } TimeInterval;
 
 
@@ -91,16 +91,16 @@ typedef struct TimeInterval
  */
 typedef struct TimedServiceJob
 {
-	/** The base ServiceJob */
-	ServiceJob tsj_job;
+  /** The base ServiceJob */
+  ServiceJob tsj_job;
 
-	/**
-	 * A pointer to the TimeInterval that is used to mimic the running of a real task.
-	 */
-	TimeInterval *tsj_interval_p;
+  /**
+   * A pointer to the TimeInterval that is used to mimic the running of a real task.
+   */
+  TimeInterval *tsj_interval_p;
 
-	/** Has the TimedServiceJob been added to the JobsManager yet? */
-	bool tsj_added_flag;
+  /** Has the TimedServiceJob been added to the JobsManager yet? */
+  bool tsj_added_flag;
 } TimedServiceJob;
 ~~~
  
@@ -114,42 +114,42 @@ As mentioned above, in our example, the underlying function that serialises a *T
 ~~~{.c}
 static json_t *GetTimedServiceJobAsJSON (TimedServiceJob *job_p)
 {
-	/*
-	 * Get the JSON for the ServiceJob base class.
-	 */
-	json_t *json_p = GetServiceJobAsJSON (& (job_p -> tsj_job));
+  /*
+   * Get the JSON for the ServiceJob base class.
+   */
+  json_t *json_p = GetServiceJobAsJSON (& (job_p -> tsj_job));
 
-	if (json_p)
-		{
-			/*
-			 * Now we add our extra data which is the start and end time of the TimeInterval
-			 * for the given TimedServiceJob.
-			 */
-			if (json_object_set_new (json_p, LRS_START_S, json_integer (job_p -> tsj_interval_p -> ti_start)) == 0)
-				{
-					if (json_object_set_new (json_p, LRS_END_S, json_integer (job_p -> tsj_interval_p -> ti_end)) == 0)
-						{
-							return json_p;
-						}		/* if (json_object_set_new (json_p, LRS_END_S, json_integer (job_p -> tsj_interval_p -> ti_end)) == 0) */
-					else
-						{
-							PrintJSONToErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Failed to add %s " SIZET_FMT " to json", LRS_END_S, job_p -> tsj_interval_p -> ti_end);
-						}
+  if (json_p)
+    {
+      /*
+       * Now we add our extra data which is the start and end time of the TimeInterval
+       * for the given TimedServiceJob.
+       */
+      if (json_object_set_new (json_p, LRS_START_S, json_integer (job_p -> tsj_interval_p -> ti_start)) == 0)
+        {
+          if (json_object_set_new (json_p, LRS_END_S, json_integer (job_p -> tsj_interval_p -> ti_end)) == 0)
+            {
+              return json_p;
+            }    /* if (json_object_set_new (json_p, LRS_END_S, json_integer (job_p -> tsj_interval_p -> ti_end)) == 0) */
+          else
+            {
+              PrintJSONToErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Failed to add %s " SIZET_FMT " to json", LRS_END_S, job_p -> tsj_interval_p -> ti_end);
+            }
 
-				}		/* if (json_object_set_new (json_p, LRS_START_S, json_integer (job_p -> tsj_interval_p -> ti_start)) == 0) */
-			else
-				{
-					PrintJSONToErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Failed to add %s " SIZET_FMT " to json", LRS_END_S, job_p -> tsj_interval_p -> ti_end);
-				}
+        }    /* if (json_object_set_new (json_p, LRS_START_S, json_integer (job_p -> tsj_interval_p -> ti_start)) == 0) */
+      else
+        {
+          PrintJSONToErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Failed to add %s " SIZET_FMT " to json", LRS_END_S, job_p -> tsj_interval_p -> ti_end);
+        }
 
-			json_decref (json_p);
-		}		/* if (json_p) */
-	else
-		{
-			PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to create JSON for TimedServiceJob");
-		}
+      json_decref (json_p);
+    }    /* if (json_p) */
+  else
+    {
+      PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to create JSON for TimedServiceJob");
+    }
 
-	return NULL;
+  return NULL;
 }
 ~~~
 
@@ -165,72 +165,72 @@ This is done by the ```GetTimedServiceJobFromJSON``` function shown below
 ~~~{.c}
 static TimedServiceJob *GetTimedServiceJobFromJSON (const json_t *json_p)
 {
-	/* allocate the memory for the TimedServiceJob */
-	TimedServiceJob *job_p = (TimedServiceJob *) AllocMemory (sizeof (TimedServiceJob));
+  /* allocate the memory for the TimedServiceJob */
+  TimedServiceJob *job_p = (TimedServiceJob *) AllocMemory (sizeof (TimedServiceJob));
 
-	if (job_p)
-		{
-			/* allocate the memory for the TimeInterval */
-			job_p -> tsj_interval_p = (TimeInterval *) AllocMemory (sizeof (TimeInterval));
+  if (job_p)
+    {
+      /* allocate the memory for the TimeInterval */
+      job_p -> tsj_interval_p = (TimeInterval *) AllocMemory (sizeof (TimeInterval));
 
-			if (job_p -> tsj_interval_p)
-				{
-					/* initialise the base ServiceJob from the JSON fragment */
-					if (InitServiceJobFromJSON (& (job_p -> tsj_job), json_p))
-						{
-							/*
-							 * We now need to get the start and end times for the TimeInterval
-							 * from the JSON.
-							 */
+      if (job_p -> tsj_interval_p)
+        {
+          /* initialise the base ServiceJob from the JSON fragment */
+          if (InitServiceJobFromJSON (& (job_p -> tsj_job), json_p))
+            {
+              /*
+               * We now need to get the start and end times for the TimeInterval
+               * from the JSON.
+               */
 
-							if (GetJSONLong (json_p, LRS_START_S, & (job_p -> tsj_interval_p -> ti_start)))
-								{
-									if (GetJSONLong (json_p, LRS_END_S, & (job_p -> tsj_interval_p -> ti_end)))
-										{
-											bool b;
+              if (GetJSONLong (json_p, LRS_START_S, & (job_p -> tsj_interval_p -> ti_start)))
+                {
+                  if (GetJSONLong (json_p, LRS_END_S, & (job_p -> tsj_interval_p -> ti_end)))
+                    {
+                      bool b;
 
-											if (GetJSONBoolean (json_p, LRS_ADDED_FLAG_S, &b))
-												{
-													job_p -> tsj_added_flag = b;
-												}
-											else
-												{
-													job_p -> tsj_added_flag = false;
-												}
+                      if (GetJSONBoolean (json_p, LRS_ADDED_FLAG_S, &b))
+                        {
+                          job_p -> tsj_added_flag = b;
+                        }
+                      else
+                        {
+                          job_p -> tsj_added_flag = false;
+                        }
 
-											return job_p;
-										}		/* if (GetJSONLong (json_p,  LRS_END_S, & (job_p -> tsj_interval_p -> ti_start))) */
-									else
-										{
-											PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to get %s from JSON", LRS_END_S);
-										}
+                      return job_p;
+                    }    /* if (GetJSONLong (json_p,  LRS_END_S, & (job_p -> tsj_interval_p -> ti_start))) */
+                  else
+                    {
+                      PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to get %s from JSON", LRS_END_S);
+                    }
 
-								}		/* if (GetJSONLong (json_p,  LRS_START_S, & (job_p -> tsj_interval_p -> ti_start))) */
-							else
-								{
-									PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to get %s from JSON", LRS_START_S);
-								}
-						}		/* if (InitServiceJobFromJSON (& (job_p -> tsj_job), json_p)) */
-					else
-						{
-							PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to init ServiceJob from JSON");
-							PrintJSONToLog (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Init ServiceJob failure: ");
-						}
+                }    /* if (GetJSONLong (json_p,  LRS_START_S, & (job_p -> tsj_interval_p -> ti_start))) */
+              else
+                {
+                  PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to get %s from JSON", LRS_START_S);
+                }
+            }    /* if (InitServiceJobFromJSON (& (job_p -> tsj_job), json_p)) */
+          else
+            {
+              PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to init ServiceJob from JSON");
+              PrintJSONToLog (STM_LEVEL_SEVERE, __FILE__, __LINE__, json_p, "Init ServiceJob failure: ");
+            }
 
-				}		/* if (job_p -> tsj_interval_p) */
-			else
-				{
-					PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to allocate TimeInterval");
-				}
+        }    /* if (job_p -> tsj_interval_p) */
+      else
+        {
+          PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to allocate TimeInterval");
+        }
 
-			FreeTimedServiceJob ((ServiceJob *) job_p);
-		}		/* if (job_p) */
-	else
-		{
-			PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to allocate TimedServiceJob");
-		}
+      FreeTimedServiceJob ((ServiceJob *) job_p);
+    }    /* if (job_p) */
+  else
+    {
+      PrintErrors (STM_LEVEL_SEVERE, __FILE__, __LINE__, "Failed to allocate TimedServiceJob");
+    }
 
-	return NULL;
+  return NULL;
 }
 ~~~
 
