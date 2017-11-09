@@ -29,8 +29,8 @@ An array of ServiceJobs that have been requested to run by the Client.
 5 | OS_SUCCEEDED | Succeeded | The ServiceJob has completed succeeded
 6 | OS_CLEANED_UP | Cleaned up | The ServiceJob has released all of its memory and resources
 
- Developers should use ```GetOperationStatusAsString``` and 
- ```GetOperationStatusFromString``` to convert between the numeric variables and the equivalent status text.
+ Developers should use ```GetOperationStatusAsString()``` and 
+ ```GetOperationStatusFromString()``` to convert between the numeric variables and the equivalent status text.
 
 * **job_uuid**:
  This is a unique identifier used to denote the given instance of this ServiceJob upon the Server.
