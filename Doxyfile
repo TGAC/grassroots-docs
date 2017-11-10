@@ -1201,7 +1201,12 @@ HTML_EXTRA_STYLESHEET  = doxygen_stylesheet.css \
 HTML_EXTRA_FILES       = architecture.svg \
                          irods_service.png \
                          ../clients/desktop-client/grassroots_qt_client.png \
+                         ../clients/desktop-client/jobs_progress.png \
+                         ../clients/desktop-client/linked_service_results_1.png \
+                         ../clients/desktop-client/linked_service_results_2.png \
+                         ../clients/desktop-client/results_overview.png \
                          ../clients/desktop-client/run.png \
+                         ../clients/desktop-client/run_linked_service.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
