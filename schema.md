@@ -6,6 +6,16 @@ All of the messages between Servers and Clients use a JSON-based schema. A full 
 
 Any message can have a header, much like the \<head\> tag in a web page and although this is optional it is recommended that all messages have one of these. The information contained in it are items such as the version of the Grassroots schema and the incoming request.
 
+Where possible existing standarised ontologies and their terms are used, trying to keep the number of grassroots-spefic terms to a minimum. Various ontolgies are currently used and these are shown below:
+
+ Schema | Prefix | Description  
+--- | --- | ---
+[schema.org](http://schema.org) | so | Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet. 
+[EDAM Ontology](http://edamontology.org) | eo | EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within bioinformatics and computational biology, including types of data and data identifiers, data formats, operations and topics
+[Experimental Factor Ontology](http://www.ebi.ac.uk/efo/) | efo |The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for external projects such as the NHGRI GWAS catalog 
+[Software Ontology](https://www.ebi.ac.uk/ols/ontologies/swo/) | swo  | The Software Ontology (SWO) is a resource for describing software tools, their types, tasks, versions, provenance and data associated.
+
+
 ## Header
 
 Each message can contain a **header** section that stores the details about various features that are not 
@@ -25,7 +35,7 @@ So an example specifying that version 0.10 of the Grassroots schema is being use
       "major": 0,
       "minor": 10
     }
-	}
+  }
 }
 ~~~
 
@@ -51,13 +61,13 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 
  ~~~.json
 {
-  "header": {
-    "schema": {
-      "major": 0,
-      "minor": 10
-    }
-	}
-	"operations": {
+	  "header": {
+		"schema": {
+          "major": 0,
+          "minor": 10
+		}
+	    }
+	  "operations": {
 		"operation_id": "get_all_services"
 	}
 }
@@ -69,57 +79,164 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 
 ~~~.json
 {
-  "service_name": "TGAC Elastic Search service",
-  "description": "A service to access the TGAC Elastic Search data",
-  "nickname": "TGAC Elastic Search service",
-  "summary": "A service to access the TGAC Elastic Search data",
-  "about_uri": "http://v0214.nbi.ac.uk:8080/wis-web/",
-  "synchronous": true,
+  "@type": "grassroots_service",
+  "so:name": "SamTools service",
+  "provider": {
+    "so:name": "grassroots.tools",
+    "so:description": "Grassroots 2.1 running the Grassroots Infrastructure",
+    "so:url": "https://grassroots.tools",
+    "so:logo": "https://grassroots.tools/grassroots-test/2.1/images/ei_logo.png"
+  },
+  "so:description": "A service that enables efficient access to arbitrary regions within available reference sequences.",
+  "application_category": {
+    "so:sameAs": "eo:operation_0491",
+    "so:name": "Sequence assembly visualisation",
+    "so:description": "Render and visualise a DNA sequence assembly."
+  },
+  "input": [
+    {
+      "so:sameAs": "eo:data_1063",
+      "so:name": "Sequence identifier",
+      "so:description": "An identifier of molecular sequence(s) or entries from a molecular sequence database."
+    }
+  ],
+  "output": [
+    {
+      "so:sameAs": "eo:data_1063",
+      "so:name": "Sequence",
+      "so:description": "This concept is a placeholder of concepts for primary sequence data including raw sequences and seq
+uence records. It should not normally be used for derivatives such as sequence alignments, motifs or profiles. One or more molec
+ular sequences, possibly with associated annotation."
+    }
+  ],
   "operations": {
+    "operation_id": "SamTools service",
+    "so:description": "A service that enables efficient access to arbitrary regions within available reference sequences.",
     "parameter_set": {
       "parameters": [
         {
-          "param": "Search field",
-          "current_value": "study_accession",
+          "param": "input_file",
+          "current_value": "Chinese Spring",
           "type": "string",
-          "default_value": "study_accession",
-          "parameter_type": "xsd:string",
+          "grassroots_type": "xsd:string",
           "level": "all",
-          "description": "The field to search",
+          "so:description": "The available databases",
+          "so:name": "Indexes",
+          "default_value": "Chinese Spring",
           "enum": [
             {
-              "description": "Study Accession",
-              "value": "study_accession"
+              "so:description": "Chinese Spring",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
+v1_all.fa"
             },
             {
-              "description": "Scientific Name",
-              "value": "scientific_name"
+              "so:description": "Cadenza",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Cadenza_E
+Iv1.1.fa"
             },
             {
-              "description": "Centre Name",
-              "value": "center_name"
+              "so:description": "Kronos",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_turgidum_Kronos_EI
+v1.1.fa"
             },
             {
-              "description": "Experiment Title",
-              "value": "experiment_title"
+              "so:description": "Paragon",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Paragon_E
+Iv1.1.fa"
             },
             {
-              "description": "Study Title",
-              "value": "study_title"
+              "so:description": "Robigus",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Robigus_E
+Iv1.1.fa"
+            },
+            {
+              "so:description": "Claire",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Claire_EI
+v1.1.fa"
+            },
+            {
+              "so:description": "CS42 cDna",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
+v1_scaffold.annotation.gff3.cdna.fa"
+            },
+            {
+              "so:description": "CS42 cds",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
+v1_scaffold.annotation.gff3.cds.fa"
+            },
+            {
+              "so:description": "Aegilops tauschii",
+              "value": "/mnt/ngs_data/references/assembly/aegilops_tauschii/GCA_000347335.1/Aegilops_tauschii.GCA_000347335.
+1.26.dna.genome.fa"
+            },
+            {
+              "so:description": "CS42 cDNA",
+              "value": "/mnt/ngs_data/databases/blast/triticum_aestivum/brenchley_CS42/allCdnaFinalAssemblyAllContigs_vs_TRE
+Palle05_notHits_gt100bp"
+            },
+            {
+              "so:description": "CS42 5x Liverpool 454 assembly",
+              "value": "/mnt/ngs_data/databases/blast/triticum_aestivum/brenchley_CS42/CS_5xDNA_all"
+            },
+            {
+              "so:description": "CS42 orthologous group sub-assemblies",
+              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/brenchley_CS42/subassemblies_TEcleaned_Hv80Bd75S
+b70Os70_30aa_firstBestHit_assembly_ml40_mi99.fa"
+            },
+            {
+              "so:description": "WGSCv2.0",
+              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/IWGSC/v2/IWGSCv2.0.fa"
+            },
+            {
+              "so:description": "A-genome progenitor Triticum urartu",
+              "value": "/mnt/ngs_data/references/assembly/triticum_urartu/GCA_000347455.1/Triticum_urartu.GCA_000347455.1.26
+.dna.genome.fa"
+            },
+            {
+              "so:description": "Synthetic W7984",
+              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/W7984/w7984.meraculous.scaffolds.Mar28_contamina
+tion_removed.fa"
+            },
+            {
+              "so:description": "Wild winter wheat G3116",
+              "value": "/mnt/ngs_data/references/assembly/triticum_monococcum/spp_aegilopoides/TmG3116_cDNA.fa"
+            },
+            {
+              "so:description": "Domesticated spring wheat",
+              "value": "/mnt/ngs_data/references/assembly/triticum_monococcum/spp_monococcum/TmDV92_cDNA.fa"
+            },
+            {
+              "so:description": "Barley Golden Promise",
+              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Hordeum_vulgare_Golden_prom
+ise_EIv1.fa"
             }
           ]
         },
         {
-          "param": "Search term",
-          "type": "string",
+          "param": "Scaffold",
           "current_value": "",
-          "default_value": "",
+          "type": "string",
+          "grassroots_type": "xsd:string",
           "level": "all",
-          "parameter_type": "xsd:string",
-          "description": "The term to search for in the given field"
+          "so:description": "The name of the scaffold to find",
+          "so:name": "Scaffold name",
+          "default_value": ""
+        },
+        {
+          "param": "Scaffold line break index",
+          "current_value": 60,
+          "type": "integer",
+          "grassroots_type": "params:signed_integer",
+          "level": "advanced",
+          "so:description": "If this is greater than 0, then add a newline after each block of this many letters",
+          "so:name": "Max Line Length",
+          "default_value": 60
         }
-      ]
-    }
+      ],
+      "groups": []
+    },
+    "synchronous": true,
+    "so:image": "https://grassroots.tools/grassroots-test/2.1/images/Search%20service"
   }
 }
 ~~~
@@ -153,13 +270,13 @@ The Operations tag is used to call an API on the Server.
  
 ## Service
 
-* **service_name** (required):
+* **so:name** (required):
 The user-friendly name of the Service which will be displayed to the user.
 
 * **about_uri**: 
 A web address for more information about the Service.
 
-* **description** (required): 
+* **so:description** (required): 
 A user-friendly description of the Service.
 
 * **synchronous**: 
@@ -192,13 +309,13 @@ This is an array of strings listing all of the available groups for this set of 
 
 ## [Parameter](#parameter)
 
-* **name**:
+* **so:name**:
 The user-friendly name of the parameter for displaying to a user. If this is not set, then the value for the *param* key will be used.
 
 * **param** (required): 
 The programmatic name of the parameter. If the *name* is not set, then this value will be used for displaying to the user.
 
-* **description** (required): 
+* **so:description** (required): 
 The description of the parameter to display to the user.
 
 * **default_value**:
@@ -214,7 +331,7 @@ The current value of the parameter.
  4. boolean
  5. array 
      
-* **parameter\_type** (required): 
+* **grassroots\_type** (required): 
 A number to describe the type of the Parameter. The values, along with their C definition, are shown below:
 
 | C definition | JSON value | Description |
@@ -299,17 +416,53 @@ The encrypted password to use.
 
 ## Provider
 
-This is the object that describes the entity that is providing the set of operations, described in the Service section. This could be an institution or a specific set of analysis tools.
+This is the object that describes the entity or entities that are providing a given Service. Each Service will specify one of of these. Each one of these is an institution hosting a Grassroots server and used the [SchemaOrg Organization](http://schema.org/Organization) type.
+If there is a single provider for the given Service then the key used will be **provider** containing the keys listed below. 
+If the Service has been [federated] (@ref linked_services_guide) then the key will be **providers** whose value will be an array of objects with the keys listed below.
 
-* **name** (required):
+* **so:name** (required):
 The name of the Provider which will be displayed to the user.
 
-* **url**: 
+* **so:url**: 
 A web address for more information about the Provider.
 
-* **description** (required): 
+* **so:description** (required): 
 A description of the Provider.
  
+* **so:logo**:
+An image to represent the Provider that will be displayed to users and other federated Servers.
+
+So an example of specfiying a single Provider for a Service is:
+
+~~~.json
+"provider": {
+	"@type": "so:Organization",
+	"so:name": "grassroots.tools",
+	"so:description": "Grassroots 2.1 running the Grassroots Infrastructure",
+	"so:url": "https://grassroots.tools",
+	"so:logo": "https://grassroots.tools/images/ei_logo.png"
+}
+~~~
+
+Whereas multiple providers would be specified using the **providers** key such as:
+
+~~~.json
+"providers": [{
+	"@type": "so:Organization",
+	"so:name": "grassroots.tools",
+	"so:description": "Grassroots.tools running the Grassroots Infrastructure",
+	"so:url": "https://grassroots.tools",
+	"so:logo": "https://grassroots.tools/images/ei_logo.png"
+}, {
+	"@type": "so:Organization",
+	"so:name": "An example Server",
+	"so:description": "Grassroots running at another organisation",
+	"so:url": "https://another.grassroots.server",
+	"so:logo": "https://another.grassroots.server/logo.png"
+}]
+~~~
+
+
 
 ## WebService
 
