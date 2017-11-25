@@ -236,7 +236,7 @@ ise_EIv1.fa"
       "groups": []
     },
     "synchronous": true,
-    "so:image": "https://grassroots.tools/grassroots-test/2.1/images/Search%20service"
+    "so:image": "https://grassroots.tools/images/Search%20service"
   }
 }
 ~~~
@@ -273,7 +273,7 @@ The Operations tag is used to call an API on the Server.
 * **so:name** (required):
 The user-friendly name of the Service which will be displayed to the user.
 
-* **about_uri**: 
+* **so:url**: 
 A web address for more information about the Service.
 
 * **so:description** (required): 
@@ -292,7 +292,7 @@ An array of [Operation](#Operation) objects that the Service can perform.
 
 * **summary** (required):
  
-* **description** (required):
+* **so:description** (required):
 
 * **parameter\_set** (required): The [ParameterSet](#ParameterSet).
 
@@ -359,14 +359,14 @@ A number to describe the type of the Parameter. The values, along with their C d
 If the Parameter can take only take one of set of restricted values, these can be specified as an array here.
 The elements in this array have two fields:
  * *value*: The programmatic value that the Parameter will be set to.
- * *description*: The user-friendly name of the parameter for displaying to a user. If this is not set, then the value for the *value* will be used instead.
+ * *so:description*: The user-friendly name of the parameter for displaying to a user. If this is not set, then the value for the *value* will be used instead.
 
  An example of this is: 
  ~~~.json
  "enum": [
-      { "description": "Use Raw", "value": "z" },
-      { "description": "Use Zip", "value": "zip" },
-      { "description": "Use GZip", "value": "gz" }
+      { "so:description": "Use Raw", "value": "z" },
+      { "so:description": "Use Zip", "value": "zip" },
+      { "so:description": "Use GZip", "value": "gz" }
  ]
  ~~~
  which indicate that the Parameter can take 1 of 3 possible values, "z", "zip" or "gz", and the values to show 
