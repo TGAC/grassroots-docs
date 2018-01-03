@@ -84,13 +84,13 @@ Services built in C/C++-based are shared libraries that only require 2 exported 
 ServicesArray *GetServices (UserDetails *user_p);
 
 /* ... or for referred services */
-ServicesArray *GetServices (UserDetails *user_p, const json_t *referred_service_config_p);
+ServicesArray *GetReferenceServices (UserDetails *user_p, const json_t *referred_service_config_p);
 
 /* For all services */
 void ReleaseServices (ServicesArray *services_p);
 ~~~
 
-```GetServices()```, gets an array detailing all of the operations that this Service can perform. Most commonly the ServicesArray will contain a single Service, though it can have more if appropriate. The second function, ```ReleaseServices()``` is used when these operations go out of scope. 
+```GetServices()```/```GetReferenceServices()```, gets an array detailing all of the operations that this Service can perform. Most commonly the ServicesArray will contain a single Service, though it can have more if appropriate. The second function, ```ReleaseServices()``` is used when these operations go out of scope. 
 Effectively these 2 functions  a constructor/destructor pair for a given ServicesArray. 
 
 So depending upon whether you are developing a specific Service or a reusable one for use by Referred Services you would choose the appropriate pair of functions.
