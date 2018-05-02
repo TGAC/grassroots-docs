@@ -6,9 +6,9 @@ Practically all of the code used to build a Grassroots Server is platform-indepe
 
 ## Binary package
 
-It's recommended that Grassroots be installed from a binary package where possible though you are welcome to build from source should you wish. The grassroots directory is self-contained and can be unpacked anywhere that you would like. 
+It's recommended that Grassroots be installed from a binary package where possible though you are welcome to build from source should you wish. The Grassroots directory is self-contained and can be unpacked anywhere that you would like. 
 
-To connect the Grassroots software available for users to access, it needs to run on a server. Currently, the installer comes with a version to run with Apache httpd 2.4.x. It does this by adding a module and configuration to httpd. The installer comes with a script to install the module and set the appropriate configuration details. Currently this exists for the system-default httpd installation on Ubuntu 14.04.
+To connect the Grassroots software available for users to access, it needs to run on a server. Currently, the installer comes with a version to run with Apache Httpd 2.4.x. It does this by adding a module and configuration to Httpd. The installer comes with a script to install the module and set the appropriate configuration details. Currently this exists for the system-default Httpd installation on Ubuntu 14.04.
 
 ## Manual installation to the Apache web server
 

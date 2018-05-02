@@ -6,7 +6,7 @@ All of the messages between Servers and Clients use a JSON-based schema. A full 
 
 Any message can have a header, much like the \<head\> tag in a web page and although this is optional it is recommended that all messages have one of these. The information contained in it are items such as the version of the Grassroots schema and the incoming request.
 
-Where possible existing standarised ontologies and their terms are used, trying to keep the number of grassroots-spefic terms to a minimum. Various ontolgies are currently used and these are shown below:
+Where possible existing standarised ontologies and their terms are used, trying to keep the number of grassroots-specific terms to a minimum. Various ontologies are currently used and these are shown below:
 
  Schema | Prefix | Description  
 --- | --- | ---
@@ -19,7 +19,7 @@ Where possible existing standarised ontologies and their terms are used, trying 
 ## Header
 
 Each message can contain a **header** section that stores the details about various features that are not 
-neccessarily related to running services such as the version of the schema that is being used, datestamps, *etc.* It can currently contain the following elements 
+necessarily related to running services such as the version of the schema that is being used, datestamps, *etc.* It can currently contain the following elements 
 
  * **schema**: This specifies the details about the Grassroots schema being used and currently contains
 the following keys:
@@ -339,7 +339,7 @@ A number to describe the type of the Parameter. The values, along with their C d
 | *PT_BOOLEAN* | xsd:boolean | The variable can be true or false. |
 | *PT_SIGNED_INT* | params:signed_integer |The variable is a non-negative integer. |
 | *PT_UNSIGNED_INT* | params:unsigned_integer |The variable is an integer. |
-| *PT_NEGATIVE_INT* | params:negative_integer | The variable is a negtive integer. |
+| *PT_NEGATIVE_INT* | params:negative_integer | The variable is a negative integer. |
 | *PT_SIGNED_REAL* | xsd:double |The variable is a number. |
 | *PT_UNSIGNED_REAL* | params:unsigned_number |  The variable is a non-negative number |
 | *PT_STRING* | xsd:string | The parameter is a general string. |

@@ -20,7 +20,7 @@ For more information, see the [Server](@ref server_guide) documentation.
 ### DRMAA
 
 [DRMAA](http://www.drmaa.org/) is an API to allow access to computing grids, clusters and cloud-based services. 
-The GIS DRMAA library wraps up calls to specify things such as queues to submit jobs to, number of nodes to use, job monitoring, *etc.*
+The Grassroots DRMAA library wraps up calls to specify things such as queues to submit jobs to, number of nodes to use, job monitoring, *etc.*
 It can be used with both [LSF](http://www-03.ibm.com/systems/spectrum-computing/products/lsf/) and [SLURM](https://slurm.schedmd.com/) schedulers.
 
 

@@ -17,7 +17,7 @@ The architecture comprises:
 * [apache integration module](https://github.com/TGAC/grassroots-server-apache-httpd)
   * The Apache shared object module that exposes the underlying httpd web server functionality to the Grassroots core server module
 * [core server module](https://github.com/TGAC/grassroots-core)
-  * The lowest level architectural implementation of the Grassroots infrastructure, including the required interactions with the apache subsystem
+  * The lowest level architectural implementation of the Grassroots infrastructure, including the required interactions with the Apache subsystem
 * [filesystem handlers](https://github.com/TGAC/?q=grassroots-handler)
   * Provide functionality to access local, remote, and data grid resources for data storage and interoperability
 * [worker services](https://github.com/TGAC/?q=%22grassroots-service%22)
