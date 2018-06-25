@@ -2187,7 +2187,10 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          POLYMARKER_PREFIX= \
                          "POLYMARKER_VAL(x)= =x" \
                          "POLYMARKER_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }" \
-                         "BLAST_SERVICE_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }"
+                         "BLAST_SERVICE_STRUCT_VAL(x,y)= { .npt_name_s = x, .npt_type = y }" \
+                         "REMOTE_SERVICE_JOB_VAL(x)= =x" \
+                         "CONCAT_VAL(x,y)= =x y" 
+
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
