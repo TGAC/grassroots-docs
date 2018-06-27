@@ -2191,8 +2191,10 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "REMOTE_SERVICE_JOB_VAL(x)= =x" \
                          "CONCAT_VAL(x,y)= =x y" \
                          "SERVICE_JOB_VAL(x)= =x" \
-                         REMOTE_SERVICE_PREFIX= \
-                         "REMOTE_SERVICE_VAL(x)= =x" 
+                         REMOTE_SERVICE_JOB_PREFIX= \
+                         "REMOTE_SERVICE_JOB_VAL(x)= =x" \
+                          BLAST_SERVICE_JOB_PREFIX= \
+                         "BLAST_SERVICE_JOB_VAL(x)= =x" \
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
