@@ -35,7 +35,7 @@ It can be used with both [LSF](http://www-03.ibm.com/systems/spectrum-computing/
 
 ### Server library
 
-The [Server library](@ref server_library) takes care of consuming and JSON messages and processing these messages and making the appropriate in internal API calls along with any communication with other remote servers before returning the outgoing JSON message back to the initial message's sender.
+The [Server library](@ref server_guide) takes care of consuming and JSON messages and processing these messages and making the appropriate in internal API calls along with any communication with other remote servers before returning the outgoing JSON message back to the initial message's sender.
 
 
 ### Services library
