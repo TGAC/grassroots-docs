@@ -795,29 +795,28 @@ INPUT                  = readme.md \
                          ../core/shared/parameters/readme.md \
                          ../core/shared/irods/readme.md \
                          server.md \
-                         ../services/blast-service/blast_service.md \
-                         ../services/ensembl-service/ensembl_service.md \
-                         ../services/samtools-service/samtools_service.md \
-                         ../services/polymarker-service/polymarker_service.md \
-                         ../services/pathogenomics-service/pathogenomics_service.md \
-                         ../services/irods-service/irods_service.md \
-                         ../services/example-service/example_service.md \
+                         ../services/blast-service/readme.md \
+                         ../services/ensembl-service/readme.md \
+                         ../services/samtools-service/readme.md \
+                         ../services/polymarker-service/readme.md \
+                         ../services/pathogenomics-service/readme.md \
+                         ../services/irods-service/readme.md \
+                         ../services/example-service/readme.md \
                          service_response.md \
                          ../core/shared/parameters/readme.md \
 													../core/shared/irods/readme.md \
-													../core/server/mongodb/mongodb_library.md \
+													../core/server/mongodb/readme.md \
                          server.md \
                          examples.md \
-                         ../clients/desktop-client/desktop-client.md \
+                         ../clients/desktop-client/readme.md \
                          schema.md \
                          ../core/shared/handler/readme.md \
-                         ../handlers/file-handler/file_handler.md \
-                         ../handlers/http-handler/http_handler.md \
-                         ../handlers/irods-handler/irods_handler.md \
-                         ../servers/apache-server/apache_server.md \
-                         ../core/server/mongodb/mongodb_library.md \
-                         ../servers/mongodb-jobs-manager/mongodb_jobs_manager.md \
-                         ../core/server/task/task_library.md \
+                         ../handlers/file-handler/readme.md \
+                         ../handlers/http-handler/readme.md \
+                         ../handlers/irods-handler/readme.md \
+                         ../servers/apache-server/readme.md \
+                         ../servers/mongodb-jobs-manager/readme.md \
+                         ../core/server/task/readme.md \
                          ../core/shared \
                          ../core/server \
                          ../core/client \
