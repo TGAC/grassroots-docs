@@ -8,6 +8,4 @@ A Grassroots Server can be accessed in a number of ways such as using the Qt-bas
 The desktop client uses [Qt](https://www.qt.io/) which is a cross-platform toolkit allowing
 the same client to be used on Windows, Linux, macOS, AmigaOS4, *etc.*
 
-![The Qt desktop client](qt_client.png "The Qt desktop client")
-
-
+![The Qt desktop client](../clients/desktop-client/grassroots_qt_client.png "Grassroots Qt Desktop Client")

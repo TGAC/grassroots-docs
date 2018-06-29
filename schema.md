@@ -432,7 +432,7 @@ A description of the Provider.
 * **so:logo**:
 An image to represent the Provider that will be displayed to users and other federated Servers.
 
-So an example of specfiying a single Provider for a Service is:
+So an example of specifying a single Provider for a Service is:
 
 ~~~.json
 "provider": {

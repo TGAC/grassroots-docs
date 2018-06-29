@@ -104,7 +104,7 @@ typedef struct TimedServiceJob
 } TimedServiceJob;
 ~~~
  
-*TimedServiceJob* has a pointer to a *TimeInterval* structure which is where the values used to determine the status of the mimicked task is. So these values need to be preserved between the separate client requests about a given task. This makes it an ideal candidate to store within the *JobsManager* and the details of hos this is done are shown in the next section.
+*TimedServiceJob* has a pointer to a *TimeInterval* structure which is where the values used to determine the status of the mimicked task is. So these values need to be preserved between the separate client requests about a given task. This makes it an ideal candidate to store within the *JobsManager* and the details of how this is done are shown in the next section.
 
 
 ### Serialising the ServiceJob

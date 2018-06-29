@@ -3,7 +3,7 @@
 
 ## [Requests and Responses](#requests-and-responses)
 
-These are the Server-Server and Server-Client messages that are used to transmit data, job requests and results throughout the Grassroots system. All messages are sent as JSON-based messages and are described in depth in the [Schema gide](@ref schema_guide).
+These are the Server-Server and Server-Client messages that are used to transmit data, job requests and results throughout the Grassroots system. All messages are sent as JSON-based messages and are described in depth in the [Schema guide](@ref schema_guide).
 
 1. A Client queries the Operations that a Server can provide.
 An *operation_id* with the value *get_all_services* is the one for asking for all of its possible Operations.

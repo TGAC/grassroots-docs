@@ -19,7 +19,7 @@ These are explained in the [Service Configuration guide](@ref service_configurat
 ## Services
 
 As well as these general configuration options, each service can have a number of service-specific configuration details that can be set by a server administrator. 
-The services with extra configuration options are listed [below](#specific_services_configuration)
+The services with extra configuration options are listed [below](@ref specific_services_configuration)
 
 
 ## Linking %Services

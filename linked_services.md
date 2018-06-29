@@ -53,7 +53,7 @@ For instance, consider having a given Input Service generates results such as th
  
  and we want to use these in an Output Service called *Person Lookup* which has the input parameters of *first_name* and *family_name* 
  
- then the value for the forename can be retrieved by settting the *input* key within the Linked Service definition to *person.name.forename* and *person.name.surname* respectively *e.g.*
+ then the value for the forename can be retrieved by setting the *input* key within the Linked Service definition to *person.name.forename* and *person.name.surname* respectively *e.g.*
  
 ~~~.json
 {
