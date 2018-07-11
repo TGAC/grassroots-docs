@@ -1205,7 +1205,10 @@ HTML_EXTRA_FILES       = architecture.svg \
                          ../clients/desktop-client/run.png \
                          ../clients/desktop-client/run_linked_service.png \
                          doxy-boot.js \
-												 jquery-3.3.1.js	
+												 jquery-3.3.1.js \
+                         bootstrap.min.js \
+                         jquery-2.1.1.min.js
+
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
