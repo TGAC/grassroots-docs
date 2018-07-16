@@ -107,7 +107,7 @@ BRIEF_MEMBER_DESC      = YES
 # brief descriptions will be completely suppressed.
 # The default value is: YES.
 
-REPEAT_BRIEF           = NO
+REPEAT_BRIEF           = YES
 
 # This tag implements a quasi-intelligent brief description abbreviator that is
 # used to form the text in various listings. Each string in this list, if found
@@ -804,8 +804,8 @@ INPUT                  = readme.md \
                          ../services/example-service/readme.md \
                          service_response.md \
                          ../core/shared/parameters/readme.md \
-													../core/shared/irods/readme.md \
-													../core/server/mongodb/readme.md \
+						../core/shared/irods/readme.md \
+						../core/server/mongodb/readme.md \
                          server.md \
                          examples.md \
                          ../clients/desktop-client/readme.md \
@@ -821,7 +821,8 @@ INPUT                  = readme.md \
                          ../core/server \
                          ../core/client \
                          ../services \
-								         ../servers 
+						 ../servers \
+						 ../libs
 
 
 # This tag can be used to specify the character encoding of the source files
@@ -2197,7 +2198,14 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "REMOTE_SERVICE_JOB_VAL(x)= =x" \
                           BLAST_SERVICE_JOB_PREFIX= \
                          "BLAST_SERVICE_JOB_VAL(x)= =x" \
-
+                          ADDRESS_PREFIX= \
+                         "ADDRESS_VAL(x)= =x" \
+                          COORDINATE_PREFIX= \
+                         "COORDINATE_VAL(x)= =x" \
+                         GRASSROOTS_GEOCODER_API \
+                         GRASSROOTS_GEOCODER_LOCAL=/**@private*/ \
+                         
+                         
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
 # macro definition that is found in the sources will be used. Use the PREDEFINED
