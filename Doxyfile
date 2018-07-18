@@ -811,12 +811,14 @@ INPUT                  = readme.md \
                          ../clients/desktop-client/readme.md \
                          schema.md \
                          ../core/shared/handler/readme.md \
+                         ../handlers/dropbox-handler/readme.md \
                          ../handlers/file-handler/readme.md \
                          ../handlers/http-handler/readme.md \
                          ../handlers/irods-handler/readme.md \
                          ../servers/apache-server/readme.md \
                          ../servers/mongodb-jobs-manager/readme.md \
                          ../core/server/task/readme.md \
+						 ../libs/geocoder/readme.md \
                          ../core/shared \
                          ../core/server \
                          ../core/client \
@@ -1184,8 +1186,7 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = doxygen.css \
-												doxygen-bootstrapped.css
+HTML_EXTRA_STYLESHEET  = doxygen-bootstrapped.css
 
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or

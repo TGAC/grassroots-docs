@@ -1,4 +1,4 @@
-﻿# Installation
+﻿# Installation {#installation_guide}
 
 Practically all of the code used to build a Grassroots Server is platform-independent with less than 5 files having to be implemented in platform-specific code. 
 

@@ -1,5 +1,6 @@
-﻿Searches {#Searches}
-=====================
+﻿Searches {#searches_guide}
+===========================
+
 
 # [Database Access](#database-access)
 
