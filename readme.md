@@ -1,6 +1,4 @@
-﻿# The Grassroots System
-
-## Introduction
+﻿# Introduction {#introduction_guide}
 
 Broadly speaking, the Grassroots infrastructure is a lightweight architecture to share both distributed data and services across multiple servers. 
 
