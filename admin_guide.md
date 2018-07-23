@@ -1,6 +1,7 @@
 ﻿Administrator Guide {#admin_guide}
 ==================================
 
+
 ## Installation
 
 See the [Installation guide](installation.md).
