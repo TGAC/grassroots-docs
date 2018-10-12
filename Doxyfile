@@ -788,7 +788,7 @@ INPUT                  = contents.md \
                          dev_guide.md \
                          developing_services.md \
                          developing_referred_services.md \
-                         installation.md \
+                         ../build-config/readme.md \
                          server_configuration.md \
                          services.md \
                          async_services.md \

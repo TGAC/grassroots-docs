@@ -19,8 +19,7 @@ The Grassroots Infrastructure uses a controlled vocabulary of JSON messages to c
 * @ref server_configuration_guide
 * @ref service_configuration_guide
 
-
-## Services
+### Services
 
 * @ref services_guide
  * @ref blast_services_guide
@@ -31,12 +30,15 @@ The Grassroots Infrastructure uses a controlled vocabulary of JSON messages to c
  * @ref samtools_service_guide
  * @ref pathogenomics_service_guide 
 
+### Servers
+
+* @ref apache_server_guide
+* @ref mongodb_jobs_manager_guide
 
 ## Users 
 
 * @ref user_guide
 * @ref desktop_client_guide
-
 
 ## Developers
 
@@ -49,27 +51,20 @@ The Grassroots Infrastructure uses a controlled vocabulary of JSON messages to c
  * @ref server_library_guide
  * @ref mongodb_library_guide
  * @ref clients_guide
+* Extra libraries
+ * @ref geocoder_guide
 
+### Service development
 
-* @ref apache_server_guide
-* @ref mongodb_jobs_manager_guide
-* @ref geocoder_guide
+* @ref linked_services_guide
+* @ref async_services_guide
+* @ref service_response_guide
+* @ref schema_guide
 
-## Handlers
+### Handlers
 
 * @ref handlers_guide
  * @ref dropbox_handler_guide
  * @ref file_handler_guide
  * @ref http_handler_guide
  * @ref irods_handler_guide
-
-* @ref async_services_guide
-* @ref linked_services_guide
-* @ref service_response_guide
-* @ref schema_guide
-
-
-
-
-
-                
