@@ -135,7 +135,7 @@ ABBREVIATE_BRIEF       = "The $name class" \
 # description.
 # The default value is: NO.
 
-ALWAYS_DETAILED_SEC    = NO
+ALWAYS_DETAILED_SEC    = YES
 
 # If the INLINE_INHERITED_MEMB tag is set to YES, doxygen will show all
 # inherited members of a class in the documentation of that class as if those
@@ -633,7 +633,7 @@ GENERATE_BUGLIST       = YES
 # the documentation.
 # The default value is: YES.
 
-GENERATE_DEPRECATEDLIST= YES
+GENERATE_DEPRECATEDLIST= NO
 
 # The ENABLED_SECTIONS tag can be used to enable conditional documentation
 # sections, marked by \if <section_label> ... \endif and \cond <section_label>
@@ -694,7 +694,7 @@ FILE_VERSION_FILTER    =
 # DoxygenLayout.xml, doxygen will parse it automatically even if the LAYOUT_FILE
 # tag is left empty.
 
-LAYOUT_FILE            = 
+LAYOUT_FILE            = grassroots_doxygen_layout.xml
 
 # The CITE_BIB_FILES tag can be used to specify one or more bib files containing
 # the reference definitions. This must be a list of .bib files. The .bib
@@ -781,11 +781,14 @@ WARN_LOGFILE           = log
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = readme.md \
+INPUT                  = contents.md \
+                         readme.md \
                          admin_guide.md \
                         user_guide.md \
                          dev_guide.md \
-                         installation.md \
+                         developing_services.md \
+                         developing_referred_services.md \
+                         ../build-config/readme.md \
                          server_configuration.md \
                          services.md \
                          async_services.md \
@@ -804,8 +807,8 @@ INPUT                  = readme.md \
                          ../services/example-service/readme.md \
                          service_response.md \
                          ../core/shared/parameters/readme.md \
-						../core/shared/irods/readme.md \
-						../core/server/mongodb/readme.md \
+            						 ../core/shared/irods/readme.md \
+						             ../core/server/mongodb/readme.md \
                          server.md \
                          examples.md \
                          ../clients/desktop-client/readme.md \
@@ -818,13 +821,13 @@ INPUT                  = readme.md \
                          ../servers/apache-server/readme.md \
                          ../servers/mongodb-jobs-manager/readme.md \
                          ../core/server/task/readme.md \
-						 ../libs/geocoder/readme.md \
+						             ../libs/geocoder/readme.md \
                          ../core/shared \
                          ../core/server \
                          ../core/client \
                          ../services \
-						 ../servers \
-						 ../libs
+						             ../servers \
+						             ../libs
 
 
 # This tag can be used to specify the character encoding of the source files
@@ -867,8 +870,9 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = ../clients/web/yellowrust-map/scripts \
-                         ../clients/client-ui/qt/include
-
+                         ../clients/client-ui/qt/include \
+						 ../core/shared/util/include/doxygen_pages.h
+						 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
 # from the input.
@@ -976,7 +980,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = ./readme.md
+USE_MDFILE_AS_MAINPAGE = contents.md
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
@@ -1151,7 +1155,7 @@ HTML_FILE_EXTENSION    = .html
 # of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_HEADER            = doxygen-bootstrapped-header.html
+HTML_HEADER            = doxygen-bootstrapped-header-new.html
 
 # The HTML_FOOTER tag can be used to specify a user-defined HTML footer for each
 # generated HTML page. If the tag is left blank doxygen will generate a standard
@@ -1161,7 +1165,7 @@ HTML_HEADER            = doxygen-bootstrapped-header.html
 # that doxygen normally uses.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_FOOTER            = doxygen-bootstrapped-footer.html
+HTML_FOOTER            = doxygen-bootstrapped-footer-new.html
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading style
 # sheet that is used by each HTML page. It can be used to fine-tune the look of
@@ -1186,7 +1190,7 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = doxygen-bootstrapped.css
+HTML_EXTRA_STYLESHEET  = doxygen-bootstrapped-new.css
 
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
@@ -1206,10 +1210,12 @@ HTML_EXTRA_FILES       = architecture.svg \
                          ../clients/desktop-client/results_overview.png \
                          ../clients/desktop-client/run.png \
                          ../clients/desktop-client/run_linked_service.png \
-                         doxy-boot.js \
-												 jquery-3.3.1.js \
+                         doxy-boot-new.js \
                          bootstrap.min.js \
-                         jquery-2.1.1.min.js
+                         jquery-2.1.1.min.js \
+												 jquery.smartmenus.js \
+                         jquery.smartmenus.bootstrap.js \
+                         jquery.smartmenus.bootstrap.css \
 
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
