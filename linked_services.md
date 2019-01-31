@@ -11,6 +11,7 @@ The configuration details of how to link the two services together are given in 
 The JSON for each Linked Service uses the following keys:
 
  * **service_name**: The name of the Output Service to run.
+ * **function**: A custom function to run for more complex cases.
  * **parameters**: This is an array of objects detailing which pieces of data to extract from the Input Service's results to use as input values for the Output Service. Each of these objects has the following keys:
     
     * **input**: The name of the piece of data to get from the Input Service's results.
@@ -71,6 +72,24 @@ For instance, consider having a given Input Service generates results such as th
 
 ## Custom Results
 
-For Input Services that do not produce results in JSON format that can be easily processed, developers can use custom functions to pull the data out as required.
-An example of this is the BLAST Service which uses the function, ```ProcessLinkedServicesForBlastServiceJobOutput``` defined in ```blast_service_job.c```. For these types of Services, refer to their documentation to find out what keys are available for use as Input Services.
+For Input Services that do not produce results in JSON format that can be easily processed, developers can use custom functions to pull the data out as required. This is done by using the *function* key with its value being the name of the function to call. This function **must** exist in the same shared library for this Service and must conform to the following function signature:
+
+```
+bool MyLinkedServiceGenerator (LinkedService *linked_service_p, json_t *data_p, struct ServiceJob *job_p)
+```
+
+with whatever function name you choose to use.
+
+An example of this is the BLAST Service which uses the function, ```PolymarkerServiceGenerator()``` defined in ```polymarker_linked_service.c``` with the appropriate configuration being:
+
+~~~.json
+{
+	"service_name": "Polymarker service",
+	"function": "PolymarkerServiceGenerator"
+}
+~~~
+
+
+
+For these types of Services, refer to their documentation to find out what keys are available for use as Input Services.
  
