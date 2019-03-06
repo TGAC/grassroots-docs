@@ -1,4 +1,4 @@
-# Developing Services {#developing_services_guide}
+﻿# Developing Services {#developing_services_guide}
 
 
 ## Developing C/C++-based services within httpd
@@ -17,7 +17,7 @@ void ReleaseServices (ServicesArray *services_p);
 ~~~
 
 ```GetServices()```/```GetReferenceServices()```, gets an array detailing all of the operations that this Service can perform. Most commonly the ServicesArray will contain a single Service, though it can have more if appropriate. The second function, ```ReleaseServices()``` is used when these operations go out of scope. 
-Effectively these 2 functions  a constructor/destructor pair for a given ServicesArray. 
+Effectively these 2 functions are a constructor/destructor pair for a given ServicesArray. 
 
 So depending upon whether you are developing a specific Service or a reusable one for use by Referred Services you would choose the appropriate pair of functions.
 
