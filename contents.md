@@ -38,7 +38,6 @@ The Grassroots Infrastructure uses a controlled vocabulary of JSON messages to c
 ## Users 
 
 * @ref user_guide
-* @ref desktop_client_guide
 
 ## Developers
 
