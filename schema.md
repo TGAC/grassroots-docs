@@ -68,7 +68,7 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 	    }
 	  },
 	  "operations": {
-	    "operation_id": "get_all_services"
+	    "operation": "get_all_services"
 	  }
 }
  ~~~
@@ -110,7 +110,7 @@ ular sequences, possibly with associated annotation."
     }
   ],
   "operations": {
-    "operation_id": "SamTools service",
+    "operation": "SamTools service",
     "so:description": "A service that enables efficient access to arbitrary regions within available reference sequences.",
     "parameter_set": {
       "parameters": [
@@ -245,7 +245,7 @@ ise_EIv1.fa"
 
 The Operations tag is used to call an API on the Server.
 
-* **operation_id** (required): A string which equates to a particular API call for the Operation.
+* **operation** (required): A string which equates to a particular API call for the Operation.
 
  Value | C variable | Description  
 --- | --- | ---
@@ -263,7 +263,7 @@ The Operations tag is used to call an API on the Server.
  ~~~.json
 {
 	  "operations": {
-	    "operation_id": "get_all_services"
+	    "operation": "get_all_services"
 	  }
 }
  ~~~
