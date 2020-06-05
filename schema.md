@@ -44,7 +44,7 @@ So an example specifying that version 0.10 of the Grassroots schema is being use
 
 The Operations tag is used to make an API call to a Grassroots Server. It conatins a single key-value pair.
 
-* **operation_id** (required): A string which equates to a particular API call for the Operation.
+* **operation** (required): A string which equates to a particular API call for the Operation.
 
  Value | C variable | Description  
 --- | --- | ---
