@@ -4,7 +4,7 @@ As mentioned in the [Referred Services](@ref referred_services) section in the S
 
 A Referred Service needs to be used with a Service module that is designed to be reused. 
 The idea being that the module performs a generic task with the specific details provided by the given configuration file. 
-Currently there is one such type of Service module: the "Web Seacrh Service*.
+Currently there is one such type of Service module: the "Web Search Service*.
 
 
 ## Web Search Service

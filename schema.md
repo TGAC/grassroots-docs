@@ -6,7 +6,7 @@ All of the messages between Servers and Clients use a JSON-based schema. A full 
 
 Any message can have a header, much like the \<head\> tag in a web page and although this is optional it is recommended that all messages have one of these. The information contained in it are items such as the version of the Grassroots schema and the incoming request.
 
-Where possible existing standarised ontologies and their terms are used, trying to keep the number of grassroots-specific terms to a minimum. Various ontologies are currently used and these are shown below:
+Where possible existing standardised ontologies and their terms are used, trying to keep the number of Grassroots-specific terms to a minimum. Various ontologies are currently used and these are shown below:
 
  Schema | Prefix | Description  
 --- | --- | ---
@@ -42,7 +42,7 @@ So an example specifying that version 0.10 of the Grassroots schema is being use
 
 ##Operations 
 
-The Operations tag is used to make an API call to a Grassroots Server. It conatins a single key-value pair.
+The Operations tag is used to make an API call to a Grassroots Server. It contains a single key-value pair.
 
 * **operation** (required): A string which equates to a particular API call for the Operation.
 
@@ -80,163 +80,346 @@ The Operations tag is used to make an API call to a Grassroots Server. It conati
 ~~~{.json}
 {
   "@type": "grassroots_service",
-  "so:name": "SamTools service",
+  "so:name": "BlastN",
+  "so:description": "Search nucleotide databases with nucleotide queries",
+  "so:alternateName": "blast-blastn",
   "provider": {
-    "so:name": "grassroots.tools",
-    "so:description": "Grassroots 2.1 running the Grassroots Infrastructure",
-    "so:url": "https://grassroots.tools",
-    "so:logo": "https://grassroots.tools/grassroots-test/2.1/images/ei_logo.png"
+    "@type": "so:Organization",
+    "so:name": "EI public",
+    "so:description": "EI's public grassroots",
+    "so:url": "localhost:8080/info",
+    "so:logo": "localhost:8080/grassroots/images/ei_logo.png"
   },
-  "so:description": "A service that enables efficient access to arbitrary regions within available reference sequences.",
-  "application_category": {
-    "so:sameAs": "eo:operation_0491",
-    "so:name": "Sequence assembly visualisation",
-    "so:description": "Render and visualise a DNA sequence assembly."
+  "category": {
+    "application_category": {
+      "so:sameAs": "eo:operation_0491",
+      "so:name": "Pairwise sequence alignment",
+      "so:description": "Methods might perform one-to-one, one-to-many or many-to-many comparisons. Align exactly two molecular sequences."
+    },
+    "input": [
+      {
+        "so:sameAs": "eo:data_2977",
+        "so:name": "Nucleic acid sequence",
+        "so:description": "One or more nucleic acid sequences, possibly with associated annotation."
+      }
+    ],
+    "output": [
+      {
+        "so:sameAs": "eo:format_1333",
+        "so:name": "BLAST results",
+        "so:description": "Format of results of a sequence database search using some variant of BLAST. This includes score data, alignment data and summary table."
+      }
+    ]
   },
-  "input": [
-    {
-      "so:sameAs": "eo:data_1063",
-      "so:name": "Sequence identifier",
-      "so:description": "An identifier of molecular sequence(s) or entries from a molecular sequence database."
-    }
-  ],
-  "output": [
-    {
-      "so:sameAs": "eo:data_1063",
-      "so:name": "Sequence",
-      "so:description": "This concept is a placeholder of concepts for primary sequence data including raw sequences and seq
-uence records. It should not normally be used for derivatives such as sequence alignments, motifs or profiles. One or more molec
-ular sequences, possibly with associated annotation."
-    }
-  ],
-  "operations": {
-    "operation": "SamTools service",
-    "so:description": "A service that enables efficient access to arbitrary regions within available reference sequences.",
+  "operation": {
     "parameter_set": {
+      "level": "all",
       "parameters": [
         {
-          "param": "input_file",
-          "current_value": "Chinese Spring",
+          "param": "job_id",
+          "current_value": null,
+          "default_value": null,
+          "min": null,
+          "max": null,
+          "group": "Query Sequence Parameters",
           "type": "string",
           "grassroots_type": "xsd:string",
+          "level": "advanced",
+          "so:description": "The UUIDs for Blast jobs that have previously been run",
+          "so:name": "Job IDs"
+        },
+        {
+          "param": "query",
+          "current_value": null,
+          "default_value": null,
+          "min": null,
+          "max": null,
+          "group": "Query Sequence Parameters",
+          "type": "string",
+          "grassroots_type": "params:fasta",
           "level": "all",
-          "so:description": "The available databases",
-          "so:name": "Indexes",
-          "default_value": "Chinese Spring",
+          "so:description": "Query sequence(s) to be used for a BLAST search should be pasted in the 'Search' text area. It accepts a number of different types of input and automatically determines the format or the input. To allow this feature there are certain conventions required with regard to the input of identifiers (e.g., accessions or gi's)",
+          "so:name": "Query Sequence(s)",
+          "required": true
+        },
+        {
+          "param": "subrange_from",
+          "current_value": null,
+          "default_value": null,
+          "min": null,
+          "max": null,
+          "group": "Query Sequence Parameters",
+          "type": "integer",
+          "grassroots_type": "params:unsigned_integer",
+          "level": "advanced",
+          "so:description": "Coordinates for a subrange of the query sequence. The BLAST search will apply only to the residues in the range. Valid sequence coordinates are from 1 to the sequence length. Set either From or To to 0 to ignore the range. The range includes the residue at the To coordinate.",
+          "so:name": "From"
+        },
+        {
+          "param": "subrange_to",
+          "current_value": null,
+          "default_value": null,
+          "min": null,
+          "max": null,
+          "group": "Query Sequence Parameters",
+          "type": "integer",
+          "grassroots_type": "params:unsigned_integer",
+          "level": "advanced",
+          "so:description": "Coordinates for a subrange of the query sequence. The BLAST search will apply only to the residues in the range. Valid sequence coordinates are from 1 to the sequence length. Set either From or To to 0 to ignore the range. The range includes the residue at the To coordinate.",
+          "so:name": "To"
+        },
+        {
+          "param": "Available Databases provided by EI public -> Chinese Spring",
+          "current_value": true,
+          "default_value": true,
+          "group": "Available Databases provided by EI public",
+          "type": "boolean",
+          "grassroots_type": "xsd:boolean",
+          "level": "all",
+          "so:description": "Chinese Spring",
+          "so:name": "Chinese Spring"
+        },
+        {
+          "param": "Available Databases provided by EI public -> Cadenza",
+          "current_value": false,
+          "default_value": false,
+          "group": "Available Databases provided by EI public",
+          "type": "boolean",
+          "grassroots_type": "xsd:boolean",
+          "level": "all",
+          "so:description": "620,766 sequences; 13,119,450,886 total bases; Longest sequence: 1,068,450 bases",
+          "so:name": "Cadenza"
+        },
+        {
+          "param": "max_target_seqs",
+          "current_value": 5,
+          "default_value": 5,
+          "min": null,
+          "max": null,
+          "group": "General Algorithm Parameters",
+          "type": "integer",
+          "grassroots_type": "params:unsigned_integer",
+          "level": "advanced",
+          "so:description": "Select the maximum number of aligned sequences to display (the actual number of alignments may be greater than this).",
+          "so:name": "Max target sequences"
+        },
+        {
+          "param": "evalue",
+          "current_value": 10.0,
+          "default_value": 10.0,
+          "min": null,
+          "max": null,
+          "group": "General Algorithm Parameters",
+          "type": "number",
+          "grassroots_type": "params:unsigned_number",
+          "level": "advanced",
+          "so:description": "Expected number of chance matches in a random model",
+          "so:name": "Expect threshold"
+        },
+        {
+          "param": "outfmt",
+          "current_value": 19,
+          "default_value": 19,
+          "min": null,
+          "max": null,
           "enum": [
             {
-              "so:description": "Chinese Spring",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
-v1_all.fa"
+              "so:description": "query-anchored showing identities",
+              "value": 1
             },
             {
-              "so:description": "Cadenza",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Cadenza_E
-Iv1.1.fa"
+              "so:description": "query-anchored no identities",
+              "value": 2
             },
             {
-              "so:description": "Kronos",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_turgidum_Kronos_EI
-v1.1.fa"
+              "so:description": "flat query-anchored, show identities",
+              "value": 3
             },
             {
-              "so:description": "Paragon",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Paragon_E
-Iv1.1.fa"
+              "so:description": "flat query-anchored, no identities",
+              "value": 4
             },
             {
-              "so:description": "Robigus",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Robigus_E
-Iv1.1.fa"
+              "so:description": "XML Blast output",
+              "value": 5
             },
             {
-              "so:description": "Claire",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_Claire_EI
-v1.1.fa"
+              "so:description": "tabular",
+              "value": 6
             },
             {
-              "so:description": "CS42 cDna",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
-v1_scaffold.annotation.gff3.cdna.fa"
+              "so:description": "tabular with comment lines",
+              "value": 7
             },
             {
-              "so:description": "CS42 cds",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Triticum_aestivum_CS42_TGAC
-v1_scaffold.annotation.gff3.cds.fa"
+              "so:description": "Text ASN.1",
+              "value": 8
             },
             {
-              "so:description": "Aegilops tauschii",
-              "value": "/mnt/ngs_data/references/assembly/aegilops_tauschii/GCA_000347335.1/Aegilops_tauschii.GCA_000347335.
-1.26.dna.genome.fa"
+              "so:description": "Binary ASN.1",
+              "value": 9
             },
             {
-              "so:description": "CS42 cDNA",
-              "value": "/mnt/ngs_data/databases/blast/triticum_aestivum/brenchley_CS42/allCdnaFinalAssemblyAllContigs_vs_TRE
-Palle05_notHits_gt100bp"
+              "so:description": "Comma-separated values",
+              "value": 10
             },
             {
-              "so:description": "CS42 5x Liverpool 454 assembly",
-              "value": "/mnt/ngs_data/databases/blast/triticum_aestivum/brenchley_CS42/CS_5xDNA_all"
+              "so:description": "BLAST archive format (ASN.1)",
+              "value": 11
             },
             {
-              "so:description": "CS42 orthologous group sub-assemblies",
-              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/brenchley_CS42/subassemblies_TEcleaned_Hv80Bd75S
-b70Os70_30aa_firstBestHit_assembly_ml40_mi99.fa"
+              "so:description": "JSON Seqalign output",
+              "value": 12
             },
             {
-              "so:description": "WGSCv2.0",
-              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/IWGSC/v2/IWGSCv2.0.fa"
+              "so:description": "Multiple file JSON Blast output",
+              "value": 13
             },
             {
-              "so:description": "A-genome progenitor Triticum urartu",
-              "value": "/mnt/ngs_data/references/assembly/triticum_urartu/GCA_000347455.1/Triticum_urartu.GCA_000347455.1.26
-.dna.genome.fa"
+              "so:description": "Multiple file XML2 Blast output",
+              "value": 14
             },
             {
-              "so:description": "Synthetic W7984",
-              "value": "/mnt/ngs_data/references/assembly/triticum_aestivum/W7984/w7984.meraculous.scaffolds.Mar28_contamina
-tion_removed.fa"
+              "so:description": "Single file JSON Blast output",
+              "value": 15
             },
             {
-              "so:description": "Wild winter wheat G3116",
-              "value": "/mnt/ngs_data/references/assembly/triticum_monococcum/spp_aegilopoides/TmG3116_cDNA.fa"
+              "so:description": "Single file XML2 Blast output",
+              "value": 16
             },
             {
-              "so:description": "Domesticated spring wheat",
-              "value": "/mnt/ngs_data/references/assembly/triticum_monococcum/spp_monococcum/TmDV92_cDNA.fa"
+              "so:description": "Sequence Alignment/Map (SAM)",
+              "value": 17
             },
             {
-              "so:description": "Barley Golden Promise",
-              "value": "/home/ubuntu/Applications/grassroots-0/grassroots/extras/blast/databases/Hordeum_vulgare_Golden_prom
-ise_EIv1.fa"
+              "so:description": "Organism report",
+              "value": 18
+            },
+            {
+              "so:description": "Grassroots markup",
+              "value": 19
+            },
+            {
+              "so:description": "paired",
+              "value": 20
             }
-          ]
+          ],
+          "group": "General Algorithm Parameters",
+          "type": "integer",
+          "grassroots_type": "params:unsigned_integer",
+          "level": "advanced",
+          "so:description": "The output format for the results",
+          "so:name": "Output format"
         },
         {
-          "param": "Scaffold",
-          "current_value": "",
+          "param": "word_size",
+          "current_value": 11,
+          "default_value": 11,
+          "min": null,
+          "max": null,
+          "group": "General Algorithm Parameters",
+          "type": "integer",
+          "grassroots_type": "params:unsigned_integer",
+          "level": "advanced",
+          "so:description": "Expected number of chance matches in a random model",
+          "so:name": "Word size"
+        },
+        {
+          "param": "task",
+          "current_value": "megablast",
+          "default_value": "megablast",
+          "min": null,
+          "max": null,
+          "enum": [
+            {
+              "so:description": "megablast: Traditional megablast used to find very similar (e.g., intraspecies or closely related species) sequences",
+              "value": "megablast"
+            },
+            {
+              "so:description": "dc-megablast: Discontiguous megablast used to find more distant (e.g., interspecies) sequences",
+              "value": "dc-megablast"
+            },
+            {
+              "so:description": "blastn: Traditional BLASTN requiring an exact match of 11",
+              "value": "blastn"
+            },
+            {
+              "so:description": "blastn-short: BLASTN program optimized for sequences shorter than 50 bases",
+              "value": "blastn-short"
+            },
+            {
+              "so:description": "rmblastn: BLASTN with complexity adjusted scoring and masklevel",
+              "value": "rmblastn"
+            }
+          ],
+          "group": "Program Selection Parameters",
           "type": "string",
           "grassroots_type": "xsd:string",
-          "level": "all",
-          "so:description": "The name of the scaffold to find",
-          "so:name": "Scaffold name",
-          "default_value": ""
+          "level": "advanced",
+          "so:description": "The program to use to run the search.",
+          "so:name": "Program Selection"
         },
         {
-          "param": "Scaffold line break index",
-          "current_value": 60,
+          "param": "reward",
+          "current_value": 2,
+          "default_value": 2,
+          "min": null,
+          "max": null,
+          "group": "Scoring Parameters",
           "type": "integer",
-          "grassroots_type": "params:signed_integer",
+          "grassroots_type": "params:unsigned_integer",
           "level": "advanced",
-          "so:description": "If this is greater than 0, then add a newline after each block of this many letters",
-          "so:name": "Max Line Length",
-          "default_value": 60
+          "so:description": "The reward for matching bases",
+          "so:name": "Reward"
+        },
+        {
+          "param": "penalty",
+          "current_value": -3,
+          "default_value": -3,
+          "min": null,
+          "max": null,
+          "group": "Scoring Parameters",
+          "type": "integer",
+          "grassroots_type": "params:negative_integer",
+          "level": "advanced",
+          "so:description": "The penalty for mismatching bases",
+          "so:name": "Penalty"
         }
       ],
-      "groups": []
+      "groups": [
+        {
+          "so:name": "Query Sequence Parameters",
+          "visible": true,
+          "repeatable": false
+        },
+        {
+          "so:name": "Available Databases provided by EI public",
+          "visible": true,
+          "repeatable": false,
+          "level": "all"
+        },
+        {
+          "so:name": "General Algorithm Parameters",
+          "visible": false,
+          "repeatable": false,
+          "level": "advanced"
+        },
+        {
+          "so:name": "Program Selection Parameters",
+          "visible": true,
+          "repeatable": false,
+          "level": "advanced"
+        },
+        {
+          "so:name": "Scoring Parameters",
+          "visible": false,
+          "repeatable": false,
+          "level": "advanced"
+        }
+      ]
     },
-    "synchronous": true,
-    "so:image": "https://grassroots.tools/images/Search%20service"
+    "synchronous": false,
+    "so:image": "http://localhost:8080/grassroots/images/BlastN%20service"
   }
 }
 ~~~
