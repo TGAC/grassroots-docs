@@ -2211,6 +2211,11 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          "COORDINATE_VAL(x)= =x" \
                          GRASSROOTS_GEOCODER_API \
                          GRASSROOTS_GEOCODER_LOCAL=/**@private*/ \
+                         FIELD_TRIAL_JOB_PREFIX= \
+                         "FIELD_TRIAL_VAL(x)= =x" \
+                         FIELD_TRIAL_JOB_API = \
+                         DFW_FIELD_TRIAL_SERVICE_LOCAL \
+                         DFW_FIELD_TRIAL_SERVICE_API \
                          
                          
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
