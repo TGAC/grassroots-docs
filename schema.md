@@ -597,7 +597,7 @@ The encrypted username to use.
 * **password**:
 The encrypted password to use.
 
-## Provider
+## Provider {#provider_guide}
 
 This is the object that describes the entity or entities that are providing a given Service. Each Service will specify one of of these. Each one of these is an institution hosting a Grassroots server and used the [SchemaOrg Organization](http://schema.org/Organization) type.
 If there is a single provider for the given Service then the key used will be **provider** containing the keys listed below. 
