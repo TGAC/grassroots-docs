@@ -11,6 +11,8 @@ There are various keys that can be placed in this file described below.
 
 ### Server web address
 
+This is specified with the ```so:url``` key and is the web address for this Grassroots server.
+
 ### Default service statuses
 
 By default, all of the Services that are installed in Grassroots will be available for users. 
@@ -42,7 +44,7 @@ There are further details in the [Provider](@ref provider_guide) section of the 
   * **so:name**: The name to use for this Grassroots system.
   * **so:description**: A description of this Grassroots system to display to the user. 
   * **so:url**: The web address of a description of this Grassroots system.
-  * **so:url**: An image to use as the logo for this Provider.
+  * **so:logo**: An image to use as the logo for this Provider.
 
 ~~~{json}
 "provider": {
@@ -57,7 +59,7 @@ There are further details in the [Provider](@ref provider_guide) section of the 
 
 ### MongoDB configuration 
 
-Grassroots comes with support for [MongoDB](https://www.mongodb.com/) with a library for common operations that uses the [MongoDB C Driver](http://mongoc.org/) which gets installed by the *install_dependencies* script which is part od the [build tools](https://github.com/TGAC/grassroots-build-tools) repository.
+Grassroots comes with support for [MongoDB](https://www.mongodb.com/) with a library for common operations that uses the [MongoDB C Driver](http://mongoc.org/) which gets installed by the *install_dependencies* script which is part of the [build tools](https://github.com/TGAC/grassroots-build-tools) repository.
 
  * **mongodb**: This key has the details for any MongoDB server for this Grassroots Server to access. 
   * **uri**:  This specifies the uri of the MongoDB server to access.
@@ -71,9 +73,9 @@ Grassroots comes with support for [MongoDB](https://www.mongodb.com/) with a lib
 ### Federated servers
 
 Grassroots servers can be federated together so that users logging into any of these will see the combined list of services from all of the different servers. 
-This is configured within the ```servers``` object wtihin in this file. 
+This is configured within the ```servers``` object within in this file. 
 This is an array of entries, each of which specify a Grassroots server to federate with.
-Each of these entries require the folloiwing keys:
+Each of these entries require the following keys:
 
   * **server_name**: The name of the Grassroots system to connect to. This should match the so:name value
 from its ```Provider```` object.
@@ -81,7 +83,7 @@ from its ```Provider```` object.
  
 As well as these individual services can be federated together. 
 For example [Grassroots BLAST services](https://github.com/TGAC/grassroots-service-blast) can be paired
-so that all of the avaialable databases appear upon a single page so that from a user's point of view,
+so that all of the available databases appear upon a single page so that from a user's point of view,
 they are all available in a single place. 
 These are specified in an array called ```paired_services```. 
 Each entry in this array require two bits of information, one to specify the service running on this Grassroots, using the ```local``` key and the other to specify the service running on the remote federated Grassroots server, specified using the ```remote``` key
@@ -112,12 +114,6 @@ If you wished to pair a service called *Foo* running on https://grassroots.one a
 	}]
 }]
 ~~~
- * **servers**: This is an array of objects that describe other Grassroots Servers to connect to this system.
-  * **server_name**: The name of the Grassroots system to connect to.
-  * **server_uri**: The web address of the Grassroots system to connect to.
-  * **paired_services**: This is an array of objects that describe any Services that are to be amalgamated between the remote Server and this Server.
-  		* **local**: The name of the Service on this Grassroots system to amalgamate.
-  		* **remote**: The name of the Service on the remote Grassroots system to amalgamate.
 
 ### Jobs manager
 
@@ -151,7 +147,7 @@ To set this in the configuration, use the ```servers_manager``` key.
 ### Geocoder
 
 Grassroots has an optional [Geocoder library](https://github.com/TGAC/grassroots-geocoder) library for getting GPS coordinates from address details such as town, county, country, etc. and vice versa.
-The configuration options for this library are specified with the ```geocoder``` key. It has an array of geocoder configuration details specified by the geocoders key. Each one of these consists of two entries:
+The configuration options for this library are specified with the ```geocoder``` key. It has an array of geocoder configuration details specified by the ```geocoders``` key. Each one of these consists of two entries:
 
  * **name**: The name to use for this geocoder. Currently there are three available options; [google](https://developers.google.com/maps/documentation/geocoding/overview), [opencage](https://opencagedata.com/api) and [nominatim](https://nominatim.org/).
 
@@ -188,12 +184,12 @@ The configuration for the this is part of the global configuration file and is s
  * **classpath**: This is the classpath for all of the Lucene jar files, along with other support libraries, that Grassroots requires to use its Lucene-based libraries.
  * **index**: This is the path to the directory where the Lucene index files will be stored.
  * **taxonomy**: This is the path to the directory where the Lucene taxonomy files will be stored.
- * **search_class**: This is the class that will be ran to perform searches. The current defualt is ```uk.ac.earlham.grassroots.app.lucene.Searcher```.
- * **index_class**: This is the class that will be ran to index data. The current defualt is ```uk.ac.earlham.grassroots.app.lucene.Indexer```.
+ * **search_class**: This is the class that will be ran to perform searches. The current default is ```uk.ac.earlham.grassroots.app.lucene.Searcher```.
+ * **index_class**: This is the class that will be ran to index data. The current default is ```uk.ac.earlham.grassroots.app.lucene.Indexer```.
  * **working_directory**: This is  the path to the directory which will be used as temporary folder when 
  running indexing and searching tasks.
  * **facet_key**: One of the features of Lucene is the ability to separate data into different types or facets. 
- This key specifies the iniernal key that Grasssroots uses to store its facetting data and should be left at its defualt of ```facet_type```.
+ This key specifies the iniernal key that Grasssroots uses to store its faceting data and should be left at its default of ```facet_type```.
  
 ~~~{json}
 		"classpath": "/home/billy/Applications/lucene/analysis/common/lucene-analyzers-common-8.11.0.jar:/home/billy/Applications/lucene/core/lucene-core-8.11.0.jar:/home/billy/Applications/lucene/facet/lucene-facet-8.11.0.jar:/home/billy/Applications/lucene/queryparser/lucene-queryparser-8.11.0.jar:/home/billy/Applications/lucene/backward-codecs/lucene-backward-codecs-8.11.0.jar:/home/billy/Applications/lucene/highlighter/lucene-highlighter-8.11.0.jar:/home/billy/Applications/lucene/queries/lucene-queries-8.11.0.jar:/home/billy/Applications/lucene/memory/lucene-memory-8.11.0.jar:/home/billy/Applications/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/home/billy/Applications/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/home/billy/Applications/grassroots/lucene/lib/json-simple-1.1.1.jar",
