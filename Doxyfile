@@ -798,13 +798,13 @@ INPUT                  = contents.md \
                          ../core/shared/parameters/readme.md \
                          ../core/shared/irods/readme.md \
                          server.md \
-                         ../services/blast-service/readme.md \
-                         ../services/ensembl-service/readme.md \
-                         ../services/samtools-service/readme.md \
-                         ../services/polymarker-service/readme.md \
-                         ../services/pathogenomics-service/readme.md \
-                         ../services/irods-service/readme.md \
-                         ../services/example-service/readme.md \
+                         ../services/blast/readme.md \
+                         ../services/ensembl/readme.md \
+                         ../services/samtools/readme.md \
+                         ../services/polymarker/readme.md \
+                         ../services/field-pathogenomics/readme.md \
+                         ../services/irods/readme.md \
+                         ../services/example/readme.md \
                          service_response.md \
                          ../core/shared/parameters/readme.md \
             						 ../core/shared/irods/readme.md \
