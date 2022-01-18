@@ -22,7 +22,7 @@ An example configuration for linking results of calls to the BLAST Service to th
 
 ~~~.json
 "linked_services": [{
-	"service_name": "SamTools service",
+	"service_name": "SamTools",
 	"parameters": [{
 		"input": "database",
 		"output": "Blast database"
