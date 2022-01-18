@@ -22,10 +22,10 @@ An example configuration for linking results of calls to the BLAST Service to th
 
 ~~~.json
 "linked_services": [{
-	"service_name": "SamTools",
+	"so:name": "SamTools",
 	"parameters": [{
 		"input": "database",
-		"output": "Blast database"
+		"output": "input_file"
 	}, {
 		"input": "scaffold",
 		"output": "Scaffold",
@@ -58,7 +58,7 @@ For instance, consider having a given Input Service generates results such as th
  
 ~~~.json
 {
-	"service_name": "Person Lookup",
+	"so:name": "Person Lookup",
 	"parameters": [{
 		"input": "person.name.forename",
 		"output": "first_name"
@@ -84,7 +84,7 @@ An example of this is the BLAST Service which uses the function, ```PolymarkerSe
 
 ~~~.json
 {
-	"service_name": "Polymarker service",
+	"so:name": "Polymarker service",
 	"function": "PolymarkerServiceGenerator"
 }
 ~~~
