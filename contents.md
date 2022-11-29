@@ -1,5 +1,4 @@
-﻿# Grassroots
-
+﻿# Grassroots {#contents_guide}
 
 The Grassroots Infrastructure project aims to create an easily-deployable suite of computing middleware tools to help users and developers gain access to scientific data infrastructure that can easily be interconnected.
 

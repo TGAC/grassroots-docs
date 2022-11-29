@@ -68,7 +68,7 @@ OUTPUT_DIRECTORY       = ./
 # performance problems for the file system.
 # The default value is: NO.
 
-CREATE_SUBDIRS         = NO
+CREATE_SUBDIRS         = YES
 
 # If the ALLOW_UNICODE_NAMES tag is set to YES, doxygen will allow non-ASCII
 # characters to appear in the names of generated files. If set to NO, non-ASCII
@@ -826,7 +826,8 @@ INPUT                  = contents.md \
                          ../core/server \
                          ../core/client/readme.md \
                          ../services \
-						             ../servers \
+						             ../servers/apache \
+						             ../servers/brapi \
 						             ../libs
 
 
@@ -871,7 +872,8 @@ RECURSIVE              = YES
 
 EXCLUDE                = ../clients/web/yellowrust-map/scripts \
                          ../clients/client-ui/qt/include \
-						 ../core/shared/util/include/doxygen_pages.h
+						             ../servers/django \
+                         ../core/shared/util/include/doxygen_pages.h
 						 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -1155,7 +1157,7 @@ HTML_FILE_EXTENSION    = .html
 # of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_HEADER            = doxygen-bootstrapped-header-new.html
+# HTML_HEADER            = doxygen-bootstrapped-header-new.html
 
 # The HTML_FOOTER tag can be used to specify a user-defined HTML footer for each
 # generated HTML page. If the tag is left blank doxygen will generate a standard
@@ -1165,7 +1167,7 @@ HTML_HEADER            = doxygen-bootstrapped-header-new.html
 # that doxygen normally uses.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_FOOTER            = doxygen-bootstrapped-footer-new.html
+# HTML_FOOTER            = doxygen-bootstrapped-footer-new.html
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading style
 # sheet that is used by each HTML page. It can be used to fine-tune the look of
@@ -1190,8 +1192,9 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = doxygen-bootstrapped-new.css
+#HTML_EXTRA_STYLESHEET  = doxygen-bootstrapped-new.css
 
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1492,7 +1495,10 @@ DISABLE_INDEX          = NO
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-GENERATE_TREEVIEW      = NO
+GENERATE_TREEVIEW      = YES
+
+FULL_SIDEBAR  = NO
+
 
 # The ENUM_VALUES_PER_LINE tag can be used to set the number of enum values that
 # doxygen will group on one line in the generated HTML documentation.
@@ -2216,6 +2222,12 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS \
                          FIELD_TRIAL_JOB_API = \
                          DFW_FIELD_TRIAL_SERVICE_LOCAL \
                          DFW_FIELD_TRIAL_SERVICE_API \
+                         GRASSROOTS_UUID_LOCAL \
+                         GRASSROOTS_UUID_API \
+                         GRASSROOTS_SQLITE_LOCAL \
+                         GRASSROOTS_SQLITE_API \
+                         FILE_STREAMER_LOCAL \
+                         FILE_STREAMER_API \
                          
                          
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
