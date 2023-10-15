@@ -107,10 +107,10 @@ A complete example configuration file is shown below
 			"geocode_url": "https://nominatim.openstreetmap.org/search?format=json"
 		}, {
 			"name": "google",
-			"geocode_url": "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&key=<YOUR API_KEY>"
+			"geocode_url": "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&key=AIzaSyB__xFP8aiY9_J3k2vCKPIucRFfApE0btw"
 		}, {
 			"name": "opencage",
-			"geocode_url": "https://api.opencagedata.com/geocode/v1/json?key=<YOUR API KEY>"
+			"geocode_url": "https://api.opencagedata.com/geocode/v1/json?key=01ba0b732bd64763971d3822ee47fc2d&pretty=1&q="
 		}]
 	},
 	"lucene": {
