@@ -25,19 +25,50 @@ There are various sections within the core configuration file that we will now d
  * **so:url**: This is the web address of this Grassroots instance. This is only used when 
 federating multiple Grassroots instances together. An examppe of this is 
 
-```
+   ```
   "so:url": "http://localhost/grassroots/public"
-```
+   ```
 
  * **services**:
-
 
 
  * **mongodb**: This contains the configuration details for the MongoDB instance that Grassroots
 will use. This block currently contains a single configuration directive:
  
-     * **uri**: This specifies the web address 
+     * **uri**: This specifies the web address of the MongoDB instance that Grassroots will 
+connect to. By default, MongoDB runs on port 27017 so to use a MongoDB server running on the
+same machine, the configuration snippet would be
 
+    ```
+	"mongodb": {
+		"uri": "mongodb://localhost:27017"
+	}
+
+    ```
+
+ * **provider**: This specifies the information about the orgraization hosting this Grassroots 
+instance. It is defined as an [Organization](https://schema.org/Organization) from schema.org 
+and it uses the following fields:
+
+    * **so:name**: "billy public",
+    * **so:description**: "Billy's public grassroots",
+    * **so:url**: "localhost:2000/info",
+    * **so:logo**: "http://localhost:2000/grassroots/images/ei_logo.jpg"
+
+ An example snippet is shown below
+
+```
+	"provider": {
+		"@type": "so:Organization",
+		"so:name": "billy public",
+		"so:description": "Billy's public grassroots",
+		"so:url": "localhost:2000/info",
+		"so:logo": "http://localhost:2000/grassroots/images/ei_logo.jpg"
+	}
+```
+
+
+A complete example configuration file is shown below
 
 ```.json
 {
