@@ -1,4 +1,4 @@
-# How to set up a Grassroots server
+# How to set up a Grassroots server {#how_to_set_up_server_guide}
 
 This is a guide to building and setting up a Grassroots server from first principles. This is on
 a Ubuntu 22.04 system but the principles should reamin the same for any Unix-based system. We 
@@ -47,7 +47,7 @@ make install
 ```
 
 Once completed, pcre should be installed and can be checked by listing the contents of 
-```~/Applications/pcre```
+`~/Applications/pcre`
 
 ```
 $ ls ~/Applications/pcre
@@ -119,7 +119,7 @@ make
 make install
 ```
 
-This should now give us a basic httpd installation within our ```~/Applications``` folder
+This should now give us a basic httpd installation within our `~/Applications` folder
 
 ```
 $ ls ~/Applications/apache
@@ -129,7 +129,7 @@ bin  build  cgi-bin  conf  error  htdocs  icons  include  lib  logs  man  manual
 ## MongoDB
 
 Grassroots supports various databases such as sqld and MongoDB. The default one is MongoDB so we 
-will now install that into ```~/Applications/mongodb```. 
+will now install that into `~/Applications/mongodb`. 
 At the time of writing the current version is 7.0.2 so the following instructions to download 
 and install MongoDB use that.
 
@@ -176,7 +176,7 @@ tar zxf solr-9.4.0.tgz
 mv solr-9.4.0 ~/Applications/solr
 ``` 
 
-which gives us both of these installed within the ```~/Applications``` folder
+which gives us both of these installed within the `~/Applications` folder
 
 
 ```

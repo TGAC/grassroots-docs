@@ -1,4 +1,4 @@
-# Configuring Grassroots
+# Configuring Grassroots {#configuration_guide}
 
 Both the Grassroots core and its services are configured using JSON files. 
 
