@@ -307,3 +307,138 @@ make -C unix/linux all
 make -C unix/linux install
 ```
 
+
+## Configuring Apache httpd for Grassroots
+
+The next step is to configure httpd to use Grassroots for processing 
+requests. This is done by editing 
+`~/Applications/apache/conf/extra/grassroots.conf`. For our example here
+let's say that we want incoming requests to */grassroots/controller* to be
+dealt with Grassroots. The way that is is done is to use the standard 
+httpd `<LocationMatch>` configuration directive along with the standard
+`SetHandler` directive which tells httpd to let Grassroots process the 
+request. Along with these there are a number of Grassroots-specific 
+directives which are documented in the 
+[Grassroots httpd](https://github.com/TGAC/grassroots-server-apache-httpd)
+module. For our example set up here though, the only one we need to
+set is the `GrassrootsRoot` directive which tells httpd where Grassoots
+is installed. 
+
+So the relevant section in the 
+`~/Applications/apache/conf/extra/grassroots.conf`
+file is
+
+```
+#
+# Set the uri for the Grassroots infrastructure requests
+#
+<LocationMatch "/grassroots/controller">
+	
+	# Let Grassroots handle these requests
+	SetHandler grassroots-handler
+	
+	# The path to the Grassroots root directory 
+	GrassrootsRoot /home/billy/Applications/grassroots-0/grassroots
+</LocationMatch>
+```
+
+and we need to change the `GrassrootsRoot` directive to match where we have
+installed Grassroots
+
+```
+#
+# Set the uri for the Grassroots infrastructure requests
+#
+<LocationMatch "/grassroots/controller">
+	
+	# Let Grassroots handle these requests
+	SetHandler grassroots-handler
+	
+	# The path to the Grassroots root directory 
+	GrassrootsRoot /home/<YOUR USER NAME>/Applications/grassroots
+</LocationMatch>
+```
+
+The other httpd configuration change that we need is make the `grassroots.conf.`
+loaded when httpd is started. We do this by adding an entry into the 
+`~/Applications/apache/conf/httpd.conf` file. If you edit this file and addd
+
+
+```
+# Grassroots
+Include conf/extra/grassroots.conf
+```
+
+at the bottom then our required configuration file will get loaded.
+
+
+When running httpd from a folder inside our home directory on Ubuntu 22.04, 
+you can get an error message
+
+```
+access to / denied (filesystem path '/home/<YOUR USER NAME>/Applications') because search permissions are missing on a component of the path
+```
+
+due to insufficient permissions since user's home directories are not 
+publically readable as described 
+[here](https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing). 
+If this happens, then running
+
+```
+chmod 755 /home/<YOUR USER NAME>
+``` 
+
+should fix the problem.
+
+
+## Configuring Grassroots
+
+
+### Global configuration
+
+
+```
+{
+	"so:url": "https://grassroots.tools/demo",
+	"mongodb": {
+		"uri": "mongodb://localhost:27017"
+	},
+	"provider": {
+		"@type": "so:Organization",
+		"so:name": "EI Grasssroots demo server",
+		"so:description": "Earlham Institute's Demonstration Grassroots instance",
+		"so:url": "https://grassroots.tools",
+		"so:logo": "https://grassroots.tools/images/ei_logo.png"
+	},
+	"jobs_manager": "mongodb_jobs_manager",
+	"servers_manager": "simple_external_servers_manager",
+	"mongodb_jobs_manager": {
+		"database": "grassroots",
+		"collection": "jobs"
+	},
+	"geocoder": {
+		"default_geocoder": "nominatim",
+		"geocoders": [{
+			"name": "nominatim",
+			"reverse_geocode_url": "https://nominatim.openstreetmap.org/reverse",
+			"geocode_url": "https://nominatim.openstreetmap.org/search?format=json"
+		}]
+	},
+	"lucene": {
+		"classpath": "/home/<YOUR USER NAME>/Applications/grassroots/extras/lucene/lib/json-simple-1.1.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-analysis-common-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-core-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-queryparser-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-facet-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-highlighter-9.6.0.jar",
+		"index": "/home/<YOUR USER NAME>/Applications/grassroots/lucene/index",
+		"taxonomy": "/home/<YOUR USER NAME>/Applications/grassroots/lucene/tax",
+		"search_class": "uk.ac.earlham.grassroots.app.lucene.Searcher",
+		"index_class": "uk.ac.earlham.grassroots.app.lucene.Indexer",
+		"delete_class": "uk.ac.earlham.grassroots.app.lucene.Deleter",
+		"working_directory": "/home/<YOUR USER NAME>/Applications/grassroots/working_directory/lucene",
+		"facet_key": "facet_type"
+	}
+}
+
+```
+
+
+### Field Trials services configuration
+
+
