@@ -25,7 +25,7 @@ where *YOUR USER NAME* will depend on your set up.
 To begin with, we need to install some required development tools and libraries.
 
 ```
-sudo apt install gcc wget automake unzip flex make git cmake zlib1g-dev g++ libzstd-dev libssl-dev
+sudo apt install default-jdk libcurl4-openssl-dev gcc wget automake unzip bzip2 flex make git cmake zlib1g-dev g++ libzstd-dev libssl-dev
 ```
 
 With these installed we can now proceed to install each of the components in turn
@@ -153,43 +153,157 @@ LICENSE.md             README  THIRD-PARTY-NOTICES  dbs
 ```
 
 
-## Lucene and Solr
 
-Throughout Grassroots, we try to make as much data and as many of the services as searchable as 
-possible to ensure that we follow the FAIR data principles. At the time of writing the latest 
-version of Lucene is 9.8.0 and for Solr is 9.4.0 so the following instructions use these 
-versions. If you wish to use other versions, that should be ok though.
+## Grassroots
 
+We can now proceed to build the Grassroots code. We will do this inside a folder
+within a `~/Projects/grassroots` folder 
 
 ```
-wget https://dlcdn.apache.org/lucene/java/9.8.0/lucene-9.8.0.tgz
-wget https://www.apache.org/dyn/closer.lua/solr/solr/9.4.0/solr-9.4.0.tgz?action=download -O solr-9.4.0.tgz
-```
-
-Since these are pre-built java applications, we don't need to build these and can simply install
-them using the following commands
-
-```
-tar zxf lucene-9.8.0.tgz 
-mv lucene-9.8.0 ~/Applications/lucene
-tar zxf solr-9.4.0.tgz 
-mv solr-9.4.0 ~/Applications/solr
+mkdir ~/Projects/grassroots
+cd ~/Projects/grassroots
+git clone https://github.com/TGAC/grassroots-build-tools.git build-config
+git clone https://github.com/TGAC/grassroots-core.git core
+git clone https://github.com/TGAC/grassroots-lucene.git lucene
+mkdir clients
+mkdir handlers
+mkdir libs
+git clone https://github.com/TGAC/grassroots-geocoder.git geocoder
+git clone https://github.com/TGAC/grassroots-frictionless-data.git frictionless-data
+mkdir servers
+mkdir services
+git clone https://github.com/TGAC/grassroots-service-field-trial.git field-trials
+cd servers
+git clone https://github.com/TGAC/grassroots-server-apache-httpd.git httpd-server
+git clone https://github.com/TGAC/grassroots-jobs-manager-mongodb.git mongodb-jobs-manager
+git clone https://github.com/TGAC/grassroots-simple-servers-manager.git simple-servers-manager
 ``` 
 
-which gives us both of these installed within the `~/Applications` folder
+### Extra dependencies
+
+We have a final set of dependencies to install which we can do via an automated script
+ which is `install_dependencies` which is located in the `build-config/unix/linux` folder 
+
+The first few lines of this file are 
+
+```
+#!/bin/bash
+
+# Edit this to specify where we will install these libraries
+GRASSROOTS_EXTRAS_INSTALL_PATH=/opt/grassroots/extras
+```
+
+and we need to change this to install all of the files in `~/Applications/grassroots/extras`
+instead. To do this we need to edit this file and edit the line specifying
+the `GRASSROOTS_EXTRAS_INSTALL_PATH` to point to our desired location. So using
+your editor of choice, edit this line so it becomes
+
+```
+GRASSROOTS_EXTRAS_INSTALL_PATH=/home/<YOUR USER NAME>/Applications/grassroots/extras
+```
+
+
+### Configuring the build of the Grassroots Lucene code
+
+Throughout Grassroots, we try to make as much data and as many of the services as searchable as 
+possible to ensure that we follow the FAIR data principles. This is done by using 
+[Lucene](https://lucene.apache.org/). Both Lucene and [Solr](https://solr.apache.org/)
+were installed by the `install_dependencies` script that we ran earlier so 
+now we need to configure our source to use these. This is done within the 
+`~/Projects/grassroots/lucene/` folder. We need to create and edit a file 
+called `grassroots-lucene.properties` to do this. We can start by making a 
+copy of the example file.
 
 
 ```
-$ ls ~/Applications/lucene/
-CHANGES.txt               README.md               modules
-JRE_VERSION_MIGRATION.md  SYSTEM_REQUIREMENTS.md  modules-test-framework
-LICENSE.txt               bin                     modules-thirdparty
-MIGRATE.md                docs
-NOTICE.txt                licenses
-
-$ ls ~/Applications/solr
-CHANGES.txt  NOTICE.txt  bin     docs     lib       modules              server
-LICENSE.txt  README.txt  docker  example  licenses  prometheus-exporter
+cp example-grassroots-lucene.properties grassroots-lucene.properties
 ```
 
+and the content of this is shown below
+
+```
+# The version of lucene installed
+lucene.version=8.1.1
+
+# The version of solr installed
+solr.version=8.1.1
+
+# The directory where lucene is installed 
+lucene.dir=/home/billy/Applications/lucene
+
+# The directory where solr is installed
+solr.dir=/home/billy/Applications/solr
+
+# The directory where the grassroots lucene jars, index and taxonomy are installed
+install.dir=/home/billy/Applications/grassroots/grassroots/lucene
+```
+
+We need to change this to match the versions we installed which means that
+the file should become something similar to
+
+```
+# The version of lucene installed
+lucene.version=9.8.0
+
+# The version of solr installed
+solr.version=9.4.0
+
+# The directory where lucene is installed 
+lucene.dir=/home/<YOUR USER NAME>/Applications/grassroots/extras/lucene
+
+# The directory where solr is installed
+solr.dir=/home/<YOUR USER NAME>/Applications/grassroots/extras/solr
+
+# The directory where the grassroots lucene jars, index and taxonomy are installed
+install.dir=/home/<YOUR USER NAME>/Applications/grassroots/lucene
+```
+
+
+
+### Configuring the build of the field trials service
+
+The field trials service uses the [libexif](https://github.com/libexif/libexif) library which
+we previously installed with the `install_dependencies` script that we ran previously. We need
+to let this service know the folder where we installed libexif. This is done by creating a 
+properties file which specifies this. An example file is part of the field trials directory 
+structure `build/unix/linux/example_user.prefs`. We copy this to a file called `linux/user.prefs` 
+which we will then edit to specify the location of libexif.
+
+
+```
+cp build/unix/example_user.prefs build/unix/linux/user.prefs
+```
+
+The content of this file is shown below
+
+```
+#
+# field trial dependencies
+#
+# Set this to where you have the libexif directory 
+# containing "include" and "lib" subdirectories.
+export LIBEXIF_HOME := /opt/libexif
+```
+
+and we need to change this to point where libexif is installed which is 
+`~/Applications/grassroots/extras/linexif` by changing the variable to 
+
+```
+export LIBEXIF_HOME := /home/<YOUR NAME>/Applications/grassroots/extras/libexif
+```
+
+with this in place, the field trials service can be built correctly.
+
+
+### Building the core
+
+Although each individual component of the Grassroots infrastructure can be built separately, it 
+is often easier to build all of the components in one go. Within the `build-config` folder 
+are the tools to do this. 
+
+```
+cd build-config
+make -C unix/linux all
+make -C unix/linux install
+```
 
