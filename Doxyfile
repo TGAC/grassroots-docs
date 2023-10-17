@@ -784,6 +784,7 @@ WARN_LOGFILE           = log
 INPUT                  = contents.md \
                          readme.md \
                          wizard.md \
+                         comfiguration.md \
                          admin_guide.md \
                         user_guide.md \
                          dev_guide.md \

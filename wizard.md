@@ -23,6 +23,12 @@ where *YOUR USER NAME* will depend on your set up. This set up is used for
 our demo server with the [list of services](https://grassroots.tools/demo/service)
 and [field trials](https://grassroots.tools/demo/fieldtrial/all). 
 
+If you wish to, you can download all of the 
+[code](https://grassroots.tools/demo/downloads/grassroots_source.tar.gz) 
+and [programs](https://grassroots.tools/demo/downloads/grassroots_demo_files.tar.gz).
+
+
+
 To begin with, we need to install some required development tools and libraries.
 
 ```
@@ -244,7 +250,7 @@ solr.dir=/home/billy/Applications/solr
 # The directory where the grassroots lucene jars, index and taxonomy are installed
 install.dir=/home/billy/Applications/grassroots/grassroots/lucene
 ```
-
++-
 We need to change this to match the versions we installed which means that
 the file should become something similar to
 
