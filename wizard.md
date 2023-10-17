@@ -17,10 +17,11 @@ Our planned layout will be
  * /home/\<YOUR USER NAME\>/Projects/grassroots: where we will checkout the source for the Grassroots components
  * /home/\<YOUR USER NAME\>/Applications/grassroots: where the Grassroots components will be installed to
  * /home/\<YOUR USER NAME\>/Applications/apache: where the Apache server will be installed
+ * /home/\<YOUR USER NAME\>/Applications/mongodb: where MongoDB will be installed
 
-
-where *YOUR USER NAME* will depend on your set up.
-
+where *YOUR USER NAME* will depend on your set up. This set up is used for 
+our demo server with the [list of services](https://grassroots.tools/demo/service)
+and [field trials](https://grassroots.tools/demo/fieldtrial/all). 
 
 To begin with, we need to install some required development tools and libraries.
 
@@ -128,7 +129,7 @@ bin  build  cgi-bin  conf  error  htdocs  icons  include  lib  logs  man  manual
 
 ## MongoDB
 
-Grassroots supports various databases such as sqld and MongoDB. The default one is MongoDB so we 
+Grassroots supports various databases such as sqlite and MongoDB. The default one is MongoDB so we 
 will now install that into `~/Applications/mongodb`. 
 At the time of writing the current version is 7.0.2 so the following instructions to download 
 and install MongoDB use that.
@@ -152,6 +153,12 @@ LICENSE-Community.txt  MPL-2   README.md            bin
 LICENSE.md             README  THIRD-PARTY-NOTICES  dbs
 ```
 
+We then need to start the MongoDB server 
+
+```
+cd ~/Applications/mongodb
+bin/mongod -dbpath dbs
+```
 
 
 ## Grassroots
@@ -244,7 +251,7 @@ the file should become something similar to
 ```
 # The version of lucene installed
 lucene.version=9.8.0
-
+cp ~/Projects/grassroots/lucene/lib/*.jar ~/Applications/grassroots/extras/lucene/lib/
 # The version of solr installed
 solr.version=9.4.0
 
@@ -259,6 +266,20 @@ install.dir=/home/<YOUR USER NAME>/Applications/grassroots/lucene
 ```
 
 
+The final things we need to do are copy the required dependencies for our Lucene code
+
+```
+cp ~/Projects/grassroots/lucene/lib/*.jar ~/Applications/grassroots/lucene/lib/
+```
+
+and make the index and taxonomy directories specified in the main core configuration
+
+```
+mkdir ~/Applications/grassroots/lucene/index
+chmod a+wx ~/Applications/grassroots/lucene/index
+mkdir ~/Applications/grassroots/lucene/tax
+chmod a+wx ~/Applications/grassroots/lucene/tax
+```
 
 ### Configuring the build of the field trials service
 
@@ -292,7 +313,20 @@ and we need to change this to point where libexif is installed which is
 export LIBEXIF_HOME := /home/<YOUR NAME>/Applications/grassroots/extras/libexif
 ```
 
-with this in place, the field trials service can be built correctly.
+with this in place, the field trials service can be built correctly. We also need to make sure 
+that the libexif libraries are in the library path when we run httpd, so we need to amend the
+`~/Applications/apache/bin/envvars_grassroots` file and add the appropriate line
+
+```
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/<YOUR USER NAME>/Applications/grassroots/extras/libexif/lib
+```
+
+prior to the 
+```
+export LD_LIBRARY_PATH
+```
+
+which is at the bottom of the file.
 
 
 ### Building the core
@@ -393,9 +427,17 @@ should fix the problem.
 
 ## Configuring Grassroots
 
+There are two sets of configuration files for Grassroots; a global configuration file and ones
+for each of the individual services.
 
 ### Global configuration
 
+The global configuration file contains various configuration details that are used by the
+core. By default this file is called *grassroots.config* within the Grassroots 
+application directory. This can be altered by using the `GrassrootsConfig` 
+directive within the httpd configuration file. For our demo, the sample configuration file 
+shown below is used. For more information on each of the individual 
+parts, please see the configuration guide.
 
 ```
 {
@@ -425,7 +467,7 @@ should fix the problem.
 		}]
 	},
 	"lucene": {
-		"classpath": "/home/<YOUR USER NAME>/Applications/grassroots/extras/lucene/lib/json-simple-1.1.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-analysis-common-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-core-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-queryparser-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-facet-9.6.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene-9.6.0/modules/lucene-highlighter-9.6.0.jar",
+		"classpath": "/home/<YOUR USER NAME>/Applications/grassroots/lucene/lib/json-simple-1.1.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/home/tyrrells/Applications/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-analysis-common-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-core-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-queryparser-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-facet-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-queries-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-memory-9.8.0.jar:/home/tyrrells/Applications/grassroots/extras/lucene/modules/lucene-highlighter-9.8.0.jar",
 		"index": "/home/<YOUR USER NAME>/Applications/grassroots/lucene/index",
 		"taxonomy": "/home/<YOUR USER NAME>/Applications/grassroots/lucene/tax",
 		"search_class": "uk.ac.earlham.grassroots.app.lucene.Searcher",
@@ -435,10 +477,162 @@ should fix the problem.
 		"facet_key": "facet_type"
 	}
 }
+```
 
+Any changes that are made to this file require the httpd server to 
+be restarted to take effect.
+
+
+### Services configuration
+
+All of the service configuration files are contained within a subfolder of
+the main Grassroots installation. By default, this subfolder is called *config*
+but as with the global configuration file above, this can be altered using
+the httpd `GrassrootsServicesConfigPath` directive. 
+
+Each Service's configuation is contained within a JSON file that has the same name
+as the Service. So, for example, in our example the *Search Field Trials* configuration
+file will be at `~/Applications/grassroots/config/Search Field Trials`.
+
+Unlike for the global configuration file, any changes to any of the service 
+configuration files will automatically be active without the need to 
+restart anything.
+
+
+### Importing demo data
+
+To allow a basic working example, we have created a small database of field trial data that can
+be imported into this Grassroots instance. This is available to download from 
+`https://grassroots.tools/documentation/dummy_test.zip` and can be installed using the following
+commands
+
+```
+wget https://grassroots.tools/documentation/dummy_test.zip
+unzip dummy_test.zip
+~/Applications/mongodb/bin/mongorestore --db demo_field_trials dummy_test
 ```
 
 
-### Field Trials services configuration
+## Django frontend
 
+
+Grassroots also has a [Django](https://www.djangoproject.com/)-based frontend server. To install
+it you run the following commands
+
+```
+cd ~/Applications/
+git clone https://github.com/TGAC/grassroots_services_django_web.git django
+cd django
+sudo apt install python3-virtualenv
+virtualenv -p python3 venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+This has set up the needed Python environment, we now need to configure the variables so 
+that this Django installation connects to our Grassroots and httpd installations. These
+customisations take place in a separate file which we can set up and edit with
+
+```
+cd grassroots_services_django_web
+cp example_custom_settings.py custom_settings.py
+vim custom_settings.py
+```
+
+So the initial configuration variables are 
+
+```
+# The filesystem path to where the static files
+# that Django uses will be installed
+STATIC_ROOT = "/home/billy/Applications/apache/htdocs/static/"
+
+# The web address to access the static files
+STATIC_URL = 'http://localhost:2000/static/'
+
+# The web address for the grassroots server to connect to
+SERVER_URL = "http://localhost:2000/grassroots/public_backend"
+
+```
+
+for running Django and httpd locally on your machine you may want 
+something like
+
+```
+# The filesystem path to where the static files
+# that Django uses will be installed
+STATIC_ROOT = "/home/<YOUR USER NAME>/Applications/apache/htdocs/static/"
+
+# The web address to access the static files
+STATIC_URL = 'http://localhost/static/'
+
+# The web address for the grassroots server to connect to
+SERVER_URL = "http://localhost/grassroots/controller"
+
+```
+
+The next stage is to edit the `/service/static/scripts/config.js` file.
+This contains a single variable such as
+
+```
+var root_dir = "/";
+```
+
+which specifies the base web address to access the httpd server. The 
+default value of */* is correct when running everything on a local machine
+or where the grassroots instance is set up to run from the root of the 
+httpd htdocs folder. For other set-ups, such as proxied servers, this value 
+can be adjusted to match the environemnt. For instance for our demo server
+at https://grassroots.tools/demo, this variable has been altered to become
+
+```
+var root_dir = "/demo/";
+```
+
+
+Once these variables are set, the next stage is to copy all of the static assets over 
+to our httpd server. This is done by activating our virtual environment 
+
+```
+source venv/bin/activate
+```
+
+and using the *collectstatic* option for the `manage.py` program.
+
+```
+python3 manage.py collectstatic
+```
+
+
+To run Django we use the *runserver* option along with which port we would like to use
+
+```
+python3 manage.py runserver 8000
+```
+
+So if you are running this on your local machine, you can now browse to the 
+[services](http://localhost:8000/service) or 
+[field trials](http://localhost:8000/fieldtrial/all) parts of the Django interface.
+
+Alternatively you can proxy to these from your httpd server if you wish to keep
+the Django server effectively hidden by adding something like
+
+```
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+
+# Django proxies
+ProxyPass /service http://localhost:8000/service
+ProxyPassReverse /service http://localhost:8000/service
+ProxyPass /fieldtrial http://localhost:8000/fieldtrial
+ProxyPassReverse /fieldtrial http://localhost:8000/fieldtrial
+```
+
+to your `~/Applications/apache/conf/extra/grassroots/conf` and restarting 
+your httpd server.
+
+
+
+
+
+ 
 
