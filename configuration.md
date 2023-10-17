@@ -5,13 +5,19 @@ Both the Grassroots core and its services are configured using JSON files.
 
 ## Apache configuration
 
+The Apache httpd configuration is detailed at the
+ [Grassroots httpd](https://github.com/TGAC/grassroots-server-apache-httpd) 
+module
 
 
 ## Core configuration
 
 The core configuration file is specified in the Apache configuration file using the 
-```GrassrootsConfig``` directive within the Apache configuration file. For example the 
-following snippet
+`GrassrootsConfig` directive within the Apache configuration file. The filename is relative to
+the directory in which Grassroots has been installed which is the `GrassrootsRoot` directive 
+specified in the Grassroots httpd documentation specified above. 
+
+For example the following snippet
 
 ```
 	# The global configuration file to use
@@ -19,6 +25,9 @@ following snippet
 ```
 
 specifies that the core configuration file that we will use is called *grassroots.public*.
+If the `GrassrootsConfig` directive is not set then the default filename of *grassroots.config*
+will be used
+
 
 There are various sections within the core configuration file that we will now detail.
 
@@ -50,10 +59,10 @@ same machine, the configuration snippet would be
 instance. It is defined as an [Organization](https://schema.org/Organization) from schema.org 
 and it uses the following fields:
 
-    * **so:name**: "billy public",
-    * **so:description**: "Billy's public grassroots",
-    * **so:url**: "localhost:2000/info",
-    * **so:logo**: "http://localhost:2000/grassroots/images/ei_logo.jpg"
+    * **so:name**: The name of this Grassroots server.
+    * **so:description**: A description of this server.
+    * **so:url**: An optional web page with further details of this server.
+    * **so:logo**: An optional logo for this server.
 
  An example snippet is shown below
 
