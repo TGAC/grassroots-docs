@@ -20,7 +20,7 @@ Our planned layout will be
  * /home/\<YOUR USER NAME\>/Applications/mongodb: where MongoDB will be installed
 
 where *YOUR USER NAME* will depend on your set up. This set up is used for 
-our demo server with the [list of services](https://grassroots.tools/demo/service)
+our demo server with the [list of services](https://grassroots.tools/demo/service/)
 and [field trials](https://grassroots.tools/demo/fieldtrial/all). 
 
 If you wish to, you can download all of the 
