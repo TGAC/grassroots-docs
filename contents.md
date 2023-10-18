@@ -14,8 +14,9 @@ The Grassroots Infrastructure uses a controlled vocabulary of JSON messages to c
 ## Administrators
 
 * @ref installation_guide
+* @ref how_to_set_up_server_guide
 * @ref admin_guide
-* @ref server_configuration_guide
+* @ref configuration_guide
 * @ref service_configuration_guide
 
 ### Services

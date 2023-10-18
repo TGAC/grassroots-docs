@@ -783,6 +783,8 @@ WARN_LOGFILE           = log
 
 INPUT                  = contents.md \
                          readme.md \
+                         wizard.md \
+                         configuration.md \
                          admin_guide.md \
                         user_guide.md \
                          dev_guide.md \
@@ -797,7 +799,7 @@ INPUT                  = contents.md \
                          service_response.md \
                          ../core/shared/parameters/readme.md \
                          ../core/shared/irods/readme.md \
-                         server.md \
+                         ../servers/apache_server/readme.md \
                          ../services/blast/readme.md \
                          ../services/ensembl/readme.md \
                          ../services/samtools/readme.md \
