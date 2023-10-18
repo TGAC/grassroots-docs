@@ -7,7 +7,7 @@ OUTPUT_FILE=${OUTPUT_DIR}/index.md
 
 BuildDocForContent () 
 {
-	i=${ROOT}/$1/readme.md; 
+	i=$2; 
 	n=$( basename $( dirname "$i" ) ); 
 	n=${n/-/ }; 
 	to="$1/$( basename $( dirname "$i")).md"; 
@@ -30,10 +30,11 @@ BuildDocsForContent ()
 	if [[ $3 = "true" ]]
 	then
 	for i in ${ROOT}/$1/*/readme.md; 
-		do n=$( basename $( dirname "$i" ) ); n=${n/-/ }; to="$1/$( basename $( dirname "$i")).md"; echo "> $n"; cp "$i" "${OUTPUT_DIR}/${to}"; echo " * [$n](${to})" >> ${OUTPUT_FILE}; 
+	do
+		BuildDocForContent $1 $i
 	done
 	else
-		i=${ROOT}/$1/readme.md; n=$( basename $( dirname "$i" ) ); n=${n/-/ }; to="$1/$( basename $( dirname "$i")).md"; echo "> $n"; cp "$i" "${OUTPUT_DIR}/${to}"; echo " * [$n](${to})" >> ${OUTPUT_FILE}; 
+		BuildDocForContent $1 ${ROOT}/$1/readme.md
 	fi
 
 }
@@ -45,19 +46,13 @@ truncate -s 0 ${OUTPUT_FILE}
 
 
 BuildDocsForContent services Services true
-BuildDocsForContent libs Libraries true
 
-# Lucene
-#mkdir -p ${OUTPUT_DIR}/lucene
-#cp ${ROOT}/lucene/readme.md ${OUTPUT_DIR}/lucene/lucene.md
-#echo "> lucene"
-#echo "" >> ${OUTPUT_FILE}
-#echo "## lucene" >> ${OUTPUT_FILE}
-#echo " * [lucene](lucene/lucene.md)" >> ${OUTPUT_FILE}
+BuildDocsForContent libs Libraries true
 
 BuildDocsForContent lucene Lucene false
 
 BuildDocsForContent servers Servers true
+
 BuildDocsForContent clients Clients true
 
 
