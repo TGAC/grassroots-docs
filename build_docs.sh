@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# A tool to build the admin help pages for Grassroots
+
+# Where we are reading the files from 
 ROOT=..
+
+# The directory in which we will build the pages
 OUTPUT_DIR=docs
+
+# The name of the initil page that we are writing to
 OUTPUT_FILE=${OUTPUT_DIR}/index.md
 
-
+# $1 is the directory name that we're copying and building the docs for
+# $2 is the markdown filename
 BuildDocForContent () 
 {
 	i=$2; 
