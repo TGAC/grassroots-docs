@@ -1,4 +1,4 @@
-# Configuring Grassroots {#configuration_guide}
+# Configuring Grassroots 
 
 Both the Grassroots core and its services are configured using JSON files. 
 
@@ -31,17 +31,46 @@ will be used
 
 There are various sections within the core configuration file that we will now detail.
 
- * **so:url**: This is the web address of this Grassroots instance. This is only used when 
-federating multiple Grassroots instances together. An examppe of this is 
+* **so:url**: This is the web address of this Grassroots instance. This is only used when 
+federating multiple Grassroots instances together. An example of this is 
 
    ```
   "so:url": "http://localhost/grassroots/public"
    ```
 
- * **services**:
+* **services**: This contains global configuration relating to services.
+It contains the following child objects
+	* **status**: This object details whether particular services are enabled. 
+
+		* **default**: By default all services are available although this can be changed by the use of this key. Setting it to `false` specifies that by default all services will be unavailable.
+
+		Any default value can be overriden for individual services by using the service name as the key and either `true`, to make the service enabled, or `false` to specify that is disabled. For example, to set that all services except for the *BlastN* service are enabled, the 
+configuration would be
+
+     
+	```
+	"services": {
+		"status": {
+			"default": true,
+			"BlastN": false
+		}
+	}
+	```
+
+	Alternatively, to specify that only the *Manage Study* and *Manage Field Trial data* services were available, the configuration would be 
+
+	```
+	"services": {
+		"status": {
+			"default": false,
+			"Manage Study": true,
+			"Manage Field Trial data": true
+		}
+	}
+	```
 
 
- * **mongodb**: This contains the configuration details for the MongoDB instance that Grassroots
+* **mongodb**: This contains the configuration details for the MongoDB instance that Grassroots
 will use. This block currently contains a single configuration directive:
  
      * **uri**: This specifies the web address of the MongoDB instance that Grassroots will 
@@ -55,7 +84,7 @@ same machine, the configuration snippet would be
 
     ```
 
- * **provider**: This specifies the information about the orgraization hosting this Grassroots 
+* **provider**: This specifies the information about the orgraization hosting this Grassroots 
 instance. It is defined as an [Organization](https://schema.org/Organization) from schema.org 
 and it uses the following fields:
 
@@ -75,6 +104,49 @@ and it uses the following fields:
 		"so:logo": "http://localhost:2000/grassroots/images/ei_logo.jpg"
 	}
 ```
+
+
+* **jobs_manager**:
+
+
+* **servers_manager**: "simple_external_servers_manager",
+
+
+* **admin**:
+	* **jobs**: 
+
+
+* **geocoder**: 
+	* **geocoders**: This is an array of available geocoder configurations. These are external web service REST APIs available
+from various organisations such as openstreetmap, google, opencage, *etc.* For more information see the [Grassroots geocoder]() library. 
+Each object in this array can have the following keys:
+		* **name**: This is required and is a name to give to this configuration object. 
+Any value is fine as it is only used for setting the *default_geocoder* 
+value explained below.
+		* **geocode_url**: This is REST web service endpoint for converting a postal address into GPS coordinates.
+		* **reverse_geocode_url**: This is REST web service endpoint for converting GPS coordinates into a postal address.
+
+	* **default_geocoder**: This specifies the name of which of the entries in the *geocoders* array to use. T
+
+```
+	"geocoder": {
+		"default_geocoder": "nominatim",
+		"geocoders": [{
+			"name": "nominatim",
+			"reverse_geocode_url": "https://nominatim.openstreetmap.org/reverse",
+			"geocode_url": "https://nominatim.openstreetmap.org/search?format=json"
+		}, {
+			"name": "google",
+			"geocode_url": "https://maps.googleapis.com/maps/api/geocode/json?sensor=<YOUR API KEY>"
+		}, {
+			"name": "opencage",
+			"geocode_url": "https://api.opencagedata.com/geocode/v1/json?key=<YOUR API KEY>"
+		}]
+	}
+```
+
+* **lucene**: 
+
 
 
 A complete example configuration file is shown below

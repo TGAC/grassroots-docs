@@ -9,7 +9,7 @@ ROOT=..
 OUTPUT_DIR=docs
 
 # The name of the initil page that we are writing to
-OUTPUT_FILE=${OUTPUT_DIR}/index.md
+OUTPUT_FILE=${OUTPUT_DIR}/components.md
 
 # $1 is the directory name that we're copying and building the docs for
 # $2 is the markdown filename
@@ -50,6 +50,7 @@ BuildDocsForContent ()
 
 
 # Clear the output file
+mkdir -p ${OUTPUT_DIR}
 truncate -s 0 ${OUTPUT_FILE}
 
 
