@@ -21,7 +21,7 @@ BuildDocForContent ()
 	to="$1/$( basename $( dirname "$i")).md"; 
 	echo "> $n"; 
 	cp "$i" "${OUTPUT_DIR}/${to}"; 
-	echo " * [$n](${to})" >> ${OUTPUT_FILE}; 
+	echo " * [${n^}](${to})" >> ${OUTPUT_FILE}; 
 }
 
 
@@ -45,6 +45,9 @@ BuildDocsForContent ()
 		BuildDocForContent $1 ${ROOT}/$1/readme.md
 	fi
 
+
+#	 find . -maxdepth 1 -mindepth 1 -name \*.md -a -not -name readme.md -exec cp -t ${OUTPUT_DIR} {} +
+
 }
 
 
@@ -53,6 +56,7 @@ BuildDocsForContent ()
 mkdir -p ${OUTPUT_DIR}
 truncate -s 0 ${OUTPUT_FILE}
 
+cat components_intro.md > ${OUTPUT_FILE}
 
 BuildDocsForContent services Services true
 
@@ -65,5 +69,9 @@ BuildDocsForContent servers Servers true
 BuildDocsForContent clients Clients true
 
 
+cp readme.md ${OUTPUT_DIR}/index.md
 
+cp wizard.md ${OUTPUT_DIR}
+
+cp configuration.md ${OUTPUT_DIR}
 

@@ -1,4 +1,5 @@
-﻿# Introduction 
+﻿Introduction 
+============
 
 Broadly speaking, the Grassroots infrastructure is a lightweight architecture to share both distributed data and services across multiple servers. 
 
@@ -55,4 +56,12 @@ There is also a [Qt]()-based desktop application that runs on Windows, MacOS and
 * [Job tracker](https://github.com/TGAC/grassroots-job-tracker): Any services that carry out analytical or processing tasks can be registered with a Django pipeline monitoring tool to let users keep track of running jobs or retrieve results from completed service processes
 
 
-A list of all of the available components and their documentation is available [here](). 
+A list of all of the available components and their documentation is available [here](components.md). 
+Grassroots is to be as modular and adaptable as possible so there are many levels of configuration within the system which are detailed in the [configuration guide](configuration.md).
+  
+## Available sites
+
+There is a [public Grassroots server](https://grassroots.tools) running at the Earlham Institute.
+There is also a [demo](https://grassroots.tools/demo) site with complete instructions with on how it was built that has its [services](https://grassroots.tools/demo/service/) and its [field trials portal](https://grassroots.tools/demo/fieldtrial/all).
+
+ 

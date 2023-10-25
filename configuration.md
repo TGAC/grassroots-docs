@@ -1,13 +1,24 @@
 # Configuring Grassroots 
 
-Both the Grassroots core and its services are configured using JSON files. 
+Grassroots is to be as modular and adaptable as possible so there are many levels of configuration within the system. These are grouped into 3 areas:
+
+* Apache: As Apache is the way to access the Grassroots infrastructure,
+it has to be configured to make the Grassroots functionality available.
+* Grassroots core: Each Grassroots server has a global configuration 
+file which allows the non-service-specific functionality to be altered. 
+* Services: Each service has a separate configuration file which allows any of its 
+settings to be altered
+
+Any changes to the Apache or Grassroots core configuration files requires a restart
+of the Apache web server to take effect. Any changes to service configuration files
+are active immediately.
+
+Both the Grassroots core and its services configuration files are in JSON format. 
 
 
 ## Apache configuration
 
-The Apache httpd configuration is detailed at the
- [Grassroots httpd](https://github.com/TGAC/grassroots-server-apache-httpd) 
-module
+The Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation
 
 
 ## Core configuration
@@ -146,6 +157,19 @@ value explained below.
 ```
 
 * **lucene**: 
+
+The [Grassroots Lucene](lucene/lucene.md) module handles the searching 
+and indexing of data within Grassroots.
+
+* **classpath**:
+* **index**:
+* **taxonomy**:
+* **search_class**:
+* **index_class**:
+* **delete_class**:
+* **working_directory**:
+* **facet_key**:
+
 
 
 
