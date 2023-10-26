@@ -117,7 +117,7 @@ and it uses the following fields:
 ```
 
 
-* **jobs_manager**:
+* **jobs_manager**: The purpose of the jobs manager is to 
 
 
 * **servers_manager**: "simple_external_servers_manager",
@@ -161,14 +161,59 @@ value explained below.
 The [Grassroots Lucene](lucene/lucene.md) module handles the searching 
 and indexing of data within Grassroots.
 
-* **classpath**:
-* **index**:
-* **taxonomy**:
-* **search_class**:
-* **index_class**:
-* **delete_class**:
-* **working_directory**:
-* **facet_key**:
+* **classpath**: This is the classpath that contains all of the jar files required for running the Lucene programs. 
+The Grassroots Lucene code is compatible with both versions 8.x and 9.x of Lucene although the required entries on the classpath are different.
+For either version, the following jar files are required:
+	
+	* `PATH TO GRASSROOTS INSTALLATION`/lucene/lib/grassroots-search-core-0.1.jar
+	* `PATH TO GRASSROOTS INSTALLATION`/lucene/lib/grassroots-search-lucene-app-0.1.jar:
+	* `PATH TO GRASSROOTS INSTALLATION`/lucene/lib/json-simple-1.1.1.jar
+			
+	For Lucene 8.x, the following jars are needed:
+
+	* `PATH TO LUCENE INSTALLATION`/analysis/common/lucene-analyzers-common-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/core/lucene-core-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/facet/lucene-facet-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/queryparser/lucene-queryparser-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/backward-codecs/lucene-backward-codecs-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/highlighter/lucene-highlighter-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/queries/lucene-queries-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/memory/lucene-memory-`LUCENE VERSION`.jar
+ 
+
+	For Lucene 9.x, the following jars are needed:
+
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-analysis-common-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-core-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-queryparser-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-facet-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-queries-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-memory-`LUCENE VERSION`.jar
+	* `PATH TO LUCENE INSTALLATION`/modules/lucene-highlighter-`LUCENE VERSION`.jar
+
+ 
+	where `PATH TO GRASSROOTS INSTALLATION` is where you have Grassroots installed, `PATH TO LUCENE INSTALLATION` is where you have Lucene installed and `LUCENE VERSION` is its version. 
+	For example, if you have Grassroots installed in `/opt/grassroots` and Lucene version 8.11.1 installed at `/opt/lucene` then the classpath variable would be: 
+
+```
+
+"classpath": "/opt/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/opt/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/opt/grassroots/lucene/lib/json-simple-1.1.1.jar:/opt/lucene/analysis/common/lucene-analyzers-common-8.11.1.jar:/opt/lucene/core/lucene-core-8.11.1.jar:/opt/lucene/facet/lucene-facet-8.11.1.jar:/opt/lucene/queryparser/lucene-queryparser-8.11.1.jar:/opt/lucene/backward-codecs/lucene-backward-codecs-8.11.1.jar:/opt/lucene/highlighter/lucene-highlighter-8.11.1.jar:/opt/lucene/queries/lucene-queries-8.11.1.jar:/opt/lucene/memory/lucene-memory-8.11.1.jar"
+
+``` 
+
+* **index**: This specifies the directory where Lucene will store its index files.
+* **taxonomy**: This specifies the directory where Lucene will store its taxonmony files.
+* **search_class**: This is the class for the program that will be used for searching 
+the Grassroots system. The default is `uk.ac.earlham.grassroots.app.lucene.Searcher`. 
+* **index_class**: This is the class for the program that will be used for searching 
+the Grassroots system. The default is `uk.ac.earlham.grassroots.app.lucene.Indexer`.
+* **delete_class**: This is the class for the program that will be used for searching 
+the Grassroots system. The default is `uk.ac.earlham.grassroots.app.lucene.Deleter`.
+* **working_directory**: This is the directory where all of the temporary files used when indexing and searching are stored. 
+This directory must be writeable to by the user that is running the apache process.  
+* **facet_key**: This specifies the key used within the indexing process used to store the type of data being indexed such as dataset, field trial, *etc.* By default this is set to `facet_type`. 
+If you change this, then you will need to reindex all data to use the new
+key.
 
 
 

@@ -10,7 +10,7 @@ The infrastructure is accessible via a standard web connection and all data inte
  Grassroots servers can be linked together, or *federated*, allowing the functionality of both to be made automatically available to users without having to perform any additional installation. 
 This concept of federation and decentralisation is core to the Grassroots effort, making Grassroots instances "wrappers" or complementary infrastructure to existing data resources. 
 Servers, Services and Clients are all interface specifications in that they declare an Application Programming Interface (API) that needs to be implemented. 
-All JSON-based Server-Server and Server-Client communication specifications are described in the [Schema guide](@ref schema_guide). 
+All JSON-based Server-Server and Server-Client communication specifications are described in the [Schema guide](schema.md). 
 Grassroots currently runs on Linux, MacOS and Windows.
 
 
