@@ -14,12 +14,10 @@ of the Apache web server to take effect. Any changes to service configuration fi
 are active immediately.
 
 Both the Grassroots core and its services configuration files are in JSON format. 
-
-
-## Apache configuration
-
-The Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation
-
+The configuration files for the individual services are detailed in their respective 
+documentation which are in the Services section on the [Components](components.md) page.
+Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation. 
+Therefore we will concentrate on the core configuration here.
 
 ## Core configuration
 
@@ -106,7 +104,7 @@ and it uses the following fields:
 
  An example snippet is shown below
 
-```
+	```
 	"provider": {
 		"@type": "so:Organization",
 		"so:name": "billy public",
@@ -114,22 +112,37 @@ and it uses the following fields:
 		"so:url": "localhost:2000/info",
 		"so:logo": "http://localhost:2000/grassroots/images/ei_logo.jpg"
 	}
-```
+	```
 
 
-* **jobs_manager**: The purpose of the jobs manager is to 
+* **jobs_manager**: Since Grassroots can run its services as multi-threaded and multi-process as well as asynchronously it needs a way of tracking these. This is done by the *Jobs Manager* component. 
+The standard component is the one that uses MongoDB to store its data and this is called `mongodb_jobs_manager`. 
+This can also be configured to specify the names of the database and collection that the MongoDB Jobs Manager will use by using the `mongodb_jobs_manager`
+key.
+For example to use the `mongodb_jobs_manager` which is standard and specify 
+that you want to use a database called *my_jobs_db* and collection called *my_jobs_collection*, the configuration would be:
 
 
-* **servers_manager**: "simple_external_servers_manager",
+
+	```
+	"jobs_manager": "mongodb_jobs_manager",
+  "mongodb_jobs_manager": {
+      "database": "my_jobs_db",
+      "collection": "my_jobs_collection"
+  },
+	```
 
 
-* **admin**:
-	* **jobs**: 
+* **servers_manager**: When federating Grassroots servers, the Servers Manager takes care of creating the list of combined services and where jobs are running. Currently there is a single available module for this which is the *Simple External Servers Manager*. So the configuration needs to be 
 
+	```
+"servers_manager": "simple_external_servers_manager"
+	```
 
-* **geocoder**: 
-	* **geocoders**: This is an array of available geocoder configurations. These are external web service REST APIs available
-from various organisations such as openstreetmap, google, opencage, *etc.* For more information see the [Grassroots geocoder]() library. 
+* **geocoder**: These are external web service REST APIs available
+from various organisations such as openstreetmap, google, opencage, *etc.*
+ For more information see the [Grassroots geocoder](libs/geocoder.md) library. 
+	* **geocoders**: This is an array of available geocoder configurations. 
 Each object in this array can have the following keys:
 		* **name**: This is required and is a name to give to this configuration object. 
 Any value is fine as it is only used for setting the *default_geocoder* 
@@ -139,7 +152,7 @@ value explained below.
 
 	* **default_geocoder**: This specifies the name of which of the entries in the *geocoders* array to use. T
 
-```
+	```
 	"geocoder": {
 		"default_geocoder": "nominatim",
 		"geocoders": [{
@@ -157,11 +170,13 @@ value explained below.
 ```
 
 * **lucene**: 
-
 The [Grassroots Lucene](lucene/lucene.md) module handles the searching 
 and indexing of data within Grassroots.
+The confguration file details where its libraries are installed, 
+which programs to run for indexing and searching, and where it's working
+files are stored.
 
-* **classpath**: This is the classpath that contains all of the jar files required for running the Lucene programs. 
+	* **classpath**: This is the classpath that contains all of the jar files required for running the Lucene programs. 
 The Grassroots Lucene code is compatible with both versions 8.x and 9.x of Lucene although the required entries on the classpath are different.
 For either version, the following jar files are required:
 	
@@ -195,10 +210,8 @@ For either version, the following jar files are required:
 	where `PATH TO GRASSROOTS INSTALLATION` is where you have Grassroots installed, `PATH TO LUCENE INSTALLATION` is where you have Lucene installed and `LUCENE VERSION` is its version. 
 	For example, if you have Grassroots installed in `/opt/grassroots` and Lucene version 8.11.1 installed at `/opt/lucene` then the classpath variable would be: 
 
-```
-
+	```
 "classpath": "/opt/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/opt/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/opt/grassroots/lucene/lib/json-simple-1.1.1.jar:/opt/lucene/analysis/common/lucene-analyzers-common-8.11.1.jar:/opt/lucene/core/lucene-core-8.11.1.jar:/opt/lucene/facet/lucene-facet-8.11.1.jar:/opt/lucene/queryparser/lucene-queryparser-8.11.1.jar:/opt/lucene/backward-codecs/lucene-backward-codecs-8.11.1.jar:/opt/lucene/highlighter/lucene-highlighter-8.11.1.jar:/opt/lucene/queries/lucene-queries-8.11.1.jar:/opt/lucene/memory/lucene-memory-8.11.1.jar"
-
 ``` 
 
 * **index**: This specifies the directory where Lucene will store its index files.
@@ -217,12 +230,13 @@ key.
 
 
 
+### Example
 
 A complete example configuration file is shown below
 
 ```.json
 {
-  "so:url": "http://localhost:8080/grassroots/public/",
+  "so:url": "http://localhost/grassroots/public/",
 	"services": {
 		"status": {
 			"default": true,
@@ -234,10 +248,10 @@ A complete example configuration file is shown below
 	},
 	"provider": {
 		"@type": "so:Organization",
-		"so:name": "billy public",
-		"so:description": "Billy's public grassroots",
-		"so:url": "localhost:2000/info",
-		"so:logo": "http://localhost:2000/grassroots/images/ei_logo.jpg"
+		"so:name": "Demo server",
+		"so:description": "Grassroots demo instance",
+		"so:url": "http://localhost/info",
+		"so:logo": "http://localhost//images/logo.jpg"
 	},
 	"jobs_manager": "mongodb_jobs_manager",
 	"mongodb_jobs_manager": {
@@ -245,10 +259,6 @@ A complete example configuration file is shown below
 		"collection": "jobs"
 	},
 	"servers_manager": "simple_external_servers_manager",
-	"admin": {
-		"jobs": {
-		}
-	},
 	"geocoder": {
 		"default_geocoder": "nominatim",
 		"geocoders": [{
@@ -264,13 +274,13 @@ A complete example configuration file is shown below
 		}]
 	},
 	"lucene": {
-		"classpath": "/home/billy/Applications/lucene/analysis/common/lucene-analyzers-common-8.11.1.jar:/home/billy/Applications/lucene/core/lucene-core-8.11.1.jar:/home/billy/Applications/lucene/facet/lucene-facet-8.11.1.jar:/home/billy/Applications/lucene/queryparser/lucene-queryparser-8.11.1.jar:/home/billy/Applications/lucene/backward-codecs/lucene-backward-codecs-8.11.1.jar:/home/billy/Applications/lucene/highlighter/lucene-highlighter-8.11.1.jar:/home/billy/Applications/lucene/queries/lucene-queries-8.11.1.jar:/home/billy/Applications/lucene/memory/lucene-memory-8.11.1.jar:/home/billy/Applications/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/home/billy/Applications/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/home/billy/Applications/grassroots/lucene/lib/json-simple-1.1.1.jar",
-		"index": "/home/billy/Applications/grassroots/lucene/index",
-		"taxonomy": "/home/billy/Applications/grassroots/lucene/tax/",
+		"classpath": "/opt/lucene/analysis/common/lucene-analyzers-common-8.11.1.jar:/opt/lucene/core/lucene-core-8.11.1.jar:/opt/lucene/facet/lucene-facet-8.11.1.jar:/opt/lucene/queryparser/lucene-queryparser-8.11.1.jar:/opt/lucene/backward-codecs/lucene-backward-codecs-8.11.1.jar:/opt/lucene/highlighter/lucene-highlighter-8.11.1.jar:/opt/lucene/queries/lucene-queries-8.11.1.jar:/opt/lucene/memory/lucene-memory-8.11.1.jar:/opt/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/opt/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/opt/grassroots/lucene/lib/json-simple-1.1.1.jar",
+		"index": "/opt/grassroots/lucene/index",
+		"taxonomy": "/opt/grassroots/lucene/tax/",
 		"search_class": "uk.ac.earlham.grassroots.app.lucene.Searcher",
 		"index_class": "uk.ac.earlham.grassroots.app.lucene.Indexer",
 		"delete_class": "uk.ac.earlham.grassroots.app.lucene.Deleter",
-		"working_directory": "/home/billy/Applications/grassroots/working_directory/lucene",
+		"working_directory": "/opt/grassroots/working_directory/lucene",
 		"facet_key": "facet_type"
 	}
 }
