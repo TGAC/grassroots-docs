@@ -15,7 +15,8 @@ are active immediately.
 
 Both the Grassroots core and its services configuration files are in JSON format. 
 The configuration files for the individual services are detailed in their respective 
-documentation which are in the Services section on the [Components](components.md) page.
+documentation which are in the Services section on the [Components](components.md) page
+although they all have various common [non-service-specific configuation options](service_configuration.md) that can be edited
 Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation. 
 Therefore we will concentrate on the core configuration here.
 
@@ -86,12 +87,11 @@ will use. This block currently contains a single configuration directive:
 connect to. By default, MongoDB runs on port 27017 so to use a MongoDB server running on the
 same machine, the configuration snippet would be
 
-    ```
+		```
 	"mongodb": {
-		"uri": "mongodb://localhost:27017"
+			"uri": "mongodb://localhost:27017"
 	}
-
-    ```
+```
 
 * **provider**: This specifies the information about the orgraization hosting this Grassroots 
 instance. It is defined as an [Organization](https://schema.org/Organization) from schema.org 
@@ -121,7 +121,6 @@ This can also be configured to specify the names of the database and collection 
 key.
 For example to use the `mongodb_jobs_manager` which is standard and specify 
 that you want to use a database called *my_jobs_db* and collection called *my_jobs_collection*, the configuration would be:
-
 
 
 	```

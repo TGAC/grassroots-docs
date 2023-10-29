@@ -16,7 +16,10 @@ Grassroots currently runs on Linux, MacOS and Windows.
 
 ## Architecture
 
-Grassroots consists of a set of interconnected components which are all available on Github.
+A list of all of the available components and their documentation is available [here](components.md). 
+Grassroots is to be as modular and adaptable as possible so there are many levels of configuration within the system which are detailed in the [configuration guide](configuration.md).
+  
+All of components are open source and  available on Github.
 Some of the highlights are:
 
 * [Build tools](https://github.com/TGAC/grassroots-build-tools): This provides the tools and
@@ -45,7 +48,7 @@ for any changes in service configuration to take effect.
 It is used to provide the functionality of the Grassroots search service and the indexing of all services and associated content.
 
 * [Clients](https://github.com/TGAC/?q=grassroots-client): These are implementations that can interact with the service and core server modules to provide interfaces for end users. 
-The most fully-featured of these is the [Django]()-based implementation which also features
+The most fully-featured of these is the [Django](https://www.djangoproject.com/)-based implementation which also features
 customised interfaces for specific services which is 
 available [here](https://github.com/TGAC/grassroots_services_django_web).
 There is also a [Qt]()-based desktop application that runs on Windows, MacOS and Linux available
@@ -56,9 +59,6 @@ There is also a [Qt]()-based desktop application that runs on Windows, MacOS and
 * [Job tracker](https://github.com/TGAC/grassroots-job-tracker): Any services that carry out analytical or processing tasks can be registered with a Django pipeline monitoring tool to let users keep track of running jobs or retrieve results from completed service processes
 
 
-A list of all of the available components and their documentation is available [here](components.md). 
-Grassroots is to be as modular and adaptable as possible so there are many levels of configuration within the system which are detailed in the [configuration guide](configuration.md).
-  
 ## Available sites
 
 There is a [public Grassroots server](https://grassroots.tools) running at the Earlham Institute.

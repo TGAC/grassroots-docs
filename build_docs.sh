@@ -71,7 +71,14 @@ BuildDocsForContent clients Clients true
 
 cp readme.md ${OUTPUT_DIR}/index.md
 
+cp configuration.md ${OUTPUT_DIR}
+
+cp examples.md ${OUTPUT_DIR}
+
+cp schema.md ${OUTPUT_DIR}
+
+cp service_configuration.md ${OUTPUT_DIR}
+
 cp wizard.md ${OUTPUT_DIR}
 
-cp configuration.md ${OUTPUT_DIR}
 
