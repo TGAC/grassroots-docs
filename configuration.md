@@ -87,9 +87,10 @@ will use. This block currently contains a single configuration directive:
 connect to. By default, MongoDB runs on port 27017 so to use a MongoDB server running on the
 same machine, the configuration snippet would be
 
+
 	```json
 	"mongodb": {
-			"uri": "mongodb://localhost:27017"
+		"uri": "mongodb://localhost:27017"
 	}
 	```
 
