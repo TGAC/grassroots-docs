@@ -168,6 +168,8 @@ value explained below.
 	}
 ```
 
+* **servers**: This is where you can connect Grassroots servers together to share their services. More infromation is given in the [federation guide](federation.md).
+
 * **lucene**: 
 The [Grassroots Lucene](lucene/lucene.md) module handles the searching 
 and indexing of data within Grassroots.
