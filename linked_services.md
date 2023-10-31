@@ -1,4 +1,4 @@
-﻿# Linked Services {#linked_services_guide}
+﻿# Linked Services 
 
 ## Introduction 
 

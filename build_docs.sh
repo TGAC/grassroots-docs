@@ -99,4 +99,6 @@ cp service_configuration.md ${OUTPUT_DIR}
 
 cp wizard.md ${OUTPUT_DIR}
 
+cp federation.md ${OUTPUT_DIR}
+
 

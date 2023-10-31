@@ -1,4 +1,5 @@
-# How to set up a Grassroots server {#how_to_set_up_server_guide}
+# How to set up a Grassroots server 
+
 
 This is a guide to building and setting up a Grassroots server from first principles. This is on
 a Ubuntu 22.04 system but the principles should reamin the same for any Unix-based system. We 
