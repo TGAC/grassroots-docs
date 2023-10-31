@@ -45,7 +45,7 @@ There are various sections within the core configuration file that we will now d
 federating multiple Grassroots instances together. An example of this is 
 
    ```json
-  "so:url": "http://localhost/grassroots/public"
+	"so:url": "http://localhost/grassroots/public"
    ```
 
 * **services**: This contains global configuration relating to services.
@@ -126,10 +126,10 @@ that you want to use a database called *my_jobs_db* and collection called *my_jo
 
 	```json
 	"jobs_manager": "mongodb_jobs_manager",
-  "mongodb_jobs_manager": {
-      "database": "my_jobs_db",
-      "collection": "my_jobs_collection"
-  },
+	"mongodb_jobs_manager": {
+		"database": "my_jobs_db",
+		"collection": "my_jobs_collection"
+	}
 	```
 
 
