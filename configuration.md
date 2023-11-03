@@ -17,7 +17,7 @@ Both the Grassroots core and its services configuration files are in JSON format
 The configuration files for the individual services are detailed in their respective 
 documentation which are in the Services section on the [Components](components.md) page
 although they all have various common [non-service-specific configuation options](service_configuration.md) that can be edited
-Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation. 
+Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server/readme.md) documentation. 
 Therefore we will concentrate on the core configuration here.
 
 ## Core configuration
