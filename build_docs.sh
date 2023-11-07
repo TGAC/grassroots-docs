@@ -21,7 +21,8 @@ BuildDocForContent ()
 	to="$1/$( basename $( dirname "$i")).md"; 
 	echo "> $n"; 
 	cp "$i" "${OUTPUT_DIR}/${to}"; 
-	echo " * [${n^}](${to})" >> ${OUTPUT_FILE}; 
+	c=$(tr '[:lower:]' '[:upper:]' <<<"${n:0:1}")
+	echo " * [($c${n:1})](${to})" >> ${OUTPUT_FILE}; 
 }
 
 
