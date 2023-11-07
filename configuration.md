@@ -17,7 +17,7 @@ Both the Grassroots core and its services configuration files are in JSON format
 The configuration files for the individual services are detailed in their respective 
 documentation which are in the Services section on the [Components](components.md) page
 although they all have various common [non-service-specific configuation options](service_configuration.md) that can be edited
-Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server.md) documentation. 
+Similarly the Apache httpd configuration is detailed in the [Grassroots httpd](servers/apache-server/readme.md) documentation. 
 Therefore we will concentrate on the core configuration here.
 
 ## Core configuration
@@ -44,8 +44,8 @@ There are various sections within the core configuration file that we will now d
 * **so:url**: This is the web address of this Grassroots instance. This is only used when 
 federating multiple Grassroots instances together. An example of this is 
 
-   ```
-  "so:url": "http://localhost/grassroots/public"
+   ```json
+	"so:url": "http://localhost/grassroots/public"
    ```
 
 * **services**: This contains global configuration relating to services.
@@ -58,7 +58,7 @@ It contains the following child objects
 configuration would be
 
      
-	```
+	```json
 	"services": {
 		"status": {
 			"default": true,
@@ -69,7 +69,7 @@ configuration would be
 
 	Alternatively, to specify that only the *Manage Study* and *Manage Field Trial data* services were available, the configuration would be 
 
-	```
+	```json
 	"services": {
 		"status": {
 			"default": false,
@@ -87,11 +87,12 @@ will use. This block currently contains a single configuration directive:
 connect to. By default, MongoDB runs on port 27017 so to use a MongoDB server running on the
 same machine, the configuration snippet would be
 
-		```
+
+	```json
 	"mongodb": {
-			"uri": "mongodb://localhost:27017"
+		"uri": "mongodb://localhost:27017"
 	}
-```
+	```
 
 * **provider**: This specifies the information about the orgraization hosting this Grassroots 
 instance. It is defined as an [Organization](https://schema.org/Organization) from schema.org 
@@ -102,9 +103,9 @@ and it uses the following fields:
     * **so:url**: An optional web page with further details of this server.
     * **so:logo**: An optional logo for this server.
 
- An example snippet is shown below
+	An example snippet is shown below
 
-	```
+	```json
 	"provider": {
 		"@type": "so:Organization",
 		"so:name": "billy public",
@@ -123,18 +124,18 @@ For example to use the `mongodb_jobs_manager` which is standard and specify
 that you want to use a database called *my_jobs_db* and collection called *my_jobs_collection*, the configuration would be:
 
 
-	```
+	```json
 	"jobs_manager": "mongodb_jobs_manager",
-  "mongodb_jobs_manager": {
-      "database": "my_jobs_db",
-      "collection": "my_jobs_collection"
-  },
+	"mongodb_jobs_manager": {
+		"database": "my_jobs_db",
+		"collection": "my_jobs_collection"
+	}
 	```
 
 
 * **servers_manager**: When federating Grassroots servers, the Servers Manager takes care of creating the list of combined services and where jobs are running. Currently there is a single available module for this which is the *Simple External Servers Manager*. So the configuration needs to be 
 
-	```
+	```json
 "servers_manager": "simple_external_servers_manager"
 	```
 
@@ -151,7 +152,7 @@ value explained below.
 
 	* **default_geocoder**: This specifies the name of which of the entries in the *geocoders* array to use. T
 
-	```
+	```json
 	"geocoder": {
 		"default_geocoder": "nominatim",
 		"geocoders": [{
@@ -167,6 +168,8 @@ value explained below.
 		}]
 	}
 ```
+
+* **servers**: This is where you can connect Grassroots servers together to share their services. More infromation is given in the [federation guide](federation.md).
 
 * **lucene**: 
 The [Grassroots Lucene](lucene/lucene.md) module handles the searching 
@@ -209,7 +212,7 @@ For either version, the following jar files are required:
 	where `PATH TO GRASSROOTS INSTALLATION` is where you have Grassroots installed, `PATH TO LUCENE INSTALLATION` is where you have Lucene installed and `LUCENE VERSION` is its version. 
 	For example, if you have Grassroots installed in `/opt/grassroots` and Lucene version 8.11.1 installed at `/opt/lucene` then the classpath variable would be: 
 
-	```
+	```json
 "classpath": "/opt/grassroots/lucene/lib/grassroots-search-core-0.1.jar:/opt/grassroots/lucene/lib/grassroots-search-lucene-app-0.1.jar:/opt/grassroots/lucene/lib/json-simple-1.1.1.jar:/opt/lucene/analysis/common/lucene-analyzers-common-8.11.1.jar:/opt/lucene/core/lucene-core-8.11.1.jar:/opt/lucene/facet/lucene-facet-8.11.1.jar:/opt/lucene/queryparser/lucene-queryparser-8.11.1.jar:/opt/lucene/backward-codecs/lucene-backward-codecs-8.11.1.jar:/opt/lucene/highlighter/lucene-highlighter-8.11.1.jar:/opt/lucene/queries/lucene-queries-8.11.1.jar:/opt/lucene/memory/lucene-memory-8.11.1.jar"
 ``` 
 
@@ -233,7 +236,7 @@ key.
 
 A complete example configuration file is shown below
 
-```.json
+```json
 {
   "so:url": "http://localhost/grassroots/public/",
 	"services": {

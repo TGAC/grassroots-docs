@@ -24,6 +24,7 @@ An *operation_id* with the value *get_all_services* is the one for asking for al
 
 2. The Server sends its response. In this example, it has 2 Operations: "*Foobar Contig Search service*" and 
 "*Foobar Keyword Search service*"
+
  ~~~.json
 {
  "header": {
@@ -163,7 +164,8 @@ An *operation_id* with the value *get_all_services* is the one for asking for al
  
 
 3. The user decides to run the "Foobar Contig Search service" with contig_name set to *BC000000100* but not to run the "Foobar Keyword Search service. The Client's request back to the Server would be:
-~~~.json
+
+ ~~~.json
 {
 	"services": [{
 		"service_name": "Foobar Keyword Contig service",
@@ -180,10 +182,11 @@ An *operation_id* with the value *get_all_services* is the one for asking for al
 		"start_service": false
 	}]
 }
-~~~
+ ~~~
 
 4. The Server can run the requested Operations. In this case, the results are available straight away as the Operations run synchronously.
-~~~.json
+
+ ~~~.json
 {
 	"service_name": "Foobar Keyword Contig service",
 	"status": 3,
@@ -206,4 +209,4 @@ An *operation_id* with the value *get_all_services* is the one for asking for al
 		}
 	}]
 }
-~~~
+ ~~~

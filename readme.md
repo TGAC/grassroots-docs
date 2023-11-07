@@ -11,7 +11,12 @@ The infrastructure is accessible via a standard web connection and all data inte
 This concept of federation and decentralisation is core to the Grassroots effort, making Grassroots instances "wrappers" or complementary infrastructure to existing data resources. 
 Servers, Services and Clients are all interface specifications in that they declare an Application Programming Interface (API) that needs to be implemented. 
 All JSON-based Server-Server and Server-Client communication specifications are described in the [Schema guide](schema.md). 
-Grassroots currently runs on Linux, MacOS and Windows.
+Grassroots currently runs on Linux, MacOS and Windows. 
+
+There is a [public Grassroots server](https://grassroots.tools) running at the Earlham Institute.
+There is also a [demo](https://grassroots.tools/demo) site with complete instructions on how it was built that has its [services](https://grassroots.tools/demo/service/) and its [field trials portal](https://grassroots.tools/demo/fieldtrial/all).
+
+If you wish to set up your own Grassroots server, there is an [installation guide](wizard.md) which details the full process of installing Grassroots on Ubuntu 22.04.
 
 
 ## Architecture
@@ -59,9 +64,5 @@ There is also a [Qt]()-based desktop application that runs on Windows, MacOS and
 * [Job tracker](https://github.com/TGAC/grassroots-job-tracker): Any services that carry out analytical or processing tasks can be registered with a Django pipeline monitoring tool to let users keep track of running jobs or retrieve results from completed service processes
 
 
-## Available sites
-
-There is a [public Grassroots server](https://grassroots.tools) running at the Earlham Institute.
-There is also a [demo](https://grassroots.tools/demo) site with complete instructions with on how it was built that has its [services](https://grassroots.tools/demo/service/) and its [field trials portal](https://grassroots.tools/demo/fieldtrial/all).
 
  

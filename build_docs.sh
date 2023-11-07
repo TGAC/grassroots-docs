@@ -8,7 +8,7 @@ ROOT=..
 # The directory in which we will build the pages
 OUTPUT_DIR=docs
 
-# The name of the initil page that we are writing to
+# The name of the initial page that we are writing to
 OUTPUT_FILE=${OUTPUT_DIR}/components.md
 
 # $1 is the directory name that we're copying and building the docs for
@@ -19,10 +19,25 @@ BuildDocForContent ()
 	n=$( basename $( dirname "$i" ) ); 
 	n=${n/-/ }; 
 	to="$1/$( basename $( dirname "$i")).md"; 
-	echo "> $n"; 
+	echo "> i $i n $n to $to"; 
 	cp "$i" "${OUTPUT_DIR}/${to}"; 
 	c=$(tr '[:lower:]' '[:upper:]' <<<"${n:0:1}")
 	echo " * [($c${n:1})](${to})" >> ${OUTPUT_FILE}; 
+}
+
+
+NewBuildDocForContent () 
+{
+	echo "> 1 $1 2 $2" 
+
+	parent=$( basename "$2" )
+
+	mkdir -p ${OUTPUT_DIR}/$1/$parent
+	cp $2/*.md ${OUTPUT_DIR}/$1/$parent/;
+
+	n=$parent; 
+	n=${n/-/ }; 
+	echo " * [${n^}](${OUTPUT_DIR}/$2/readme.md)" >> ${OUTPUT_FILE}; 
 }
 
 
@@ -36,14 +51,17 @@ BuildDocsForContent ()
 	echo "" >> ${OUTPUT_FILE}
 	echo "## $2" >> ${OUTPUT_FILE}
 
-	if [[ $3 = "true" ]]
-	then
-	for i in ${ROOT}/$1/*/readme.md; 
-	do
-		BuildDocForContent $1 $i
-	done
+	if [[ $3 = "true" ]]; then
+		for i in ${ROOT}/$1/*; 
+		do
+			if test -f $i/readme.md; then
+				NewBuildDocForContent $1 $i
+			fi
+		done
 	else
-		BuildDocForContent $1 ${ROOT}/$1/readme.md
+		if test -f $i/readme.md; then
+			NewBuildDocForContent $1 ${ROOT}/$1
+		fi
 	fi
 
 
@@ -81,5 +99,7 @@ cp schema.md ${OUTPUT_DIR}
 cp service_configuration.md ${OUTPUT_DIR}
 
 cp wizard.md ${OUTPUT_DIR}
+
+cp federation.md ${OUTPUT_DIR}
 
 

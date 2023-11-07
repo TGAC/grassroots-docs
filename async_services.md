@@ -1,8 +1,9 @@
 ﻿# Asynchronous Services {#async_services_guide}
 
 Services can run in two different ways: 
- * **Synchronous** where the Service does not return until it has completed.
- * **Asynchronous** where the Service starts its work and returns immediately. The job then continues and the Client can send a message to the Service to see if it has completed successfully or not.
+
+* **Synchronous** where the Service does not return until it has completed.
+* **Asynchronous** where the Service starts its work and returns immediately. The job then continues and the Client can send a message to the Service to see if it has completed successfully or not.
 
 By default, Services run in synchronous mode. 
 
@@ -26,7 +27,7 @@ Below is a snippet of the definition for a Service that runs asynchronously.
 }
 ~~~
 
-The **synchronous** key determines how the Service runs. If it is ```false``` then the Service runs asynchronously, if it is set to ```true``` or is missing then the Service runs synchronously. 
+The `synchronous` key determines how the Service runs. If it is `false` then the Service runs asynchronously, if it is set to `true` or is missing then the Service runs synchronously. 
 
 
 ## Developing an Asynchronous Service
@@ -35,7 +36,9 @@ The **synchronous** key determines how the Service runs. If it is ```false``` th
 
 When a Service runs a job synchronously, all of the resources that it requires can be released as it sends the response back. With asynchronous services, this becomes more difficult as any required resources need to be accessible between different requests. Given that Httpd can be run as a multi-threaded and/or multi-process system, any data that needs to be persistent, *i.e.* stored between requests, has to be adaptable to any Httpd runtime configuration.
 
-So the Grassroots system has an interface for interacting with asynchronous jobs this is an  called *JobsManager* which deals with sharing persistent data between requests. The JobsManager is essentially a Hash Table where persistent data can be stored where the keys are UUIDs for the data that you wish to store and the values are JSON representations of the data. All of the needed data to recreate the ServiceJob must be stored in this JSON value. For Httpd, this interface is implemented in the *APRJobsManager*. There is also a MongoDB Jobs Manager (@ref mongo_jobs_manager_guide) that use MongoDB as its storage system.
+So the Grassroots system has an interface for interacting with asynchronous jobs this called `JobsManager` which deals with sharing persistent data between requests.
+The `JobsManager` is essentially a Hash Table where persistent data can be stored where the keys are UUIDs for the data that you wish to store and the values are JSON representations of the data. 
+All of the needed data to recreate the `ServiceJob` must be stored in this JSON value. For Httpd, this interface is implemented in the `APRJobsManager`. There is also a MongoDB Jobs Manager (@ref mongo_jobs_manager_guide) that use MongoDB as its storage system.
 
 When writing a Service that you want to be able to run jobs asynchronously, you need to specify two callback functions within the Service:
 
@@ -47,10 +50,10 @@ json_t *(*se_serialise_job_json_fn) (struct Service *service_p, const struct Ser
 
 ~~~
 
-These two functions are used to convert between a ServiceJob and its JSON serialisation. To illustrate how this works, let's go through an example Service that uses this functionality. Included within the Grassroots distribution is an example Service called *Long Running service* and its source at server/src/services/test_long_runner/src/long_running_service.c. This Service mimics the running of asynchronous jobs and how to store and retrieve them from the JobsManager.
+These two functions are used to convert between a `ServiceJob` and its JSON serialisation. To illustrate how this works, let's go through an example Service that uses this functionality. There is an [example service](https://github.com/TGAC/grassroots-service-example) called *Long Running service*. This Service mimics the running of asynchronous jobs and how to store and retrieve them from the `JobsManager`.
 
-Since we are going to store the data representing the asynchronous tasks in the JobsManager, we need to specify the callback functions that we will use to convert our ServiceJobs to and from their JSON
-representations. In the ```GetServices()``` function there is the following piece of code that specifies these functions for the Service.
+Since we are going to store the data representing the asynchronous tasks in the `JobsManager`, we need to specify the callback functions that we will use to convert each `ServiceJob` to and from their JSON
+representations. In the `GetServices()` function there is the following piece of code that specifies these functions for the Service.
 
 ~~~{.c}
 service_p -> se_deserialise_job_json_fn = BuildTimedServiceJob;
@@ -64,7 +67,7 @@ static TimedServiceJob *GetTimedServiceJobFromJSON (const json_t *json_p);
 static json_t *GetTimedServiceJobAsJSON (TimedServiceJob *job_p);
 ~~~
 
-For the Long Running service, the required information for a task is stored in a child class of *ServiceJob* called *TimedServiceJob*. The code snippet showing its structure is shown below.
+For the Long Running service, the required information for a task is stored in a child class of `ServiceJob` called `TimedServiceJob`. The code snippet showing its structure is shown below.
 
 ~~~{.c}
 /**
@@ -104,12 +107,12 @@ typedef struct TimedServiceJob
 } TimedServiceJob;
 ~~~
  
-*TimedServiceJob* has a pointer to a *TimeInterval* structure which is where the values used to determine the status of the mimicked task is. So these values need to be preserved between the separate client requests about a given task. This makes it an ideal candidate to store within the *JobsManager* and the details of how this is done are shown in the next section.
+`TimedServiceJob` has a pointer to a `TimeInterval` structure which is where the values used to determine the status of the mimicked task is. So these values need to be preserved between the separate client requests about a given task. This makes it an ideal candidate to store within the `JobsManager` and the details of how this is done are shown in the next section.
 
 
 ### Serialising the ServiceJob
 
-As mentioned above, in our example, the underlying function that serialises a *TimedServiceJob* is ```GetTimedServiceJobAsJSON``` which is shown below:
+As mentioned above, in our example, the underlying function that serialises a `TimedServiceJob` is `GetTimedServiceJobAsJSON` which is shown below:
 
 ~~~{.c}
 static json_t *GetTimedServiceJobAsJSON (TimedServiceJob *job_p)
@@ -153,14 +156,14 @@ static json_t *GetTimedServiceJobAsJSON (TimedServiceJob *job_p)
 }
 ~~~
 
-This code starts by calling the ```GetServiceJobAsJSON``` which gets the JSON representation for the standard *ServiceJob* structure. The next stage is to add the information for the associated *TimeInterval* structure pointed to by the *tsj_interval_p* member variable since it is this that allows us to check the status of the mimicked task. 
-The values we need to be able to recreate all of our needed information are *ti_start* and *ti_end* and so these are added to the JSON fragment using the ```LRS_START_S``` and ```LRS_END_S``` constants respectively.
+This code starts by calling the `GetServiceJobAsJSON` which gets the JSON representation for the standard `ServiceJob` structure. The next stage is to add the information for the associated `TimeInterval` structure pointed to by the `tsj_interval_p` member variable since it is this that allows us to check the status of the mimicked task. 
+The values we need to be able to recreate all of our needed information are `ti_start` and `ti_end` and so these are added to the JSON fragment using the `LRS_START_S` and `LRS_END_S` constants respectively.
 
 
 ### Deserialising the ServiceJob
 
-The task of creating the *TimedServiceJob* from a JSON fragment is basically the reverse of the procedure in the previous section. 
-This is done by the ```GetTimedServiceJobFromJSON``` function shown below
+The task of creating the `TimedServiceJob` from a JSON fragment is basically the reverse of the procedure in the previous section. 
+This is done by the `GetTimedServiceJobFromJSON` function shown below
 
 ~~~{.c}
 static TimedServiceJob *GetTimedServiceJobFromJSON (const json_t *json_p)
@@ -234,6 +237,6 @@ static TimedServiceJob *GetTimedServiceJobFromJSON (const json_t *json_p)
 }
 ~~~
 
-The code starts by allocating the required memory for the *TimedServiceJob* and its associated *TimeInterval* structure. 
-If this succeeds, then the information for the *ServiceJob* parent object is filled in. Finally if this is successful, the start and end values required for our *TimeInterval* structure are extracted from the JSON fragment as well.
-If this all works, then the reconstructed *TimedServiceJob* is returned and is ready to be used. 
+The code starts by allocating the required memory for the `TimedServiceJob` and its associated `TimeInterval` structure. 
+If this succeeds, then the information for the `ServiceJob` parent object is filled in. Finally if this is successful, the start and end values required for our `TimeInterval` structure are extracted from the JSON fragment as well.
+If this all works, then the reconstructed `TimedServiceJob` is returned and is ready to be used. 
