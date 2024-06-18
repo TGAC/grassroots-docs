@@ -80,7 +80,7 @@ BuildDocsForContent services Services true
 
 BuildDocsForContent libs Libraries true
 
-BuildDocsForContent lucene Lucene false
+BuildDocsForContent lucene Lucene true
 
 BuildDocsForContent servers Servers true
 
