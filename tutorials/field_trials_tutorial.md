@@ -86,12 +86,28 @@ Once it's on your computer, if you scroll down to the *Plots GPS* field, you can
 
 Click on the _Submit_ button to save the Study and then if you would like to see this in the map-based view,  you can reload the Study's web page on the portal.
 
+
+
+### Adding the treatments
+
+Treatment Factors are metadata that specify pieces of information such as the level of Nitrogen fertilizer used on a given plot and these can be added as extra columns within the spreadsheet. 
+As with the Measured Variables, Grassroots has many Treatments that have been defined within ontologies such as the [Plant Experimental Conditions Ontology](https://bioportal.bioontology.org/ontologies/PECO) and imported into Grassroots. 
+As before, there is a [search service](https://grassroots.tools/service/field_trial-search_treatments) where you can search for the terms that you require.
+So let us search for a term to specify the amount of Nitrogen fertilizer that has been used on each Plot. 
+If you type _nitrogen_ in the search box, you should be presented with something similar to the screenshot below.
+
+![The Search Treatments form with the term for Nitrogen fertilizer highlighted"](images/search_treatments_1.png  "Searching for Treatments about Nitrogen fertilizer")
+
+The term that we use as the column header in the Plots spreadsheet and to add to the list of the _Treatment Factors_ within the Study is the value specified in the _Treatment Ontology_ column in the search results, which in this case is PECO:0007102.
+
+
 ## Specifying the Plots
 
 
 There is a [spreadsheet with some example plots ](example_plots.csv) that you can download to set up the Plots that you wish to submit for your Study.
+There is more information on how to create and populate these spreadsheets in the [Submit Plot docs](https://grassroots.tools/documentation/field_trial/submit_plots.html). For a general overview, each Plot is specified 
 
-You 
+
 
 ### Adding the phenotypic measurements
 
@@ -114,4 +130,4 @@ The column heading that we need is the value of the *Variable Name* which in thi
 So we need to put this as the first empty column heading in our spreadsheet. 
 Note that the Measured Variable names are case-sensitive so make sure that you have the case correct.
 
-### Adding the treatments
+~~~~
