@@ -3,26 +3,32 @@
 
 ## Introduction
 
-The [Grassroots Infrastructure](https://grassroots.tools) is a project to allow the sharing of both data and web services to work upon them in a [FAIR](https://www.go-fair.org/fair-principles/) way.  These can be accessed from web browsers using our user portal, through our mobile app, desktop client, command line or using one of the Application Programming Interfaces (API) that we support/
+The [Grassroots Infrastructure](https://grassroots.tools) is a project to allow the sharing of both data and web services to work upon them in a [FAIR](https://www.go-fair.org/fair-principles/) way.
+These can be accessed from web browsers using our user portal, through our mobile app, desktop client, command line or using one of the Application Programming Interfaces (API) that we support.
 The data varies from biological sequences through to individual phenotype measurements within field trial experiments.
-The services range from wrapping industry standard tools such as BLAST through to custom services _e.g._ dealing with Parental Genotypes of SNP markers. The focus of this lesson though is the service used to store [Field Trial](https://grassroots.tools/fieldtrial/all) data. 
+The services range from wrapping industry standard tools such as BLAST through to custom services _e.g._ dealing with Parental Genotypes of SNP markers. 
+The focus of this lesson though is the service used to store [Field Trial](https://grassroots.tools/fieldtrial/all) data. 
 These are experiments that can happen in the field or in a glasshouse where one or more lines of crops are planted, treatments applied and phenotypic measurements taken.
 
 The standards we have produced follow the same concepts as the [Breeding API (BrAPI)](https://brapi.org/) which is a set of community-driven standards to make genotyping, phenotyping and trial data interoperable and reusable.
 
-The top level of the BrAPI hierarchy is a _Programme_ which, initially for us, is the DSW programme. We also store non-DSW data have other Programmes in the system, however our initial focus is on DSW data.
+The top level of the BrAPI hierarchy is a _Programme_ which, initially for us, is the DSW programme. We also store non-DSW data and have other Programmes in the system, however our initial focus is on DSW data.
 
 Each Programme can contain one or more _Trials_, which BrAPI defines as the equivalent of an _investigation_ in the [Minimal Information about a Plant Phenotyping Experiment (MIAPPE)](https://www.miappe.org/) standard.
 
-Trials can consist of one or more experiments where seeds are sown and phenotypic information is gathered and each of these is called a _Study_. These contain a wide variety of data, such as weather information, experimental design notes, GPS data, _etc._ and each Study takes place at a _Location_. To add a Study to the system you need to define both the Field Trial that it is part of and the Location where it took place.
+Trials can consist of one or more experiments where seeds are sown and phenotypic information is gathered and each of these is called a _Study_. 
+These contain a wide variety of data, such as weather information, experimental design notes, GPS data, _etc._ and each Study takes place at a _Location_. 
+To add a Study to the system you need to define both the Field Trial that it is part of and the Location where it took place.
 
-For each Study, you can specify the set of phenotypes that will be measured and these are called _Measured Phenotype Variables_. Each of these consist of unique triples (three distinct pieces of information) that define:
+For each Study, you can specify the set of phenotypes that will be measured and these are called _Measured Phenotype Variables_. 
+Each of these consists of unique triples (three distinct pieces of information) that define:
 
  * A phenotype
  * How it has been measured
  * Which units have been used
 
-When you have specified the phenotypes to use, these are submitted as Plots, along with the details of how the experiment has been laid out in the field. Plots contain various details such as width, length, position in field, phenotypic data, _etc._
+When you have specified the phenotypes to use, these are submitted as Plots, along with the details of how the experiment has been laid out in the field. 
+Plots contain various details such as width, length, their position in the field, phenotypic data, _etc._
 
 All of the uploaded data is available in our field trial search portal which allows you to search across all Studies and view individual Studies in more detail.
 
@@ -31,8 +37,8 @@ For further information please take a look at the [Field Trials user guide](http
 
 ## Submitting a Study
 
-In this tutorial we are going to create a Study and upload it into a Grassroots demo server. 
-We have various Programmes, Trials, Studies , Locations, _etc._ already in the system so we can use  existing Programmes, Trials and Locations and focus instead on creating a new Study. 
+In this tutorial, we are going to create a Study and upload it into a Grassroots demo server. 
+We have various Programmes, Trials, Studies , Locations, _etc._ already in the system so we can use existing Programmes, Trials and Locations and focus instead on creating a new Study. 
 This is done in two parts: Creating a Study and then uploading the Plots information. 
 We will be doing this on our [Grassroots demo server](https://grassroots.tools/dev/fieldtrial/all). 
 
@@ -48,18 +54,19 @@ The only fields that are initially required are
  * The Location where the Study is taking place
 
 These are set with the *Name*,  *Field trials* and *Locations* fields so let's start by setting those. 
-Choose any name for your Study, ideally make it a unique one so that it doesn't get confusing by having multiple Studies with the same name. 
-Similarly choose a Field Trial and Location by clicking on the list of available entries for each of these and selecting the ones that you would like.
+Choose any name for your Study, ideally, make it a unique one so that it doesn't get confusing by having multiple Studies with the same name. 
+Similarly, choose a Field Trial and Location by clicking on the list of available entries for each of these and selecting the ones that you would like.
 For instance to create a Study called _Paragon lines_ as part of the _DSW Course Trial_ at _Football Field, Church Farm_ you would have something similar to:
 
 ![Setting the Study name, Field Trial and Location](images/submit_study_1.png  "Submit Study")
 
 You can also scroll down the form to the *Crop* drop-down menu and choose _wheat_. 
-So choosing whatever name you would like for the Study, scroll down to the bottom of the page and click on the Submit button to save this initial version of the Study. 
-Upon completion a link to view your study on the Field Trials portal  will appear and clicking on this will take you to the initial version of your Study.
+So choosing whatever name you would like for the Study, scroll down to the bottom of the page and click on the _Submit_ button to save this initial version of the Study. 
+Upon completion a link to view your study on the Field Trials portal will appear and clicking on this will take you to the initial version of your Study. 
+If you click on this it can be left open in a separate browser window so that we can easily see the changes that we make.
 
 Commonly people would come back to edit the Study at a later date rather than continuing straight away as we are doing here, so we need to make sure that we load our new Study rather than carrying on editing as we would then be creating another copy of this Study with an identical name. 
-To stop this happening, we just need to tell the system that we want to edit the Study we've just created and to do this, reload the page in your web browser and click on the drop-down menu for the *Load Study* option at the top of the page and choose your Study. 
+To stop this from happening, we just need to tell the system that we want to edit the Study we've just created and to do this, reload the page in your web browser and click on the drop-down menu for the *Load Study* option at the top of the page and choose your Study. 
 The Studies are in alphabetical order and you can start typing in the name of your Study to jump to that point in the list. 
 Once you've selected your Study, we can submit updated versions of the Study as many times as you like without having to refresh the page.
 
@@ -75,13 +82,18 @@ If you zoom in on the map and for the above Study and click on any of these, a p
 So the next stage is to add some GPS data to your Study and there is an [example GeoJSON file](example_plots.geojson) that you can download and save to your computer.
 Once it's on your computer, if you scroll down to the *Plots GPS* field, you can drag and drop the file onto this field and it will read all of the file into this field to give you something like
 
-[The Plots GPS field and its data](images/plots_gps_loaded.png  "Plots GPS metadata")
+![The Plots GPS field and its data](images/plots_gps_loaded.png "Plots GPS metadata")
 
+Click on the _Submit_ button to save the Study and then if you would like to see this in the map-based view,  you can reload the Study's web page on the portal.
 
-# Specifying the Plots
+## Specifying the Plots
 
 
 There is a [spreadsheet with some example plots ](example_plots.csv) that you can download to set up the Plots that you wish to submit for your Study.
+
+You 
+
+### Adding the phenotypic measurements
 
 As well as some required columns, you can add as many columns for phenotypic values or treatments as you would like. 
 The phenotypes are denoted by Measured Variables. 
@@ -99,6 +111,7 @@ The term that we're searching for has been highlighted with the red box.
 ![The Search Measured Variables form with the term for plant height in cm highlighted"](images/search_measured_variables_2.png  "Searching for Measured Variables about height")
 
 The column heading that we need is the value of the *Variable Name* which in this case is _PH_M_cm_.
-So we need to put this as first empty column heading in our spreadsheet. 
+So we need to put this as the first empty column heading in our spreadsheet. 
 Note that the Measured Variable names are case-sensitive so make sure that you have the case correct.
 
+### Adding the treatments
