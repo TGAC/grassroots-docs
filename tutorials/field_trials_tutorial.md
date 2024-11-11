@@ -99,20 +99,26 @@ As before, in Grassroots, there is a [search service](https://grassroots.tools/s
 So let us search for a term to specify the amount of Nitrogen fertilizer that has been used on each Plot. 
 If you type _nitrogen_ in the search box, you should be presented with something similar to the screenshot below.
 
-![The Search Treatments form with the term for Nitrogen fertilizer highlighted"](images/search_treatments_1.png  "Searching for Treatments about Nitrogen fertilizer")
+![The Search Treatments form with the term for Nitrogen fertilizer highlighted](images/search_treatments_1.png  "Searching for Treatments about Nitrogen fertilizer")
 
 The term that we use as the column header in the Plots spreadsheet and to add to the list of the _Treatment Factors_ within the Study is the value specified in the _Treatment Ontology_ column in the search results, which in this case is PECO:0007102.
 
 Now we can go back to the _Submit Field Trial Study_ page and scroll down to the section labelled *Treatment Factors*. 
-
-
+This is where specify the Treatments that occur within the Study and their different levels.
 
 In the box labelled *Treatment name*, copy in the _Treatment Ontology_ value that we found in our search, PECO:0007102. 
-Next we go to the section labelled *Treatment Factors to upload*. 
-This is where define our two different levels of Nitrogen fertilizer. 
-There are two buttons, *Add Row* and *Excel*, followed by a two-column table with *Label* and *Value* as its headings.
 
- and we are going to use the *Add Row* one. Click on that 
+Next we go to the section labelled *Treatment Factors to upload* which is where define our different levels of Nitrogen fertilizer. 
+So in our example we have two values, 50 & 200 kg n/ha, and let us label them N1 and N2 respectively.
+
+There are two buttons, *Add Row* and *Excel*, followed by a two-column table with *Label* and *Value* as its headings. 
+The labels are what we are going to put into the spreadsheet and the values are the values of the given Treatment for the corresponding label. 
+
+To add these, click on the *Add Row* button, and in the first column of the table put the labels, N1, followed by the corresponding value, 50, in the second column 
+To add the next definition, we click on the *Add Row* button again, and proceed to add N2 and 200.
+You should have something to this:
+
+![The Treatment Factor for Nitrogen fertilizer](images/treatment_factors.png  "The The Treatment Factor for Nitrogen fertilizer")
 
 
 ## Specifying the Plots
@@ -121,7 +127,7 @@ There are two buttons, *Add Row* and *Excel*, followed by a two-column table wit
 There is a [spreadsheet with some example plots ](example_plots.csv) that you can download to set up the Plots that you wish to submit for your Study.
 There is more information on how to create and populate these spreadsheets in the [Submit Plot docs](https://grassroots.tools/documentation/field_trial/submit_plots.html). For a general overview, each Plot is specified 
 
-
+![The Search Measured Variables form](images/search_measured_variables_1.png  "Search Measured Variables")
 
 ### Adding the phenotypic measurements
 
@@ -138,7 +144,7 @@ So let's find the Measured Variable for specifying the plant height in cm.
 If we start typing _height_ into the search box, the service will search for all terms that include the word height and will produce something like the image below. 
 The term that we're searching for has been highlighted with the red box.
 
-![The Search Measured Variables form with the term for plant height in cm highlighted"](images/search_measured_variables_2.png  "Searching for Measured Variables about height")
+![The Search Measured Variables form with the term for plant height in cm highlighted](images/search_measured_variables_2.png  "Searching for Measured Variables about height")
 
 The column heading that we need is the value of the *Variable Name* which in this case is _PH\_M\_cm_.
 So we need to put this as the first empty column heading in our spreadsheet. 
@@ -148,7 +154,24 @@ Note that the Measured Variable names are case-sensitive so make sure that you h
 ![The Plots spreadsheet](images/plots_spreadsheet.png  "Plots spreadsheet with phenotype")
 
 
+### Uploading the Plots spreadsheet
+
 So now that we have the column heading set, we can go to the [Submit Plots](https://grassroots.tools/dev/service/field_trial-submit_plots) service and upload them. 
-In the *Study* drop-down menu on that page, select the Study that you have been working
+In the *Study* drop-down menu on that page, select the Study that you have been working. 
+Once you have set it, drag and drop the Plots spreadsheet file that you shave filled in onto the box marked "Drop a spreadsheet file here to populate the table below".
+Once this is done you should get the message 
+
+~~~
+File: example_plots.csv Processing done, ready to submit.
+~~~
+
+and see your uploaded plots similar to the image below.
+
+![The uploaded plots](images/submit_plots_1.png  "Submitting the Plots")
+
+and if you scroll to the bottom of the page and click *Submit*, after a short while you should get a message saying `Done` and the link to view the Study. 
+
+
+## Viewing the Study
 
 
