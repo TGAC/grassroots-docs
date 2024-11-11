@@ -37,7 +37,7 @@ For further information please take a look at the [Field Trials user guide](http
 
 ## Submitting a Study
 
-In this tutorial, we are going to create a Study and upload it into a Grassroots demo server. 
+In this tutorial, we are going to create a Study and upload it to a Grassroots demo server. 
 We have various Programmes, Trials, Studies , Locations, _etc._ already in the system so we can use existing Programmes, Trials and Locations and focus instead on creating a new Study. 
 This is done in two parts: Creating a Study and then uploading the Plots information. 
 We will be doing this on our [Grassroots demo server](https://grassroots.tools/dev/fieldtrial/all). 
@@ -63,7 +63,7 @@ For instance to create a Study called _Paragon lines_ as part of the _DSW Course
 You can also scroll down the form to the *Crop* drop-down menu and choose _wheat_. 
 So choosing whatever name you would like for the Study, scroll down to the bottom of the page and click on the _Submit_ button to save this initial version of the Study. 
 Upon completion a link to view your study on the Field Trials portal will appear and clicking on this will take you to the initial version of your Study. 
-If you click on this it can be left open in a separate browser window so that we can easily see the changes that we make.
+If you click on this it can be left open in a separate browser window so that you can easily see the changes that you make.
 
 Commonly people would come back to edit the Study at a later date rather than continuing straight away as we are doing here, so we need to make sure that we load our new Study rather than carrying on editing as we would then be creating another copy of this Study with an identical name. 
 To stop this from happening, we just need to tell the system that we want to edit the Study we've just created and to do this, reload the page in your web browser and click on the drop-down menu for the *Load Study* option at the top of the page and choose your Study. 
@@ -174,4 +174,36 @@ and if you scroll to the bottom of the page and click *Submit*, after a short wh
 
 ## Viewing the Study
 
+Now that we have populated the Study's plots, we can view them in two ways. 
+The first is on the portal's Study page whose address was given when we submitted the Study. 
+This should give you the map-based view with blue rectangles representing each of the Plots.
+Clicking on any of the plots will give a pop-up with the information about that plot.
+Below the map is a table where any of the Study's metadata that has been set is shown. 
+In this table there is a link called _view plots_ and clicking on this will take you to a tabular-based view of your Study similar to the one shown in the image below.
+
+![The Plots-based view](images/plots_tabular_view.png  "Plots Tabular View")
+
+There are two links above the table. 
+The first, *Download csv file of plot data*, lets users download a spreadsheet of the Plots data for this Study.
+The second, *Jump to Interactive heatmap visualisation*, takes you to the phenotype heatmap view.
+
+### Phenotypic heatmap view
+
+One of the ways that Grassroots takes advantage of using standard ontological terms is that it can automatically take advantage of knowing the type of data that these terms can store. 
+Grassroots automatically identifies which terms store numeric values and then generates various statistical values for these. 
+These include:
+
+ * The minimum value
+ * The maximum value
+ * The mean value
+ * The standard deviation
+
+We can take advantage of these to present the information as graphical heatmaps for each of these numeric phenotypes. 
+In our example here, our plant height phenotype is numeric and produces a heatmap similar to the one below
+
+![The heatmap for the the plat height phenotype](images/plots_heatmap_1.png  "Plots Heatmap View")
+
+Each Plot in our study is represented by the corresponding rectangle in the heatmap. 
+The colour of each of these denotes the Plot's value, ranging from light colours for the lower values to darker colours for the higher values. 
+Hovering your cursor over any of these rectangles produces a pop-up showing the value along with some of the Plot's other metadata.
 
