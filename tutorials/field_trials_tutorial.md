@@ -84,21 +84,35 @@ Once it's on your computer, if you scroll down to the *Plots GPS* field, you can
 
 ![The Plots GPS field and its data](images/plots_gps_loaded.png "Plots GPS metadata")
 
-Click on the _Submit_ button to save the Study and then if you would like to see this in the map-based view,  you can reload the Study's web page on the portal.
+Click on the _Submit_ button to save the Study and then if you would like to see this in the map-based view, you can reload the Study's web page on the portal.
 
-
+On this view, you can see the 
 
 ### Adding the treatments
 
 Treatment Factors are metadata that specify pieces of information such as the level of Nitrogen fertilizer used on a given plot and these can be added as extra columns within the spreadsheet. 
 As with the Measured Variables, Grassroots has many Treatments that have been defined within ontologies such as the [Plant Experimental Conditions Ontology](https://bioportal.bioontology.org/ontologies/PECO) and imported into Grassroots. 
-As before, there is a [search service](https://grassroots.tools/service/field_trial-search_treatments) where you can search for the terms that you require.
+In our example let's assume that in our Study, Nitrogen fertilizer was applied to the Plots within our Study at two different levels; 50kg n/ha and 200kg n/ha.
+We are going to add the information about this for each of the Plots within our Study. 
+The frst thing that we need to do is find the ontology term that defines the amount of Nitrogen fertilizer that is used. 
+As before, in Grassroots, there is a [search service](https://grassroots.tools/service/field_trial-search_treatments) where you can search for the terms that you require.
 So let us search for a term to specify the amount of Nitrogen fertilizer that has been used on each Plot. 
 If you type _nitrogen_ in the search box, you should be presented with something similar to the screenshot below.
 
 ![The Search Treatments form with the term for Nitrogen fertilizer highlighted"](images/search_treatments_1.png  "Searching for Treatments about Nitrogen fertilizer")
 
 The term that we use as the column header in the Plots spreadsheet and to add to the list of the _Treatment Factors_ within the Study is the value specified in the _Treatment Ontology_ column in the search results, which in this case is PECO:0007102.
+
+Now we can go back to the _Submit Field Trial Study_ page and scroll down to the section labelled *Treatment Factors*. 
+
+
+
+In the box labelled *Treatment name*, copy in the _Treatment Ontology_ value that we found in our search, PECO:0007102. 
+Next we go to the section labelled *Treatment Factors to upload*. 
+This is where define our two different levels of Nitrogen fertilizer. 
+There are two buttons, *Add Row* and *Excel*, followed by a two-column table with *Label* and *Value* as its headings.
+
+ and we are going to use the *Add Row* one. Click on that 
 
 
 ## Specifying the Plots
@@ -126,8 +140,15 @@ The term that we're searching for has been highlighted with the red box.
 
 ![The Search Measured Variables form with the term for plant height in cm highlighted"](images/search_measured_variables_2.png  "Searching for Measured Variables about height")
 
-The column heading that we need is the value of the *Variable Name* which in this case is _PH_M_cm_.
+The column heading that we need is the value of the *Variable Name* which in this case is _PH\_M\_cm_.
 So we need to put this as the first empty column heading in our spreadsheet. 
-Note that the Measured Variable names are case-sensitive so make sure that you have the case correct.
+Note that the Measured Variable names are case-sensitive so make sure that you have the case correct. It should look something like the image below
 
-~~~~
+
+![The Plots spreadsheet](images/plots_spreadsheet.png  "Plots spreadsheet with phenotype")
+
+
+So now that we have the column heading set, we can go to the [Submit Plots](https://grassroots.tools/dev/service/field_trial-submit_plots) service and upload them. 
+In the *Study* drop-down menu on that page, select the Study that you have been working
+
+
