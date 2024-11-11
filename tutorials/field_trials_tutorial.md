@@ -86,7 +86,6 @@ Once it's on your computer, if you scroll down to the *Plots GPS* field, you can
 
 Click on the _Submit_ button to save the Study and then if you would like to see this in the map-based view, you can reload the Study's web page on the portal.
 
-On this view, you can see the 
 
 ### Adding the treatments
 
@@ -175,11 +174,25 @@ and if you scroll to the bottom of the page and click *Submit*, after a short wh
 ## Viewing the Study
 
 Now that we have populated the Study's plots, we can view them in two ways. 
+
+### Study-based view
+
 The first is on the portal's Study page whose address was given when we submitted the Study. 
 This should give you the map-based view with blue rectangles representing each of the Plots.
 Clicking on any of the plots will give a pop-up with the information about that plot.
 Below the map is a table where any of the Study's metadata that has been set is shown. 
-In this table there is a link called _view plots_ and clicking on this will take you to a tabular-based view of your Study similar to the one shown in the image below.
+As well as these, there are some additional links in the table that offer alternative ways of viewing the Study.
+
+The first of these is *Download Frictionless Data Package*. [Frictionless Data Packages](https://frictionlessdata.io/) are an open format for storing and sharing data in a FAIR way and there is more information about how we use this in Grassroots [here](https://grassroots.tools/frictionless-data/).
+
+Another link of interest is *Handbook pdf*. 
+Grassroots collects the information for a Study and automatically generates a pdf available for download with the Study's information in it. 
+
+In this table there is a link called _view plots_ and clicking on this will take you to a tabular-based view of your Study similar to the Plots-based view.
+
+### Plots-based view
+
+The Plots-based view is similar to the one shown below.
 
 ![The Plots-based view](images/plots_tabular_view.png  "Plots Tabular View")
 
@@ -187,7 +200,7 @@ There are two links above the table.
 The first, *Download csv file of plot data*, lets users download a spreadsheet of the Plots data for this Study.
 The second, *Jump to Interactive heatmap visualisation*, takes you to the phenotype heatmap view.
 
-### Phenotypic heatmap view
+#### Phenotypic heatmap view
 
 One of the ways that Grassroots takes advantage of using standard ontological terms is that it can automatically take advantage of knowing the type of data that these terms can store. 
 Grassroots automatically identifies which terms store numeric values and then generates various statistical values for these. 
